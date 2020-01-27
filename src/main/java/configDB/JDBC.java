@@ -39,7 +39,7 @@ public class JDBC {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			cnn = DriverManager.getConnection("jdbc:mysql://localhost:" + port + "/" + dbName + "", connectionName,password);
 		} catch (Exception e) {
-			System.out.println("this is error");
+			System.out.println("connection problem");
 			e.getMessage();
 		}
 		return cnn;

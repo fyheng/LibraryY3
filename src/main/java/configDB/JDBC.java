@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
 
 public class JDBC {
 	
@@ -39,8 +41,8 @@ public class JDBC {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			cnn = DriverManager.getConnection("jdbc:mysql://localhost:" + port + "/" + dbName + "", connectionName,password);
 		} catch (Exception e) {
-			System.out.println("connection problem");
-			e.getMessage();
+			Logger logger = Logger.getGlobal();
+			logger.info("connection problem!!!");
 		}
 		return cnn;
 	}
@@ -104,5 +106,7 @@ public class JDBC {
 		
 		return name;
 	}
+	
+	
 
 }

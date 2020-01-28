@@ -6,7 +6,7 @@ public class Main {
 	
 	public static void main(String args[]) throws SQLException {
 		
-		Object reauft = JDBC.readData("subject","code","id","name");
+		Object reauft = JDBC.readData("subject","code");
 		System.out.println(reauft);
 		
 	}

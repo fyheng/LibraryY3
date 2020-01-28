@@ -17,10 +17,10 @@ public class JDBC {
 	/**
 	 * this is default configuration
 	 */
-	static String port = "3307";
+	static String port = "3306";
 	static String dbName = "libaryDB";
 	static String connectionName = "root";
-	static String password = "12345";
+	static String password = "12345678";
 
 	
 	public JDBC(String port, String dbName, String connectionName, String password) {

@@ -9,6 +9,10 @@ public class Main {
 		Object reauft = JDBC.readData("subject","code");
 		System.out.println(reauft);
 		
+		
+		int c = JDBC.getCount("subject","code","003");
+		System.out.println(c);
+		
 	}
 
 

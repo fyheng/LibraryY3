@@ -17,7 +17,7 @@ public class JDBC {
 	static ResultSet resultSet;
 
 	/**
-	 * this is default configuration
+	 * this is default configuration/libaryDB/root/12345
 	 */
 	static String port = "3306";
 	static String dbName = "library";
@@ -105,6 +105,28 @@ public class JDBC {
 		//System.out.println(name);
 		
 		return name;
+	}
+	
+	
+	public static int getCount(String tbName) throws SQLException {
+		int count=1;
+		statement = connection().createStatement();
+		resultSet = statement.executeQuery("SELECT COUNT(id) from " + tbName + "");
+		
+		while (resultSet.next()) {count++;}
+		return count;
+	}
+	
+	
+	public static int getCount(String tbName,String colum,String value) throws SQLException {
+		int c=0;
+		statement = connection().createStatement();
+		resultSet = statement.executeQuery("select count(id) as totals from "+tbName+" where "+colum+" = "+value+"");
+		while(resultSet.next()) {
+			c += resultSet.getInt("totals");
+		}
+		return c;
+	
 	}
 	
 	

@@ -20,9 +20,9 @@ public class JDBC {
 	 * this is default configuration
 	 */
 	static String port = "3306";
-	static String dbName = "libaryDB";
+	static String dbName = "library";
 	static String connectionName = "root";
-	static String password = "12345678";
+	static String password = "Sophea1911";
 
 	
 	public JDBC(String port, String dbName, String connectionName, String password) {

@@ -6,11 +6,11 @@ public class Main {
 	
 	public static void main(String args[]) throws SQLException {
 		
-		Object reauft = JDBC.readData("subject","code");
+		Object reauft = JDBC.readData("book_detail","borrowed");
 		System.out.println(reauft);
 		
 		
-		int c = JDBC.getCount("subject","code","003");
+		int c = JDBC.getCount("book_detail","borrowed","003");
 		System.out.println(c);
 	}
 

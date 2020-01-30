@@ -12,7 +12,6 @@ public class Main {
 		
 		int c = JDBC.getCount("subject","code","003");
 		System.out.println(c);
-		System.out.print("hhhhhh");
 	}
 
 

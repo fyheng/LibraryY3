@@ -48,7 +48,7 @@ public class JDBC {
 	}
 
 	// list all rows with Specified on column
-	public static Object readData(String tbName, String... columnName) throws SQLException {
+	public static ArrayList<ArrayList<String>> readData(String tbName, String... columnName) throws SQLException {
 
 		ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 		ArrayList<String> set;
@@ -69,7 +69,7 @@ public class JDBC {
 	}
 
 	// list all rows and all column
-	public static Object readData(String tbName) throws SQLException {
+	public static ArrayList<ArrayList<String>> readData(String tbName) throws SQLException {
 
 		ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 		ArrayList<String> set;
@@ -119,12 +119,45 @@ public class JDBC {
 		return count;
 	}
 
-	public static int getCount(String tbName, String colum, String value) throws SQLException {
+	
+	public static int getCount(String tbName, String col, String value) throws SQLException {
+		int c = 0;
+		statement = connection().createStatement();
+		resultSet = statement.executeQuery(
+				"select count(id) as totals from " + tbName + " where " + col + " = '"+ value +"' ");
+		while (resultSet.next()) {
+			c += resultSet.getInt("totals");
+		}
+		resultSet.close();
+		return c;
+
+	}
+	
+	/**
+	 * @param tbName
+	 * @param col column to find
+	 * @return totals rows where value current date
+	 */
+	public static int getCountToday(String tbName, String col) throws SQLException {
 		int c = 0;
 		String date =  JDBC.getDate();
 		statement = connection().createStatement();
 		resultSet = statement.executeQuery(
-				"select count(id) as totals from " + tbName + " where " + colum + " = '"+ date +"' ");
+				"select count(id) as totals from " + tbName + " where " + col + " = '"+ date +"' ");
+		while (resultSet.next()) {
+			c += resultSet.getInt("totals");
+		}
+		resultSet.close();
+		return c;
+
+	}
+	
+	public static int getCount(String tbName, String c1, String c2, String v1,String v2) throws SQLException {
+		int c = 0;
+		String date =  JDBC.getDate();
+		statement = connection().createStatement();
+		resultSet = statement.executeQuery(
+				"select count(id) as totals from " + tbName + " where " + c1 + " = '"+ v1 +"' ");
 		while (resultSet.next()) {
 			c += resultSet.getInt("totals");
 		}

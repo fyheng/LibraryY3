@@ -2,6 +2,7 @@ package configDB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,11 +48,8 @@ public class JDBC {
 		return cnn;
 	}
 
-	
-	
-	
 //List Data from DB=========================================================================================================
-	
+
 	// list all rows and all column
 	public static ArrayList<ArrayList<String>> readData(String tbName) throws SQLException {
 
@@ -97,12 +95,12 @@ public class JDBC {
 	}
 
 	// list all rows with condition
-	public static ArrayList<ArrayList<String>> readBy(String tbName,String column,String value) throws SQLException {
+	public static ArrayList<ArrayList<String>> readBy(String tbName, String column, String value) throws SQLException {
 		ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 		ArrayList<String> set;
 		ArrayList<String> columnName = new ArrayList<String>();
-		value = value.length()==0 ? JDBC.getDate():value;
-		
+		value = value.length() == 0 ? JDBC.getDate() : value;
+
 		statement = connection().createStatement();
 		resultSet = statement.executeQuery("select * from " + tbName + " where " + column + " = '" + value + "' ");
 		columnName = JDBC.getColumnName(resultSet);
@@ -119,14 +117,16 @@ public class JDBC {
 		resultSet.close();
 		return result;
 	}
-	
+
 	// list all rows with 2 condition
-	public static ArrayList<ArrayList<String>> readBys(String tbName,String column1,String value1,String column2,String value2) throws SQLException {
+	public static ArrayList<ArrayList<String>> readBys(String tbName, String column1, String value1, String column2,
+			String value2) throws SQLException {
 		ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 		ArrayList<String> set;
 		ArrayList<String> columnName = new ArrayList<String>();
 		statement = connection().createStatement();
-		resultSet = statement.executeQuery("select * from " + tbName + " where " + column1 + " = '" + value1 + "' and "+column2+ " = '" +value2+"' " );
+		resultSet = statement.executeQuery("select * from " + tbName + " where " + column1 + " = '" + value1 + "' and "
+				+ column2 + " = '" + value2 + "' ");
 		columnName = JDBC.getColumnName(resultSet);
 
 		// loop rows
@@ -141,11 +141,10 @@ public class JDBC {
 		resultSet.close();
 		return result;
 	}
-	
 
 //get totals=============================================================================================================
-	
-	//return totals rows from table
+
+	// return totals rows from table
 	public static int getCount(String tbName) throws SQLException {
 		int count = 0;
 		statement = connection().createStatement();
@@ -158,12 +157,12 @@ public class JDBC {
 		return count;
 	}
 
-	//return totals rows by column from table
+	// return totals rows by column from table
 	public static int getCount(String tbName, String colName, String value) throws SQLException {
 		int c = 0;
 		statement = connection().createStatement();
-		resultSet = statement
-				.executeQuery("select count(id) as totals from " + tbName + " where " + colName + " = '" + value + "' ");
+		resultSet = statement.executeQuery(
+				"select count(id) as totals from " + tbName + " where " + colName + " = '" + value + "' ");
 		while (resultSet.next()) {
 			c += resultSet.getInt("totals");
 		}
@@ -172,42 +171,58 @@ public class JDBC {
 
 	}
 
-	
-	//return totals rows by 2 condition
+	// return totals rows by 2 condition
 	public static int getCountBy(String tbName, String c1, String v1, String c2, String v2) throws SQLException {
 		int c = 0;
 		statement = connection().createStatement();
-		resultSet = statement
-				.executeQuery("select count(id) as totals from " + tbName + " where " + c1 + " = '" + v1 + "' and "+c2+" = '"+v2+"' ");
+		resultSet = statement.executeQuery("select count(id) as totals from " + tbName + " where " + c1 + " = '" + v1
+				+ "' and " + c2 + " = '" + v2 + "' ");
 		while (resultSet.next()) {
 			c += resultSet.getInt("totals");
 		}
 		resultSet.close();
 		return c;
 	}
-	
-	
-	//return totals rows by current date
+
+	// return totals rows by current date
 	public static int getCountToday(String tbName, String colDateName) throws SQLException {
 		int c = 0;
 		String date = JDBC.getDate();
 		statement = connection().createStatement();
-		resultSet = statement
-				.executeQuery("select count(id) as totals from " + tbName + " where " + colDateName + " = '" + date + "' ");
+		resultSet = statement.executeQuery(
+				"select count(id) as totals from " + tbName + " where " + colDateName + " = '" + date + "' ");
 		while (resultSet.next()) {
 			c += resultSet.getInt("totals");
 		}
 		resultSet.close();
 		return c;
-
 	}
 
-	
-	
-	
-	
- //@supProcess===================================================================================================
-	
+// Insert into DB===================================================================================================
+	public static void insert(String tbName,String...strings) throws SQLException {
+		 ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+		 ArrayList<String> set;
+		 ArrayList<String> columnName = new ArrayList<String>();
+		
+		//option 1====
+		// statement = connection().createStatement();
+		// String sql = "INSERT INTO "+tbName+"(code, borrowed,dueDate,status) values (
+		// 004, '"+getDate()+"' , '"+getDate()+"' , 1 )";
+		// statement.executeUpdate(sql);
+
+		
+		//option 2====
+		String sql = "INSERT INTO " + tbName + " (code, borrowed, dueDate, status ) values ( ?, ?, ?, ?)";
+		PreparedStatement prepared = connection().prepareStatement(sql);
+		prepared.setString(1, "004");
+		prepared.setString(2, getDate());
+		prepared.setString(3, getDate());
+		prepared.setString(4, "3");
+		prepared.execute();
+	}
+
+	// @supProcess===================================================================================================
+
 	// get All column name form table
 	public static ArrayList<String> getColumnName(ResultSet resultSet) throws SQLException {
 		int columCount = resultSet.getMetaData().getColumnCount();

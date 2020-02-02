@@ -9,16 +9,17 @@ public class Main {
 
 		ArrayList<ArrayList<String>> result = JDBC.readData("book_detail", "code", "dueDate");
 
-		String value = JDBC.getDate();
-		System.out.println(value);
-		result = JDBC.readBy("book_detail", "dueDate","2012-01-01");
-
+		
+		result = JDBC.readBy("book_detail", "dueDate","");
+		System.out.println(result.size());
+		
 		result = JDBC.readBys("book_detail", "status", "2", "dueDate", "2020-02-02");
-
-		System.out.println(result);
+		//System.out.println(result);
 
 		int c = JDBC.getCountBy("book_detail","status","2","dueDate","2020-02-02");
 		System.out.println(c);
+		
+		JDBC.insert("book_detail");
 	}
 
 }

@@ -25,8 +25,8 @@ public class JDBC {
 	static String port = "3306";
 	static String dbName = "libaryDB";
 	static String connectionName = "root";
-	static String password = "12345678";
-	public static ArrayList<String> columnName = new ArrayList<String>();
+	static String password = "mengsieng";
+
 	public JDBC(String port, String dbName, String connectionName, String password) {
 		JDBC.port = port; // JDBC mean this
 		JDBC.dbName = dbName;
@@ -205,7 +205,7 @@ public class JDBC {
 		 ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 		 ArrayList<String> set;
 		 //ArrayList<String> columnName = new ArrayList<String>();
-		 System.out.println(columnName);
+//		 System.out.println(columnName);
 		 
 		//option 1====
 		// statement = connection().createStatement();
@@ -257,11 +257,11 @@ public class JDBC {
 			keyNames.add(keys);			
 		}
 		
-		columnName = keyNames;
-		System.out.println(columnName);
+//		columnName = keyNames;
+//		System.out.println(columnName);
 	}
 
 	static void show() {
-		System.out.println(columnName);
+//		System.out.println(columnName);
 	}
 }

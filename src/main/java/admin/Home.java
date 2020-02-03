@@ -17,14 +17,11 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.sql.SQLException;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DropMode;
-import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
 
 public class Home extends JFrame {
@@ -36,14 +33,11 @@ public class Home extends JFrame {
 	final JPanel StaffItem = new JPanel();
 	JPanel MainMenu = new JPanel();
 	JPanel StaffInput = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField txtFristname;
+	private JTextField txtLastname;
 	private JTextField txtDay;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField txtYear;
+	private JTextField txtPhoneNumber;
 
 	/**
 	 * Launch the application.
@@ -97,10 +91,6 @@ public class Home extends JFrame {
 		lblNewLabel_2.setBounds(0, 143, 185, 41);
 		Drawer.add(lblNewLabel_2);
 		
-		JLabel TotalBookIcon = new JLabel("");
-		TotalBookIcon.setIcon(GetIcon.setIcon(Icons.Book));
-		TotalBookIcon.setBounds(124, 0, 100, 119);
-		TotalBookBtn.add(TotalBookIcon);
 		
 		HomeItem.setBackground(new Color(0, 0, 51));
 		HomeItem.setBounds(0, 217, 185, 521);
@@ -171,10 +161,10 @@ public class Home extends JFrame {
 		contentPane.add(StaffInput);
 		StaffInput.setLayout(null);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(43, 62, 288, 34);
-		StaffInput.add(textField_3);
-		textField_3.setColumns(10);
+		txtFristname = new JTextField();
+		txtFristname.setBounds(43, 62, 288, 34);
+		StaffInput.add(txtFristname);
+		txtFristname.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Frist name");
 		lblNewLabel_1.setBounds(43, 34, 97, 16);
@@ -184,16 +174,17 @@ public class Home extends JFrame {
 		lblLastName.setBounds(438, 34, 97, 16);
 		StaffInput.add(lblLastName);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(436, 62, 288, 34);
-		StaffInput.add(textField_4);
+		txtLastname = new JTextField();
+		txtLastname.setColumns(10);
+		txtLastname.setBounds(436, 62, 288, 34);
+		StaffInput.add(txtLastname);
 		
 		JLabel lblSex = new JLabel("Sex");
 		lblSex.setBounds(43, 108, 97, 16);
 		StaffInput.add(lblSex);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
 		comboBox.setBounds(43, 136, 120, 34);
 		StaffInput.add(comboBox);
 		
@@ -201,10 +192,10 @@ public class Home extends JFrame {
 		lblNewLabel_3.setBounds(43, 182, 61, 16);
 		StaffInput.add(lblNewLabel_3);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Jan"}));
-		comboBox_1.setBounds(43, 210, 204, 34);
-		StaffInput.add(comboBox_1);
+		final JComboBox txtMonth = new JComboBox();
+		txtMonth.setModel(new DefaultComboBoxModel(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
+		txtMonth.setBounds(43, 210, 204, 34);
+		StaffInput.add(txtMonth);
 		
 		JLabel lblNewLabel_4 = new JLabel("Day");
 		lblNewLabel_4.setBounds(307, 182, 61, 16);
@@ -219,15 +210,15 @@ public class Home extends JFrame {
 		StaffInput.add(txtDay);
 		txtDay.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(549, 209, 175, 34);
-		StaffInput.add(textField_6);
-		textField_6.setColumns(10);
+		txtYear = new JTextField();
+		txtYear.setBounds(549, 209, 175, 34);
+		StaffInput.add(txtYear);
+		txtYear.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(436, 135, 288, 34);
-		StaffInput.add(textField_7);
+		txtPhoneNumber = new JTextField();
+		txtPhoneNumber.setColumns(10);
+		txtPhoneNumber.setBounds(436, 135, 288, 34);
+		StaffInput.add(txtPhoneNumber);
 		
 		JLabel lblPhoneNumber = new JLabel("Phone number");
 		lblPhoneNumber.setBounds(438, 108, 109, 16);
@@ -250,10 +241,30 @@ public class Home extends JFrame {
 		lblAddress_1.setBounds(43, 259, 97, 16);
 		StaffInput.add(lblAddress_1);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBackground(new Color(204, 204, 204));
-		textArea.setBounds(43, 287, 432, 147);
-		StaffInput.add(textArea);
+		final JTextArea txtAddress = new JTextArea();
+		txtAddress.setBackground(new Color(204, 204, 204));
+		txtAddress.setBounds(43, 287, 432, 147);
+		StaffInput.add(txtAddress);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(211, 525, 117, 34);
+		StaffInput.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_6 = new JLabel("Create");
+		lblNewLabel_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.print(txtMonth.getSelectedItem().toString());
+			}
+		});
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_6.setBounds(0, 0, 117, 34);
+		panel_1.add(lblNewLabel_6);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(498, 525, 117, 34);
+		StaffInput.add(panel_2);
 		
 		
 		MainMenu.setBackground(Color.WHITE);

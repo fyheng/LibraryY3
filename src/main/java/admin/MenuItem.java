@@ -13,6 +13,7 @@ import picture.GetIcon;
 import picture.Icons;
 
 public class MenuItem {
+	//This is function
 	public static JPanel menu(String title,int dataQty,Icons icon,final Color color,final Color hoverColor,int x,int y,final ClickMethod buttonClick) {
 		final JPanel TotalBookBtn = new JPanel();
 		TotalBookBtn.addMouseListener(new MouseAdapter() {

@@ -97,6 +97,10 @@ public class Home extends JFrame {
 		lblNewLabel_2.setBounds(0, 143, 185, 41);
 		Drawer.add(lblNewLabel_2);
 		
+		JLabel TotalBookIcon = new JLabel("");
+		TotalBookIcon.setIcon(GetIcon.setIcon(Icons.Book));
+		TotalBookIcon.setBounds(124, 0, 100, 119);
+		TotalBookBtn.add(TotalBookIcon);
 		
 		HomeItem.setBackground(new Color(0, 0, 51));
 		HomeItem.setBounds(0, 217, 185, 521);

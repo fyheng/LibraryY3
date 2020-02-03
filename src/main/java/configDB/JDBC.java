@@ -20,12 +20,13 @@ public class JDBC {
 
 	/**
 	 * this is default configuration/libaryDB/root/12345
+	 * 3306/libaryDB/root/12345678
 	 */
-	static String port = "3307";
+	static String port = "3306";
 	static String dbName = "libaryDB";
 	static String connectionName = "root";
-	static String password = "12345";
-
+	static String password = "12345678";
+	public static ArrayList<String> columnName = new ArrayList<String>();
 	public JDBC(String port, String dbName, String connectionName, String password) {
 		JDBC.port = port; // JDBC mean this
 		JDBC.dbName = dbName;
@@ -60,6 +61,7 @@ public class JDBC {
 		resultSet = statement.executeQuery("select * from " + tbName + "");
 		columnName = JDBC.getColumnName(resultSet);
 
+		String sqlDate="",javDate="";
 		// loop rows
 		while (resultSet.next()) {
 			// loop column
@@ -199,11 +201,12 @@ public class JDBC {
 	}
 
 // Insert into DB===================================================================================================
-	public static void insert(String tbName,String...strings) throws SQLException {
+	public static void insert(String tbName,String...value) throws SQLException {
 		 ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 		 ArrayList<String> set;
-		 ArrayList<String> columnName = new ArrayList<String>();
-		
+		 //ArrayList<String> columnName = new ArrayList<String>();
+		 System.out.println(columnName);
+		 
 		//option 1====
 		// statement = connection().createStatement();
 		// String sql = "INSERT INTO "+tbName+"(code, borrowed,dueDate,status) values (
@@ -245,5 +248,20 @@ public class JDBC {
 		LocalDateTime now = LocalDateTime.now();
 		// System.out.println(dtf.format(now));
 		return now.toString().substring(0, 10);
+	}
+	
+	//get column name for insert
+	public static void getColumnName(String...key) {
+		ArrayList<String> keyNames = new ArrayList<String>();
+		for (String keys : key) {
+			keyNames.add(keys);			
+		}
+		
+		columnName = keyNames;
+		System.out.println(columnName);
+	}
+
+	static void show() {
+		System.out.println(columnName);
 	}
 }

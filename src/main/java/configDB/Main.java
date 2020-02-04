@@ -19,9 +19,9 @@ public class Main {
 		int c = JDBC.getCountBy("book_detail","status","2","dueDate","2020-02-02");
 		System.out.println(c);
 		
-		JDBC.insert("book_detail");
-		JDBC.getColumnName("name","id","age");
-		JDBC.show();
+		//need to call this two method to insert date to DB and follow the format
+		JDBC.setKey("code", "borrowed", "dueDate", "status");
+		JDBC.insert("book_detail","005","2020-02-06","2020-02-06","3");
 	
 		
 	}

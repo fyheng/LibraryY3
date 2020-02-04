@@ -221,6 +221,8 @@ public class JDBC {
 		}
 		prepared.execute();
 		connection().close();
+		Logger logger =Logger.getGlobal();
+		logger.info("Insert Data Success");
 		return sql;
 	}
 

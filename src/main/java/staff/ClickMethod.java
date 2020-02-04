@@ -1,4 +1,4 @@
-ackage staff;
+package staff;
 
 //this click method
 public interface ClickMethod {

@@ -111,8 +111,7 @@ public class Dashboard extends JFrame {
 				lblNewLabel.setText("Book");
 				HomeItem.setVisible(false);
 				BookItem.setVisible(true);
-			}
-		}));
+			}		}));
 		HomeItem.add(DrawerItem.drawerItem("Member", 46, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Member");

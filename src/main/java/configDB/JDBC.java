@@ -19,14 +19,16 @@ public class JDBC {
 	static ResultSet resultSet;
 
 	/**
-	 * this is default configuration/libaryDB/root/12345
-	 * 3306/libaryDB/root/12345678
+	 * this is default configuration/libaryDB/root/12345 3306/libaryDB/root/12345678
 	 */
-	static String port = "3306";
+	static String port = "3307";
 	static String dbName = "libaryDB";
 	static String connectionName = "root";
-	static String password = "mengsieng";
-
+	static String password = "12345";
+	static ArrayList<String> columnName = new ArrayList<String>();
+	static String keySets = new String();
+	static String temps = new String();
+	
 	public JDBC(String port, String dbName, String connectionName, String password) {
 		JDBC.port = port; // JDBC mean this
 		JDBC.dbName = dbName;
@@ -49,6 +51,16 @@ public class JDBC {
 		return cnn;
 	}
 
+	public static void getColumnName(String... key) {
+		ArrayList<String> keyNames = new ArrayList<String>();
+		for (String keys : key) {
+			keyNames.add(keys);
+		}
+
+		columnName = keyNames;
+		System.out.println(columnName);
+	}
+
 //List Data from DB=========================================================================================================
 
 	// list all rows and all column
@@ -61,7 +73,6 @@ public class JDBC {
 		resultSet = statement.executeQuery("select * from " + tbName + "");
 		columnName = JDBC.getColumnName(resultSet);
 
-		String sqlDate="",javDate="";
 		// loop rows
 		while (resultSet.next()) {
 			// loop column
@@ -201,30 +212,21 @@ public class JDBC {
 	}
 
 // Insert into DB===================================================================================================
-	public static void insert(String tbName,String...value) throws SQLException {
-		 ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
-		 ArrayList<String> set;
-		 //ArrayList<String> columnName = new ArrayList<String>();
-//		 System.out.println(columnName);
-		 
-		//option 1====
-		// statement = connection().createStatement();
-		// String sql = "INSERT INTO "+tbName+"(code, borrowed,dueDate,status) values (
-		// 004, '"+getDate()+"' , '"+getDate()+"' , 1 )";
-		// statement.executeUpdate(sql);
-
-		
-		//option 2====
-		String sql = "INSERT INTO " + tbName + " (code, borrowed, dueDate, status ) values ( ?, ?, ?, ?)";
+	public static String insert(String tbName, String... values) throws SQLException {
+		String sql = "INSERT INTO " + tbName + " ( " + keySets + " ) values (" +temps+ ")";
 		PreparedStatement prepared = connection().prepareStatement(sql);
-		prepared.setString(1, "004");
-		prepared.setString(2, getDate());
-		prepared.setString(3, getDate());
-		prepared.setString(4, "3");
+		int i = 1;
+		for (String value : values) {
+			prepared.setString(i++, value);
+		}
 		prepared.execute();
+		connection().close();
+		Logger logger =Logger.getGlobal();
+		logger.info("Insert Data Success");
+		return sql;
 	}
 
-	// @supProcess===================================================================================================
+// @supProcess===================================================================================================
 
 	// get All column name form table
 	public static ArrayList<String> getColumnName(ResultSet resultSet) throws SQLException {
@@ -249,19 +251,28 @@ public class JDBC {
 		// System.out.println(dtf.format(now));
 		return now.toString().substring(0, 10);
 	}
-	
-	//get column name for insert
-	public static void getColumnName(String...key) {
-		ArrayList<String> keyNames = new ArrayList<String>();
-		for (String keys : key) {
-			keyNames.add(keys);			
-		}
-		
-//		columnName = keyNames;
-//		System.out.println(columnName);
-	}
 
-	static void show() {
-//		System.out.println(columnName);
+	/**
+	 * set all column to keySets(local string variable)
+	 * set temp value prepare to temps (local)
+	 * set all column to columnName (local ArrayList variable)
+	 * @param keys
+	 */
+	static void setKey(String... keys) {
+		ArrayList<String> column = new ArrayList<String>();
+		ArrayList<String> temp = new ArrayList<String>();
+		for (String key : keys) {
+			column.add(key);
+			temp.add("?");
+		}
+		String string = column.toString();
+		String keySet = string.substring(1, string.length() - 1);
+		columnName = column;
+		keySets = keySet;
+		
+		//temp for value prepare
+		String tempString = temp.toString();
+		String subTemp = tempString.substring(1, tempString.length()-1);
+		temps = subTemp;
 	}
 }

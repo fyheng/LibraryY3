@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
 public class JDBC {
 
 	public JDBC() {
@@ -21,15 +23,17 @@ public class JDBC {
 	/**
 	 * this is default configuration/libaryDB/root/12345 3306/libaryDB/root/12345678
 	 */
-	static String port = "3307";
-	static String dbName = "libaryDB";
-	static String connectionName = "root";
-	static String password = "12345";
+	static String localHost = "db4free.net";
+	static String port = "3306";
+	static String dbName = "libraryproject";
+	static String connectionName = "libraryproject";
+	static String password = "vathanak.com$$";
 	static ArrayList<String> columnName = new ArrayList<String>();
 	static String keySets = new String();
 	static String temps = new String();
-	
-	public JDBC(String port, String dbName, String connectionName, String password) {
+
+	public JDBC(String localHost,String port, String dbName, String connectionName, String password) {
+		JDBC.localHost = localHost;
 		JDBC.port = port; // JDBC mean this
 		JDBC.dbName = dbName;
 		JDBC.connectionName = connectionName;
@@ -42,23 +46,13 @@ public class JDBC {
 		Connection cnn = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			cnn = DriverManager.getConnection("jdbc:mysql://localhost:" + port + "/" + dbName + "", connectionName,
-					password);
+			cnn = DriverManager.getConnection("jdbc:mysql://" + localHost + ":" + port + "/" + dbName + "",
+					connectionName, password);
 		} catch (Exception e) {
 			Logger logger = Logger.getGlobal();
 			logger.info("connection problem!!!");
 		}
 		return cnn;
-	}
-
-	public static void getColumnName(String... key) {
-		ArrayList<String> keyNames = new ArrayList<String>();
-		for (String keys : key) {
-			keyNames.add(keys);
-		}
-
-		columnName = keyNames;
-		System.out.println(columnName);
 	}
 
 //List Data from DB=========================================================================================================
@@ -213,7 +207,7 @@ public class JDBC {
 
 // Insert into DB===================================================================================================
 	public static String insert(String tbName, String... values) throws SQLException {
-		String sql = "INSERT INTO " + tbName + " ( " + keySets + " ) values (" +temps+ ")";
+		String sql = "INSERT INTO " + tbName + " ( " + keySets + " ) values (" + temps + ")";
 		PreparedStatement prepared = connection().prepareStatement(sql);
 		int i = 1;
 		for (String value : values) {
@@ -221,9 +215,28 @@ public class JDBC {
 		}
 		prepared.execute();
 		connection().close();
-		Logger logger =Logger.getGlobal();
+		Logger logger = Logger.getGlobal();
 		logger.info("Insert Data Success");
 		return sql;
+	}
+
+// Delete from DB===================================================================================================
+	public static void delete(String tbName,String column,String value) throws SQLException {
+		//get column name and index
+		statement = connection().createStatement();
+		resultSet = statement.executeQuery("select * from " + tbName + "");
+		columnName = JDBC.getColumnName(resultSet);
+	
+		
+		//String sql = "DELETE FROM " +tbName+ " WHERE "+column+" = ?";
+
+		//PreparedStatement prepared = connection().prepareStatement(sql);
+
+//		prepared.setString(1, value);
+//		prepared.executeUpdate();
+//		connection().close();
+		Logger logger = Logger.getGlobal();
+		logger.info("Delete Data Success");
 	}
 
 // @supProcess===================================================================================================
@@ -253,9 +266,9 @@ public class JDBC {
 	}
 
 	/**
-	 * set all column to keySets(local string variable)
-	 * set temp value prepare to temps (local)
-	 * set all column to columnName (local ArrayList variable)
+	 * set all column to keySets(local string variable) set temp value prepare to
+	 * temps (local) set all column to columnName (local ArrayList variable)
+	 * 
 	 * @param keys
 	 */
 	static void setKey(String... keys) {
@@ -269,10 +282,26 @@ public class JDBC {
 		String keySet = string.substring(1, string.length() - 1);
 		columnName = column;
 		keySets = keySet;
-		
-		//temp for value prepare
+
+		// temp for value prepare
 		String tempString = temp.toString();
-		String subTemp = tempString.substring(1, tempString.length()-1);
+		String subTemp = tempString.substring(1, tempString.length() - 1);
 		temps = subTemp;
+	}
+	
+	
+	static int getColumnKey(String key) {
+		return 1;
+	}
+
+	
+	public static void getColumnName(String... key) {
+		ArrayList<String> keyNames = new ArrayList<String>();
+		for (String keys : key) {
+			keyNames.add(keys);
+		}
+
+		columnName = keyNames;
+		System.out.println(columnName);
 	}
 }

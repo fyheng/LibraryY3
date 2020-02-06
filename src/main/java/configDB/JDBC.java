@@ -22,6 +22,11 @@ public class JDBC {
 
 	/**
 	 * this is default configuration/libaryDB/root/12345 3306/libaryDB/root/12345678
+	 	static String localHost = "localhost";
+		static String port = "3306";
+		static String dbName = "library";
+		static String connectionName = "root";
+		static String password = "Sophea1911";
 	 */
 	static String localHost = "db4free.net";
 	static String port = "3306";

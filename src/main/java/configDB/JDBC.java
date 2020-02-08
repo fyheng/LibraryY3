@@ -22,17 +22,18 @@ public class JDBC {
 
 	/**
 	 * this is default configuration/libaryDB/root/12345 3306/libaryDB/root/12345678
-	 	static String localHost = "localhost";
-		static String port = "3306";
-		static String dbName = "library";
-		static String connectionName = "root";
-		static String password = "Sophea1911";
+	 	
 	 */
-	static String localHost = "db4free.net";
+	static String localHost = "localhost";
 	static String port = "3306";
-	static String dbName = "libraryproject";
-	static String connectionName = "libraryproject";
-	static String password = "vathanak.com$$";
+	static String dbName = "libaryDB";
+	static String connectionName = "root";
+	static String password = "mengsieng";
+//	static String localHost = "db4free.net";
+//	static String port = "3306";
+//	static String dbName = "libraryproject";
+//	static String connectionName = "libraryproject";
+//	static String password = "vathanak.com$$";
 	static ArrayList<String> columnName = new ArrayList<String>();
 	static String keySets = new String();
 	static String temps = new String();
@@ -276,7 +277,7 @@ public class JDBC {
 	 * 
 	 * @param keys
 	 */
-	static void setKey(String... keys) {
+	public static void setKey(String... keys) {
 		ArrayList<String> column = new ArrayList<String>();
 		ArrayList<String> temp = new ArrayList<String>();
 		for (String key : keys) {

@@ -15,6 +15,8 @@ public class GetIcon {
 			name = "male.png";
 		} else if (icon == Icons.FemaleUser) {
 			name = "female.png";
+		}else if (icon == Icons.Close) {
+			name = "close.png";
 		}
 		return name;
 	}

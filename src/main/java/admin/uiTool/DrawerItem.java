@@ -1,4 +1,4 @@
-package admin;
+package admin.uiTool;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,6 +9,8 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import admin.function.ClickMethod;
 
 public class DrawerItem {
 	//This function

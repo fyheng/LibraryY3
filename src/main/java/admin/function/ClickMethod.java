@@ -1,4 +1,4 @@
-package admin;
+package admin.function;
 
 //this click method
 public interface ClickMethod {

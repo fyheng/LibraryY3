@@ -1,4 +1,4 @@
-package admin;
+package admin.function;
 
 public class ButtonClick implements ClickMethod {
 	//this is event

@@ -4,5 +4,6 @@ public enum Icons {
 	User,
 	Book,
 	MaleUser,
-	FemaleUser
+	FemaleUser,
+	Close
 }

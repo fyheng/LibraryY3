@@ -41,6 +41,8 @@ public class Dashboard extends JFrame {
 	JPanel MemberTable = new JPanel();
 	JPanel IssuesedBook = new JPanel();
 	JPanel ReturnedBook = new JPanel();
+	JPanel AboutUs = new JPanel();
+	JPanel Help = new JPanel();
 	private JTextField txtFristname;
 	private JTextField txtLastname;
 	private JTextField txtDay;
@@ -114,22 +116,36 @@ public class Dashboard extends JFrame {
 		HomeItem.setBounds(0, 217, 185, 521);
 		Drawer.add(HomeItem);
 		HomeItem.setLayout(null);
-
-		HomeItem.add(DrawerItem.drawerItem("Book", 0, new ButtonClick() {
+		
+		HomeItem.add(DrawerItem.drawerItem("Dashboard", 0, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Home");
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				BookInput.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
+				IssuesedBook.setVisible(false);
+				HomeItem.setVisible(true);
+				MainMenu.setVisible(true);
+			}
+		}));
+		HomeItem.add(DrawerItem.drawerItem("Book", 46, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Book");
 				HomeItem.setVisible(false);
 				BookItem.setVisible(true);
 			}
 		}));
-		HomeItem.add(DrawerItem.drawerItem("Member", 46, new ButtonClick() {
+		HomeItem.add(DrawerItem.drawerItem("Member", 46 * 2, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Member");
 				HomeItem.setVisible(false);
 				MemberItem.setVisible(true);
 			}
 		}));
-		HomeItem.add(DrawerItem.drawerItem("Issuesed Book", 46 * 2, new ButtonClick() {
+		HomeItem.add(DrawerItem.drawerItem("Issuesed Book", 46 * 3, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("ISSUESED BOOK");
 				MainMenu.setVisible(false);
@@ -137,11 +153,13 @@ public class Dashboard extends JFrame {
 				MemberTable.setVisible(false);
 				BookTable.setVisible(false);
 				BookInput.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
 				IssuesedBook.setVisible(true);
 
 			}
 		}));
-		HomeItem.add(DrawerItem.drawerItem("Returned Book", 46 * 3, new ButtonClick() {
+		HomeItem.add(DrawerItem.drawerItem("Returned Book", 46 * 4, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("RETURNED BOOK");
 				MainMenu.setVisible(false);
@@ -149,46 +167,76 @@ public class Dashboard extends JFrame {
 				MemberTable.setVisible(false);
 				BookTable.setVisible(false);
 				BookInput.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
 				ReturnedBook.setVisible(true);
 			}
 		}));
+		HomeItem.add(DrawerItem.drawerItem("About Us", 46 * 5, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("ABOUT US");
+				MainMenu.setVisible(false);
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				BookInput.setVisible(false);
+				ReturnedBook.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(true);
+			}
+		}));
+		HomeItem.add(DrawerItem.drawerItem("Help", 46 * 6, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("HELP");
+				MainMenu.setVisible(false);
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				BookInput.setVisible(false);
+				ReturnedBook.setVisible(false);
+				AboutUs.setVisible(false);
+				Help.setVisible(true);
+			}
+		}));
+
 		// IssuesedBook
+		
 		IssuesedBook.setBackground(Color.WHITE);
 		IssuesedBook.setBounds(220, 133, 989, 645);
 		IssuesedBook.setVisible(true);
-		
-				// MainMenu
-		
-				MainMenu.setBackground(Color.WHITE);
-				MainMenu.setBounds(220, 133, 989, 645);
-				MainMenu.setVisible(true);
-				contentPane.add(MainMenu);
-				
-						MainMenu.setLayout(null);
-						MainMenu.add(MenuItem.menu("Total Book", JDBC.getCount("category"), Icons.Book, new Color(57, 124, 188),
-								new Color(77, 134, 198), 31, 21, new ButtonClick() {
-									public void action() {
-										lblNewLabel.setText("Button 1");
-									}
-								}));
-						MainMenu.add(MenuItem.menu("Issuesed Book", JDBC.getCount("category"), Icons.Book, new Color(75, 163, 97),
-								new Color(85, 173, 107), 267, 21, new ButtonClick() {
-									public void action() {
-										lblNewLabel.setText("Button 2");
-									}
-								}));
-						MainMenu.add(MenuItem.menu("Book Returned", JDBC.getCount("category"), Icons.Book, new Color(231, 159, 62),
-								new Color(241, 169, 72), 503, 21, new ButtonClick() {
-									public void action() {
-										lblNewLabel.setText("Button 3");
-									}
-								}));
-						MainMenu.add(MenuItem.menu("Total Member", JDBC.getCount("category"), Icons.User, new Color(230, 113, 93),
-								new Color(240, 123, 103), 739, 21, new ButtonClick() {
-									public void action() {
-										lblNewLabel.setText("Button 4");
-									}
-								}));
+
+		// MainMenu
+
+		MainMenu.setBackground(Color.WHITE);
+		MainMenu.setBounds(220, 133, 989, 645);
+		MainMenu.setVisible(true);
+		contentPane.add(MainMenu);
+
+		MainMenu.setLayout(null);
+		MainMenu.add(MenuItem.menu("Total Book", JDBC.getCount("category"), Icons.Book, new Color(57, 124, 188),
+				new Color(77, 134, 198), 31, 21, new ButtonClick() {
+					public void action() {
+						lblNewLabel.setText("Button 1");
+					}
+				}));
+		MainMenu.add(MenuItem.menu("Issuesed Book", JDBC.getCount("category"), Icons.Book, new Color(75, 163, 97),
+				new Color(85, 173, 107), 267, 21, new ButtonClick() {
+					public void action() {
+						lblNewLabel.setText("Button 2");
+					}
+				}));
+		MainMenu.add(MenuItem.menu("Book Returned", JDBC.getCount("category"), Icons.Book, new Color(231, 159, 62),
+				new Color(241, 169, 72), 503, 21, new ButtonClick() {
+					public void action() {
+						lblNewLabel.setText("Button 3");
+					}
+				}));
+		MainMenu.add(MenuItem.menu("Total Member", JDBC.getCount("category"), Icons.User, new Color(230, 113, 93),
+				new Color(240, 123, 103), 739, 21, new ButtonClick() {
+					public void action() {
+						lblNewLabel.setText("Button 4");
+					}
+				}));
 		contentPane.add(IssuesedBook);
 		IssuesedBook.setLayout(null);
 
@@ -219,7 +267,7 @@ public class Dashboard extends JFrame {
 		String[][] col = { { "1", "Book Title", "Book ID", "Member Name", "Member ID", "Issuesed Date", "Due Date" },
 				{ "2", "Book Title", "Book ID", "Member Name", "Member ID", "Issuesed Date", "Due Date" } };
 
-		table_1 = new JTable(col,row);
+		table_1 = new JTable(col, row);
 		table_1.setBounds(12, 61, 965, 571);
 		IssuesedBook.add(table_1);
 
@@ -229,8 +277,23 @@ public class Dashboard extends JFrame {
 		BookItem.setLayout(null);
 		BookItem.setVisible(false);
 		Drawer.add(BookItem);
+		
+		BookItem.add(DrawerItem.drawerItem("Dashboard", 0, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Home");
+				HomeItem.setVisible(true);
+				MainMenu.setVisible(true);
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				IssuesedBook.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
+				BookInput.setVisible(false);
+			}
+		}));
 
-		BookItem.add(DrawerItem.drawerItem("Add Book", 0, new ButtonClick() {
+		BookItem.add(DrawerItem.drawerItem("Add Book", 46, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("ADD BOOK");
 				MainMenu.setVisible(false);
@@ -238,11 +301,12 @@ public class Dashboard extends JFrame {
 				MemberTable.setVisible(false);
 				BookTable.setVisible(false);
 				IssuesedBook.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
 				BookInput.setVisible(true);
-
 			}
 		}));
-		BookItem.add(DrawerItem.drawerItem("Table Book", 46, new ButtonClick() {
+		BookItem.add(DrawerItem.drawerItem("Table Book", 46 * 2, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("TABLE BOOK");
 				MainMenu.setVisible(false);
@@ -250,10 +314,29 @@ public class Dashboard extends JFrame {
 				MemberTable.setVisible(false);
 				BookInput.setVisible(false);
 				IssuesedBook.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
 				BookTable.setVisible(true);
-
 			}
 		}));
+
+		// About Us
+		
+		AboutUs.setToolTipText("");
+
+		AboutUs.setBackground(Color.WHITE);
+		AboutUs.setBounds(220, 133, 989, 645);
+		contentPane.add(AboutUs);
+		AboutUs.setLayout(null);
+
+		// Help
+		
+		Help.setToolTipText("");
+
+		Help.setBackground(Color.WHITE);
+		Help.setBounds(220, 133, 989, 645);
+		contentPane.add(Help);
+		Help.setLayout(null);
 
 		// Book Table
 
@@ -325,8 +408,23 @@ public class Dashboard extends JFrame {
 		MemberItem.setLayout(null);
 		MemberItem.setVisible(false);
 		Drawer.add(MemberItem);
+		
+		MemberItem.add(DrawerItem.drawerItem("Dashboard", 0, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Home");
+				HomeItem.setVisible(true);
+				MainMenu.setVisible(true);
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				IssuesedBook.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
+				BookInput.setVisible(false);
+			}
+		}));
 
-		MemberItem.add(DrawerItem.drawerItem("Add Member", 0, new ButtonClick() {
+		MemberItem.add(DrawerItem.drawerItem("Add Member", 46, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("ADD MEMBER");
 				MainMenu.setVisible(false);
@@ -334,10 +432,12 @@ public class Dashboard extends JFrame {
 				BookTable.setVisible(false);
 				BookInput.setVisible(false);
 				IssuesedBook.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
 				MemberInput.setVisible(true);
 			}
 		}));
-		MemberItem.add(DrawerItem.drawerItem("Table Member", 46, new ButtonClick() {
+		MemberItem.add(DrawerItem.drawerItem("Table Member", 46 * 2, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("TABLE MEMBER");
 				MainMenu.setVisible(false);
@@ -345,6 +445,8 @@ public class Dashboard extends JFrame {
 				BookTable.setVisible(false);
 				BookInput.setVisible(false);
 				IssuesedBook.setVisible(false);
+				Help.setVisible(false);
+				AboutUs.setVisible(false);
 				MemberTable.setVisible(true);
 			}
 		}));

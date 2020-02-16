@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String args[]) throws SQLException {
-		JDBC jdbc = new JDBC("localhost","3306","libaryDB","root","12345678");
+		//JDBC jdbc = new JDBC("localhost","3306","libaryDB","root","12345678");
 
 //		ArrayList<ArrayList<String>> result = JDBC.readData("Book", "code", "dueDate");
 //
@@ -23,7 +23,8 @@ public class Main {
 		//need to call this two method to insert date to DB and follow the format
 		//JDBC.setKey("name");
 		//JDBC.insert("role","ROLE_MEMBER");
-		jdbc.delete("book_detail", "code", "004");
+//		jdbc.delete("book_detail", "code", "004");
+		System.out.println("Hello");
 	
 		
 	}

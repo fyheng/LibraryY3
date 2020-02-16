@@ -17,6 +17,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import java.awt.event.KeyAdapter;
@@ -28,6 +29,7 @@ import java.sql.SQLException;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JTextArea;
 
 public class Home extends JFrame {
@@ -74,7 +76,6 @@ public class Home extends JFrame {
 		//Main panel
 		TotalBookView.setVisible(false);
 		StaffView.setVisible(false);
-		BookReturniew.setVisible(false);
 		IssueBookView.setVisible(false);
 		StaffItem.setVisible(false);
 		
@@ -212,6 +213,38 @@ public class Home extends JFrame {
 		separator.setForeground(Color.BLACK);
 		separator.setBounds(220, 113, 254, 12);
 		contentPane.add(separator);
+		BookReturniew.setVisible(false);
+		
+		BookReturniew.setBackground(Color.WHITE);
+		BookReturniew.setBounds(220, 133, 989, 645);
+		contentPane.add(BookReturniew);
+		BookReturniew.setLayout(null);
+		
+		String[] head = { "No", "Title", "Book Number", "Qty", "Price" };
+
+		String[][] date = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
+				{ "2", "Leadership", "002", "34", "40.50" } };
+
+		JLabel lblBookID = new JLabel("Book ID");
+		lblBookID.setBounds(12, 13, 158, 35);
+		BookReturniew.add(lblBookID);
+
+		JTextField textField = new JTextField();
+		textField.setBounds(22, 61, 280, 35);
+		BookReturniew.add(textField);
+		textField.setColumns(10);
+
+		JTextField textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(392, 61, 280, 35);
+		BookReturniew.add(textField_1);
+
+		JButton btnFilterResults = new JButton("Filter Results ");
+		btnFilterResults.setBounds(728, 58, 200, 40);
+		BookReturniew.add(btnFilterResults);
+		JTable table = new JTable(date, head);
+		table.setBounds(12, 109, 965, 523);
+		BookReturniew.add(table);
 		
 		MainMenu.setBackground(Color.WHITE);
 		MainMenu.setBounds(220, 133, 989, 645);
@@ -244,16 +277,40 @@ public class Home extends JFrame {
 		contentPane.add(TotalBookView);
 		TotalBookView.setLayout(null);
 		
+		String[] col = { "No", "Title", "Book Number", "Qty", "Price" };
+
+		String[][] row = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
+				{ "2", "Leadership", "002", "34", "40.50" } };
+
+		JLabel lblBookid = new JLabel("Book ID");
+		lblBookid.setBounds(12, 13, 158, 35);
+		TotalBookView.add(lblBookid);
+
+		JLabel lblMemberId = new JLabel("Member ID");
+		lblMemberId.setBounds(382, 13, 158, 35);
+		TotalBookView.add(lblMemberId);
+
+		textField = new JTextField();
+		textField.setBounds(22, 61, 280, 35);
+		TotalBookView.add(textField);
+		textField.setColumns(10);
+
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(392, 61, 280, 35);
+		TotalBookView.add(textField_1);
+
+		JButton btnFilterResult = new JButton("Filter Results ");
+		btnFilterResult.setBounds(728, 58, 200, 40);
+		TotalBookView.add(btnFilterResult);
+		table = new JTable(row, col);
+		table.setBounds(12, 109, 965, 523);
+		TotalBookView.add(table);
+		
 		IssueBookView.setBackground(Color.WHITE);
 		IssueBookView.setBounds(220, 133, 989, 645);
 		contentPane.add(IssueBookView);
 		IssueBookView.setLayout(null);
-		
-		BookReturniew.setBackground(Color.WHITE);
-		BookReturniew.setBounds(220, 133, 989, 645);
-		contentPane.add(BookReturniew);
-		BookReturniew.setLayout(null);
-		
 		
 		StaffView.setBackground(Color.WHITE);
 		StaffView.setBounds(220, 133, 989, 645);

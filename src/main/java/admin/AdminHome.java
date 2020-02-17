@@ -54,7 +54,7 @@ public class AdminHome extends JFrame {
 	private JTextField txtDistict;
 	private JTextField txtCity;
 	StaffController obj = new StaffController();
-	static AdminHome frame = new AdminHome();
+//	static AdminHome frame = new AdminHome();
 	
 	/**
 	 * Launch the application.
@@ -64,6 +64,7 @@ public class AdminHome extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					 AdminHome frame = new AdminHome();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

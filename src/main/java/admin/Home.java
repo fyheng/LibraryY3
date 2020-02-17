@@ -312,6 +312,36 @@ public class Home extends JFrame {
 		contentPane.add(IssueBookView);
 		IssueBookView.setLayout(null);
 		
+		String[] header = { "No", "Title", "Book Number", "Qty", "Price" };
+
+		String[][] data = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
+				{ "2", "Leadership", "002", "34", "40.50" } };
+
+		JLabel lblbookID = new JLabel("Book ID");
+		lblbookID.setBounds(12, 13, 158, 35);
+		IssueBookView.add(lblbookID);
+
+		JLabel lblmemberId = new JLabel("Member ID");
+		lblmemberId.setBounds(382, 13, 158, 35);
+		IssueBookView.add(lblmemberId);
+
+		textField = new JTextField();
+		textField.setBounds(22, 61, 280, 35);
+		IssueBookView.add(textField);
+		textField.setColumns(10);
+
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(392, 61, 280, 35);
+		IssueBookView.add(textField_1);
+
+		JButton btnFilterresult = new JButton("Filter Results ");
+		btnFilterresult.setBounds(728, 58, 200, 40);
+		IssueBookView.add(btnFilterresult);
+		table = new JTable(data, header);
+		table.setBounds(12, 109, 965, 523);
+		IssueBookView.add(table);
+		
 		StaffView.setBackground(Color.WHITE);
 		StaffView.setBounds(220, 133, 989, 645);
 		contentPane.add(StaffView);

@@ -20,7 +20,7 @@ import configDB.JDBC;
 public class InputStaffForm {
 	JPanel staffInput() {
 		JPanel StaffInput = new JPanel();
-StaffInput.setToolTipText("");
+		StaffInput.setToolTipText("");
 		
 		
 		StaffInput.setBackground(Color.WHITE);

@@ -2,7 +2,7 @@ package picture;
 
 import javax.swing.ImageIcon;
 
-import admin.Home;
+import admin.AdminHome;
 
 public class GetIcon {
 	public static String getIconPath(Icons icon) {
@@ -23,6 +23,6 @@ public class GetIcon {
 
 	public static ImageIcon setIcon(Icons icons) {
 		String path = "/picture/" + getIconPath(icons);
-		return new ImageIcon(Home.class.getResource(path));
+		return new ImageIcon(AdminHome.class.getResource(path));
 	}
 }

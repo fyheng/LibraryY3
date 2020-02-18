@@ -26,7 +26,7 @@ public class JDBC {
 	 */
 	static String localHost = "localhost";
 	static String port = "3306";
-	static String dbName = "libaryDB";
+	static String dbName = "libraryproject";
 	static String connectionName = "root";
 	static String password = "mengsieng";
 //	static String localHost = "db4free.net";

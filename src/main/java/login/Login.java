@@ -35,7 +35,11 @@ public class Login extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblPassword;
 	static Login frame = new Login();
+<<<<<<< refs/remotes/origin/master
 	int count = 0;
+=======
+	private JLabel lblNewLabel_3;
+>>>>>>> forget password form
 
 	/**
 	 * Launch the application.
@@ -67,7 +71,7 @@ public class Login extends JFrame {
 		JLabel lblNewLabel = new JLabel("Welcome");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(6, 0, 444, 38);
+		lblNewLabel.setBounds(6, 0, 444, 58);
 		contentPane.add(lblNewLabel);
 
 		usernametxt = new JTextField();
@@ -134,7 +138,20 @@ public class Login extends JFrame {
 						showpassword.isSelected() ? '\u0000' : (Character) UIManager.get("PasswordField.echoChar"));
 			}
 		});
-		showpassword.setBounds(304, 143, 129, 23);
+		showpassword.setBounds(304, 149, 129, 23);
 		contentPane.add(showpassword);
+		
+		lblNewLabel_3 = new JLabel("Forget password?");
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				ForgetPassword forget = new ForgetPassword();
+				forget.setVisible(true);
+			}
+		});
+		lblNewLabel_3.setForeground(new Color(0, 0, 204));
+		lblNewLabel_3.setBounds(108, 150, 129, 23);
+		contentPane.add(lblNewLabel_3);
 	}
 }

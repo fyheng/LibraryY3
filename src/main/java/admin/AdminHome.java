@@ -47,6 +47,7 @@ public class AdminHome extends JFrame {
 	JPanel StaffView = new JPanel();
 	JPanel BookReturniew = new JPanel();
 	JPanel IssueBookView = new JPanel();
+	JPanel ProfileView = new JPanel();
 	private JTextField txtEmail;
 	private JTextField txtStreet;
 	private JTextField txtHouseNumber;
@@ -54,7 +55,12 @@ public class AdminHome extends JFrame {
 	private JTextField txtDistict;
 	private JTextField txtCity;
 	StaffController obj = new StaffController();
-//	static AdminHome frame = new AdminHome();
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
 	
 	/**
 	 * Launch the application.
@@ -64,7 +70,7 @@ public class AdminHome extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					 AdminHome frame = new AdminHome();
+					AdminHome frame = new AdminHome();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,6 +90,7 @@ public class AdminHome extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		//Main panel
 		TotalBookView.setVisible(false);
@@ -131,6 +138,18 @@ public class AdminHome extends JFrame {
 		Drawer.setLayout(null);
 		
 		JLabel ProfileIcon = new JLabel("");
+		ProfileIcon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainMenu.setVisible(false);
+				TotalBookView.setVisible(false);
+				StaffView.setVisible(false);
+				BookReturniew.setVisible(false);
+				IssueBookView.setVisible(false);
+				ProfileView.setVisible(false);
+				ProfileView.setVisible(true);
+			}
+		});
 		ProfileIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		ProfileIcon.setBounds(0, 0, 185, 146);
 		Drawer.add(ProfileIcon);
@@ -150,6 +169,7 @@ public class AdminHome extends JFrame {
 				StaffView.setVisible(false);
 				BookReturniew.setVisible(false);
 				IssueBookView.setVisible(false);
+				ProfileView.setVisible(false);
 			}
 		}));
 		
@@ -168,6 +188,7 @@ public class AdminHome extends JFrame {
 				StaffView.setVisible(false);
 				BookReturniew.setVisible(false);
 				IssueBookView.setVisible(false);
+				ProfileView.setVisible(false);
 			}
 		}));
 		HomeItem.add(DrawerItem.drawerItem("Issue book",46,new ButtonClick() {
@@ -179,6 +200,7 @@ public class AdminHome extends JFrame {
 				StaffView.setVisible(false);
 				BookReturniew.setVisible(false);
 				IssueBookView.setVisible(true);
+				ProfileView.setVisible(false);
 			}
 		}));
 		HomeItem.add(DrawerItem.drawerItem("Book returned",46*2,new ButtonClick() {
@@ -190,6 +212,7 @@ public class AdminHome extends JFrame {
 				StaffView.setVisible(false);
 				BookReturniew.setVisible(true);
 				IssueBookView.setVisible(false);
+				ProfileView.setVisible(false);
 			}
 		}));
 		HomeItem.add(DrawerItem.drawerItem("Staff",46*3,new ButtonClick() {
@@ -202,6 +225,7 @@ public class AdminHome extends JFrame {
 				BookReturniew.setVisible(false);
 				IssueBookView.setVisible(false);
 				StaffItem.setVisible(true);
+				ProfileView.setVisible(false);
 			}
 		}));
 		
@@ -247,6 +271,72 @@ public class AdminHome extends JFrame {
 		separator.setBounds(220, 113, 254, 12);
 		contentPane.add(separator);
 		BookReturniew.setVisible(false);
+		ProfileView.setVisible(false);
+		
+		ProfileView.setBounds(220, 133, 989, 645);
+		contentPane.add(ProfileView);
+		ProfileView.setLayout(null);
+		ProfileView.setBackground(Color.WHITE);
+		
+		JLabel label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(214, 22, 185, 146);
+		label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+		ProfileView.add(label);
+		
+		JLabel lblNewLabel_8 = new JLabel("First Name");
+		lblNewLabel_8.setBounds(55, 206, 99, 16);
+		ProfileView.add(lblNewLabel_8);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(55, 234, 218, 34);
+		ProfileView.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblLastName_1 = new JLabel("Last Name");
+		lblLastName_1.setBounds(358, 206, 99, 16);
+		ProfileView.add(lblLastName_1);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(358, 234, 218, 34);
+		ProfileView.add(textField_3);
+		
+		JLabel lblEmail_1 = new JLabel("Email");
+		lblEmail_1.setBounds(55, 280, 99, 16);
+		ProfileView.add(lblEmail_1);
+		
+		JLabel lblPhoneNumber_1 = new JLabel("Phone number");
+		lblPhoneNumber_1.setBounds(358, 280, 99, 16);
+		ProfileView.add(lblPhoneNumber_1);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(55, 308, 218, 34);
+		ProfileView.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(358, 308, 218, 34);
+		ProfileView.add(textField_5);
+		
+		JLabel lblOldPassword = new JLabel("Old password");
+		lblOldPassword.setBounds(55, 354, 99, 16);
+		ProfileView.add(lblOldPassword);
+		
+		JLabel lblNewPassword = new JLabel("New password");
+		lblNewPassword.setBounds(358, 354, 99, 16);
+		ProfileView.add(lblNewPassword);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(55, 382, 218, 34);
+		ProfileView.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setBounds(358, 382, 218, 34);
+		ProfileView.add(textField_7);
 		
 		BookReturniew.setBackground(Color.WHITE);
 		BookReturniew.setBounds(220, 133, 989, 645);
@@ -367,6 +457,7 @@ public class AdminHome extends JFrame {
 		contentPane.add(IssueBookView);
 		IssueBookView.setLayout(null);
 		
+<<<<<<< refs/remotes/origin/master
 		String[] header = { "No", "Title", "Book Number", "Qty", "Price" };
 
 		String[][] data = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
@@ -396,10 +487,18 @@ public class AdminHome extends JFrame {
 		table = new JTable(data, header);
 		table.setBounds(12, 109, 965, 523);
 		IssueBookView.add(table);
+=======
+>>>>>>> forget password form
 		BookReturniew.setBackground(Color.WHITE);
 		BookReturniew.setBounds(220, 133, 989, 645);
 		contentPane.add(BookReturniew);
 		BookReturniew.setLayout(null);
+		
+		JLabel lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7.setBounds(94, 70, 61, 16);
+		BookReturniew.add(lblNewLabel_7);
+		
+		
 		StaffView.setVisible(false);
 		
 		StaffView.setBackground(Color.WHITE);

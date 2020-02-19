@@ -457,7 +457,6 @@ public class AdminHome extends JFrame {
 		contentPane.add(IssueBookView);
 		IssueBookView.setLayout(null);
 		
-<<<<<<< refs/remotes/origin/master
 		String[] header = { "No", "Title", "Book Number", "Qty", "Price" };
 
 		String[][] data = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
@@ -487,8 +486,7 @@ public class AdminHome extends JFrame {
 		table = new JTable(data, header);
 		table.setBounds(12, 109, 965, 523);
 		IssueBookView.add(table);
-=======
->>>>>>> forget password form
+
 		BookReturniew.setBackground(Color.WHITE);
 		BookReturniew.setBounds(220, 133, 989, 645);
 		contentPane.add(BookReturniew);

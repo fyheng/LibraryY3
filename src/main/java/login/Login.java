@@ -18,6 +18,8 @@ import javax.swing.UIManager;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -33,7 +35,7 @@ public class Login extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblPassword;
 	static Login frame = new Login();
-	int count=0;
+	int count = 0;
 
 	/**
 	 * Launch the application.
@@ -100,15 +102,15 @@ public class Login extends JFrame {
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					
-					
-				}else {
+
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "Incorrect UserName Password", "Fail",
+							JOptionPane.WARNING_MESSAGE);
+					usernametxt.setText("");
+					passwordtxt.setText("");
+					usernametxt.requestFocusInWindow();	
 					count++;
-					if (count==3) {
-						JOptionPane.showMessageDialog(contentPane, "Incorrect UserName Password", "Fail",
-								JOptionPane.WARNING_MESSAGE);
-						System.exit(0);
-					}
+					if (count == 3) System.exit(0);
 				}
 			}
 		});

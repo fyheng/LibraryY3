@@ -3,6 +3,8 @@ package configDB;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import login.Validate;
+
 public class Main {
 
 	public static void main(String args[]) throws SQLException {
@@ -25,6 +27,7 @@ public class Main {
 		//JDBC.insert("role","ROLE_MEMBER");
 //		jdbc.delete("book_detail", "code", "004");
 		System.out.println("Hello");
+		Validate.sendMail("hengta56@gmail.com");
 	
 		
 	}

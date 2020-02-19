@@ -367,7 +367,6 @@ public class AdminHome extends JFrame {
 		contentPane.add(IssueBookView);
 		IssueBookView.setLayout(null);
 		
-<<<<<<< refs/remotes/origin/master:src/main/java/admin/Home.java
 		String[] header = { "No", "Title", "Book Number", "Qty", "Price" };
 
 		String[][] data = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
@@ -397,13 +396,11 @@ public class AdminHome extends JFrame {
 		table = new JTable(data, header);
 		table.setBounds(12, 109, 965, 523);
 		IssueBookView.add(table);
-=======
 		BookReturniew.setBackground(Color.WHITE);
 		BookReturniew.setBounds(220, 133, 989, 645);
 		contentPane.add(BookReturniew);
 		BookReturniew.setLayout(null);
 		StaffView.setVisible(false);
->>>>>>> Auto stash before rebase of "origin/master":src/main/java/admin/AdminHome.java
 		
 		StaffView.setBackground(Color.WHITE);
 		StaffView.setBounds(220, 133, 989, 645);
@@ -639,7 +636,7 @@ public class AdminHome extends JFrame {
 				/*
 				 
 				*/
-				obj.create(txtFristname.getText(), txtLastname.getText(), txtFristname.getText()+' '+txtLastname.getText(), (String) comboBox.getSelectedItem(), address, dob, txtPhoneNumber.getText(), txtPhoneNumber.getText(), txtPhoneNumber.getText());
+				//obj.create(txtFristname.getText(), txtLastname.getText(), txtFristname.getText()+' '+txtLastname.getText(), (String) comboBox.getSelectedItem(), address, dob, txtPhoneNumber.getText(), txtPhoneNumber.getText(), txtPhoneNumber.getText());
 				System.out.println(address+dob);
 			}
 		});

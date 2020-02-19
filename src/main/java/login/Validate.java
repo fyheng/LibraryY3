@@ -1,6 +1,8 @@
 package login;
 
 import java.util.Properties;
+import java.util.Random;
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -32,12 +34,18 @@ public class Validate {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(userName, "L_RUPP"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
-			message.setSubject("This is the Subject Line!");
-			message.setText("This is actual message");
+			message.setSubject("You have been requrest for verification code");
+			message.setText("confirm code : "+getconfirmCode());
 			
 			Transport.send(message);
 		} catch (Exception m) {
 			m.printStackTrace();
 		}
+	}
+	
+	public static String getconfirmCode() {
+	    Random rnd = new Random();
+	    int number = rnd.nextInt(999999);
+	    return String.format("%06d", number);
 	}
 }

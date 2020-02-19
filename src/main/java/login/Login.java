@@ -35,11 +35,8 @@ public class Login extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblPassword;
 	static Login frame = new Login();
-<<<<<<< refs/remotes/origin/master
 	int count = 0;
-=======
 	private JLabel lblNewLabel_3;
->>>>>>> forget password form
 
 	/**
 	 * Launch the application.
@@ -146,8 +143,8 @@ public class Login extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.setVisible(false);
-				ForgetPassword forget = new ForgetPassword();
-				forget.setVisible(true);
+				//ForgetPassword forget = new ForgetPassword();
+				//forget.setVisible(true);
 			}
 		});
 		lblNewLabel_3.setForeground(new Color(0, 0, 204));

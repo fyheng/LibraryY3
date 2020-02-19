@@ -12,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Validate {
+	//this is validate class
 
 	public static void sendMail(String receiver) {
 		final String userName = "projectlibary84@gmail.com";

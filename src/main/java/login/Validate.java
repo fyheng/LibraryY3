@@ -1,5 +1,8 @@
 package login;
 
+import java.awt.List;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
@@ -11,12 +14,16 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import configDB.JDBC;
+
 public class Validate {
 	//this is validate class
+	static String confirmCode = "";
 
 	public static void sendMail(String receiver) {
 		final String userName = "projectlibary84@gmail.com";
 		final String password = "P@ssw0rd2019";
+		
 
 		// Get system properties
 		Properties prop = new Properties();
@@ -47,6 +54,22 @@ public class Validate {
 	public static String getconfirmCode() {
 	    Random rnd = new Random();
 	    int number = rnd.nextInt(999999);
+	    confirmCode = String.format("%06d", number);
 	    return String.format("%06d", number);
 	}
+	
+	static ArrayList<String> getUserName(String userName) {
+		
+		try {
+			ArrayList<ArrayList<String>> user= JDBC.readBy("secuser", "username", userName);
+			return user.get(0);
+			
+		} catch (SQLException e) {
+			System.out.println("kok");
+		}
+		
+		return null ;
+	}
+	
+	
 }

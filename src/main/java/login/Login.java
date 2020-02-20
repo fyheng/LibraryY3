@@ -1,6 +1,5 @@
 package login;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,7 +17,6 @@ import javax.swing.UIManager;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
-import java.awt.Cursor;
 
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
@@ -26,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Login extends JFrame {
 
@@ -58,6 +57,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
 		contentPane = new JPanel();
@@ -91,27 +91,37 @@ public class Login extends JFrame {
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				if (usernametxt.getText().length() == 0 || passwordtxt.getText().length() == 0) {
 					JOptionPane.showMessageDialog(contentPane, "Please insert username and password", "Fail",
 							JOptionPane.WARNING_MESSAGE);
-				} else if (usernametxt.getText().equals("admin") && passwordtxt.getText().equals("admin")) {
-					frame.setVisible(false);
-					AdminHome home;
-					try {
-						home = new AdminHome();
-						home.setVisible(true);
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
 
 				} else {
-					JOptionPane.showMessageDialog(contentPane, "Incorrect UserName Password", "Fail",
-							JOptionPane.WARNING_MESSAGE);
-					usernametxt.setText("");
-					passwordtxt.setText("");
-					usernametxt.requestFocusInWindow();	
-					count++;
-					if (count == 3) System.exit(0);
+
+					final ArrayList<String> varlidateData = Validate.getUserName(usernametxt.getText());
+					if (varlidateData != null) {
+
+						if (usernametxt.getText().equals(varlidateData.get(3))
+								&& passwordtxt.getText().equals(varlidateData.get(2))) {
+							frame.setVisible(false);
+							AdminHome home;
+							try {
+								home = new AdminHome();
+								home.setVisible(true);
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+						}
+					} else {
+						JOptionPane.showMessageDialog(contentPane, "Incorrect UserName Password", "Fail",
+								JOptionPane.WARNING_MESSAGE);
+						usernametxt.setText("");
+						passwordtxt.setText("");
+						usernametxt.requestFocusInWindow();
+						count++;
+						if (count == 3)
+							System.exit(0);
+					}
 				}
 			}
 		});
@@ -130,6 +140,7 @@ public class Login extends JFrame {
 
 		final JCheckBox showpassword = new JCheckBox("show password");
 		showpassword.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				((JPasswordField) passwordtxt).setEchoChar(
 						showpassword.isSelected() ? '\u0000' : (Character) UIManager.get("PasswordField.echoChar"));
@@ -137,7 +148,7 @@ public class Login extends JFrame {
 		});
 		showpassword.setBounds(304, 149, 129, 23);
 		contentPane.add(showpassword);
-		
+
 		lblNewLabel_3 = new JLabel("Forget password?");
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 			@Override

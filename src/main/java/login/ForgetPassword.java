@@ -110,12 +110,14 @@ public class ForgetPassword extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<String> varlidateData = Validate.getUserName(txtUsername.getText());
 
-				if (txtUsername.getText().equals(varlidateData.get(3))) {
+				if (varlidateData != null) {
 
-					Validate.sendMail(varlidateData.get(5).toString());
-					setBounds(100, 100, 430, 480);
-				} else {
-					JOptionPane.showMessageDialog(contentPane, "O ery o", "Fail", JOptionPane.WARNING_MESSAGE);
+					if (txtUsername.getText().equals(varlidateData.get(3))) {//compare userName
+						setBounds(100, 100, 430, 480);
+						Validate.sendMail(varlidateData.get(5).toString());
+					}
+				}else {
+					JOptionPane.showMessageDialog(contentPane, "UserName not Found!!!", "Fail", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -126,9 +128,10 @@ public class ForgetPassword extends JFrame {
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtPassword.getText().equals(txtConfirmPassword.getText())) {
-					
+
 					if (txtVerifyCode.getText().equals(Validate.confirmCode)) {
-						JOptionPane.showMessageDialog(contentPane, "change password Success", "Fail", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(contentPane, "change password Success", "Success",
+								JOptionPane.WARNING_MESSAGE);
 					}
 				}
 			}

@@ -25,10 +25,10 @@ public class JDBC {
 	 	
 	 */
 	static String localHost = "localhost";
-	static String port = "3306";
-	static String dbName = "libraryproject";
+	static String port = "3307";
+	static String dbName = "libarydb";
 	static String connectionName = "root";
-	static String password = "mengsieng";
+	static String password = "12345";
 //	static String localHost = "db4free.net";
 //	static String port = "3306";
 //	static String dbName = "libraryproject";
@@ -228,19 +228,22 @@ public class JDBC {
 
 // Delete from DB===================================================================================================
 	public static void delete(String tbName,String column,String value) throws SQLException {
-		//get column name and index
 		statement = connection().createStatement();
-		resultSet = statement.executeQuery("select * from " + tbName + "");
-		columnName = JDBC.getColumnName(resultSet);
+		String sql = "DELETE FROM " +tbName+ " WHERE "+column+" = "+value+" ";	
+		statement.executeUpdate(sql);
+		connection().close();
+		Logger logger = Logger.getGlobal();
+		logger.info("Delete Data Success");
+	}
 	
-		
-		//String sql = "DELETE FROM " +tbName+ " WHERE "+column+" = ?";
-
-		//PreparedStatement prepared = connection().prepareStatement(sql);
-
-//		prepared.setString(1, value);
-//		prepared.executeUpdate();
-//		connection().close();
+	
+//update from DB===================================================================================================
+	
+	public static void update(String tbName,String column,String value) throws SQLException {
+		statement = connection().createStatement();//"select * from " + tbName + ""
+		String sql = "UPDATE " +tbName+ " WHERE "+column+" = "+value+" ";	
+		statement.executeUpdate(sql);
+		connection().close();
 		Logger logger = Logger.getGlobal();
 		logger.info("Delete Data Success");
 	}

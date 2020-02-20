@@ -36,6 +36,7 @@ public class Login extends JFrame {
 	static Login frame = new Login();
 	int count = 0;
 	private JLabel lblNewLabel_3;
+	static boolean check = false;
 
 	/**
 	 * Launch the application.
@@ -103,6 +104,7 @@ public class Login extends JFrame {
 
 						if (usernametxt.getText().equals(varlidateData.get(3))
 								&& passwordtxt.getText().equals(varlidateData.get(2))) {
+							check = true;
 							frame.setVisible(false);
 							AdminHome home;
 							try {
@@ -112,7 +114,8 @@ public class Login extends JFrame {
 								e1.printStackTrace();
 							}
 						}
-					} else {
+					}
+					if (varlidateData == null || check == false) {
 						JOptionPane.showMessageDialog(contentPane, "Incorrect UserName Password", "Fail",
 								JOptionPane.WARNING_MESSAGE);
 						usernametxt.setText("");
@@ -122,6 +125,7 @@ public class Login extends JFrame {
 						if (count == 3)
 							System.exit(0);
 					}
+
 				}
 			}
 		});

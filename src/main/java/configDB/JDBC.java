@@ -20,15 +20,18 @@ public class JDBC {
 	static Statement statement;
 	static ResultSet resultSet;
 
-	/**
-	 * this is default configuration/libaryDB/root/12345 3306/libaryDB/root/12345678
-	 	
-	 */
 	static String localHost = "localhost";
-	static String port = "3307";
-	static String dbName = "libarydb";
+	static String port = "3306";
+	static String dbName = "libaryDB";
 	static String connectionName = "root";
-	static String password = "12345";
+	static String password = "12345678";
+	
+	
+//	static String localHost = "localhost";
+//	static String port = "3306";
+//	static String dbName = "libraryproject";
+//	static String connectionName = "root";
+//	static String password = "mengsieng";
 //	static String localHost = "db4free.net";
 //	static String port = "3306";
 //	static String dbName = "libraryproject";
@@ -240,12 +243,25 @@ public class JDBC {
 //update from DB===================================================================================================
 	
 	public static void update(String tbName,String column,String value) throws SQLException {
-		statement = connection().createStatement();//"select * from " + tbName + ""
+		statement = connection().createStatement();
 		String sql = "UPDATE " +tbName+ " WHERE "+column+" = "+value+" ";	
 		statement.executeUpdate(sql);
 		connection().close();
 		Logger logger = Logger.getGlobal();
-		logger.info("Delete Data Success");
+		logger.info("update success");
+	}
+	
+	
+	//============================================================
+	
+	public static boolean updateBy(String tbName,String column,String Oldvalue,String newValue) throws SQLException {
+		statement = connection().createStatement();
+		String sql = "UPDATE " +tbName+ " SET "+column+" = "+newValue+" WHERE "+column+" = "+Oldvalue+" ";	
+		statement.executeUpdate(sql);
+		//connection().close();
+		Logger logger = Logger.getGlobal();
+		logger.info("update success");
+		return true;
 	}
 
 // @supProcess===================================================================================================

@@ -8,6 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.StyledEditorKit.BoldAction;
+
+import admin.AdminHome;
+import configDB.JDBC;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -15,6 +19,7 @@ import javax.swing.UIManager;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -29,6 +34,7 @@ public class ForgetPassword extends JFrame {
 	private JTextField txtVerifyCode;
 	static ForgetPassword frame = new ForgetPassword();
 	public Boolean check = false;
+	public Boolean checkUpdate = false;
 
 	/**
 	 * Launch the application.
@@ -112,12 +118,13 @@ public class ForgetPassword extends JFrame {
 
 				if (varlidateData != null) {
 
-					if (txtUsername.getText().equals(varlidateData.get(3))) {//compare userName
+					if (txtUsername.getText().equals(varlidateData.get(3))) {// compare userName
 						setBounds(100, 100, 430, 480);
 						Validate.sendMail(varlidateData.get(5).toString());
 					}
-				}else {
-					JOptionPane.showMessageDialog(contentPane, "UserName not Found!!!", "Fail", JOptionPane.WARNING_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "UserName not Found!!!", "Fail",
+							JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -126,13 +133,29 @@ public class ForgetPassword extends JFrame {
 
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if (txtPassword.getText().equals(txtConfirmPassword.getText())) {
 
 					if (txtVerifyCode.getText().equals(Validate.confirmCode)) {
-						JOptionPane.showMessageDialog(contentPane, "change password Success", "Success",
-								JOptionPane.WARNING_MESSAGE);
+						// update Password
+						ArrayList<String> varlidateData = Validate.getUserName(txtUsername.getText());
+						if (varlidateData != null) {
+							try {
+								checkUpdate = JDBC.updateBy("secuser", "password", varlidateData.get(2).toString(),
+										txtConfirmPassword.getText().toString());
+							} catch (SQLException e1) {
+							}
+						}
 					}
+				}
+
+				if (checkUpdate == true) {
+
+					JOptionPane.showMessageDialog(contentPane, "change password Success", "Success",
+							JOptionPane.WARNING_MESSAGE);
+					frame.setVisible(false);
+					new Login().setVisible(true);
 				}
 			}
 		});

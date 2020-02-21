@@ -11,8 +11,8 @@ public class Main {
 	public static void main(String args[]) throws SQLException {
 		//JDBC jdbc = new JDBC("localhost","3306","libaryDB","root","12345678");
 
-		ArrayList<ArrayList<String>> result = JDBC.readData("book_detail");
-		System.out.println(result);
+//		ArrayList<ArrayList<String>> result = JDBC.readData("book_detail");
+//		System.out.println(result);
 //
 //		
 //		result = JDBC.readBy("Book", "dueDate","");
@@ -30,11 +30,12 @@ public class Main {
 //		jdbc.delete("book_detail", "code", "004");
 		//System.out.println("Hello");
 		//Validate.sendMail("hengta56@gmail.com");
-		ArrayList<ArrayList<String>> user = JDBC.readBy("secuser", "username", "liza");
+//		ArrayList<ArrayList<String>> user = JDBC.readBy("secuser", "username", "liza");
 		
-		user.toArray();
+//		user.toArray();
 		
-		System.out.println(user.get(0));
+//		System.out.println(user.get(0));
+		JDBC.updateBy("", "", "", "");
 		
 	
 		

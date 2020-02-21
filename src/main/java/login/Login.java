@@ -37,6 +37,8 @@ public class Login extends JFrame {
 	int count = 0;
 	private JLabel lblNewLabel_3;
 	static boolean check = false;
+	public static ArrayList<String> data = new ArrayList<String>();
+	
 
 	/**
 	 * Launch the application.
@@ -106,13 +108,17 @@ public class Login extends JFrame {
 								&& passwordtxt.getText().equals(varlidateData.get(2))) {
 							check = true;
 							frame.setVisible(false);
+							
+							//store info userLogin
+							data=varlidateData;
+							
 							AdminHome home;
 							try {
 								home = new AdminHome();
 								home.setVisible(true);
 							} catch (SQLException e1) {
 								e1.printStackTrace();
-							}
+							}							
 						}
 					}
 					if (varlidateData == null || check == false) {

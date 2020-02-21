@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
-
 public class JDBC {
 
 	public JDBC() {
@@ -21,22 +19,12 @@ public class JDBC {
 	static ResultSet resultSet;
 
 	static String localHost = "localhost";
-	static String port = "3306";
-	static String dbName = "libaryDB";
+	static String port = "3307";
+	static String dbName = "libarydb";
 	static String connectionName = "root";
-	static String password = "12345678";
+	static String password = "12345";
 	
 	
-//	static String localHost = "localhost";
-//	static String port = "3306";
-//	static String dbName = "libraryproject";
-//	static String connectionName = "root";
-//	static String password = "mengsieng";
-//	static String localHost = "db4free.net";
-//	static String port = "3306";
-//	static String dbName = "libraryproject";
-//	static String connectionName = "libraryproject";
-//	static String password = "vathanak.com$$";
 	static ArrayList<String> columnName = new ArrayList<String>();
 	static String keySets = new String();
 	static String temps = new String();
@@ -254,11 +242,32 @@ public class JDBC {
 	
 	//============================================================
 	
+
+	public void updateTableColumns(){
+	    String sql = "update tableName set column1 = ? , column2 = ? , column3 = ? where rowName = ?";
+	    try {
+	        PreparedStatement ps = connection().prepareStatement(sql); 
+	        ps.setString(1, "Value of column1");// Set value for each ?
+	        ps.setString(2, "Value of column2");
+	        ps.setString(3, "Value of column3");
+	        ps.setString(4, "Value of rowName");
+
+	        ps.execute(sql); //execute the sql sentence in sql database
+	    } catch (SQLException e) {}
+	}
+	
+	
 	public static boolean updateBy(String tbName,String column,String Oldvalue,String newValue) throws SQLException {
-		statement = connection().createStatement();
-		String sql = "UPDATE " +tbName+ " SET "+column+" = "+newValue+" WHERE "+column+" = "+Oldvalue+" ";	
-		statement.executeUpdate(sql);
-		//connection().close();
+		
+		String sql = "update staff set 'version' = ? , 'address' = ?  where 'secuserId' = ? ";
+		PreparedStatement psm =  connection().prepareStatement(sql);
+		psm.setInt(1, 5);
+		psm.setString(2, "kondal");
+		psm.setInt(3, 1);
+	
+		
+		
+		psm.execute(sql);
 		Logger logger = Logger.getGlobal();
 		logger.info("update success");
 		return true;

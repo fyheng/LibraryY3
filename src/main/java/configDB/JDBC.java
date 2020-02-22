@@ -19,10 +19,10 @@ public class JDBC {
 	static ResultSet resultSet;
 
 	static String localHost = "localhost";
-	static String port = "3307";
-	static String dbName = "libarydb";
+	static String port = "3306";
+	static String dbName = "library";
 	static String connectionName = "root";
-	static String password = "12345";
+	static String password = "Sophea1911";
 	
 	
 	static ArrayList<String> columnName = new ArrayList<String>();

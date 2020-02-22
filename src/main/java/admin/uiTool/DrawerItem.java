@@ -44,5 +44,9 @@ public class DrawerItem {
 		lblNewLabel_3.setForeground(Color.WHITE);
 		return item1;
 	}
+	public static JPanel staffDrawer() {
+		final JPanel StaffItem = new JPanel();
+		return StaffItem;
+	}
 }
 

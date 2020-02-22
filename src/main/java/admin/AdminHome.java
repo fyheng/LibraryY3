@@ -5,10 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Controller.StaffController;
 import admin.function.ButtonClick;
+import admin.table.IssueBook;
+import admin.table.ReturnBook;
+import admin.table.ReuseTable;
+import admin.table.StaffTable;
 import admin.uiTool.DrawerItem;
+import admin.uiTool.Header;
 import admin.uiTool.MenuItem;
 import configDB.JDBC;
 import login.Login;
@@ -27,27 +33,34 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminHome extends JFrame {
 
-	
-	static Login login = new Login();
 	private JPanel contentPane;
 	GetIcon icon;
 	JLabel lblNewLabel = new JLabel("Home");
+	JSeparator separator = new JSeparator();
+
 	final JPanel HomeItem = new JPanel();
 	final JPanel StaffItem = new JPanel();
+	
+	JPanel Drawer = new JPanel();
 	JPanel MainMenu = new JPanel();
 	JPanel TotalBookView = new JPanel();
 	JPanel StaffView = new JPanel();
-	JPanel BookReturniew = new JPanel();
-	JPanel IssueBookView = new JPanel();
 	JPanel ProfileView = new JPanel();
+	JPanel IssueBookView = new JPanel();
+	JPanel ReturnBookView = new JPanel();
+	JPanel StaffTables = new JPanel();
+	
 	private JTextField txtEmail;
 	private JTextField txtStreet;
 	private JTextField txtHouseNumber;
@@ -61,6 +74,7 @@ public class AdminHome extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
+	private JTextField txtSearch;
 	
 	/**
 	 * Launch the application.
@@ -84,68 +98,24 @@ public class AdminHome extends JFrame {
 	 * @throws SQLException 
 	 */
 	public AdminHome() throws SQLException {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1240, 850);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
-		//Main panel
-		TotalBookView.setVisible(false);
-		BookReturniew.setVisible(false);
-		StaffView.setVisible(false);
-		IssueBookView.setVisible(false);
-		StaffItem.setVisible(false);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 1240, 72);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.BLACK);
-		panel_1.setBounds(1169, 10, 50, 50);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AdminHome frame;
-				try {
-					frame = new AdminHome();
-					System.exit(0);
-					login.setVisible(true);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(0, 0, 50, 50);
-		panel_1.add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(GetIcon.setIcon(Icons.Close));
-		
-		JPanel Drawer = new JPanel();
+//Drawer==============================================
 		Drawer.setBackground(new Color(0, 0, 51));
 		Drawer.setBounds(0, 72, 185, 738);
-		contentPane.add(Drawer);
 		Drawer.setLayout(null);
-		
+//====================================================
 		JLabel ProfileIcon = new JLabel("");
 		ProfileIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				MainMenu.setVisible(false);
-				TotalBookView.setVisible(false);
 				StaffView.setVisible(false);
-				BookReturniew.setVisible(false);
-				IssueBookView.setVisible(false);
 				ProfileView.setVisible(false);
 				ProfileView.setVisible(true);
 			}
@@ -165,15 +135,15 @@ public class AdminHome extends JFrame {
 			public void action() {
 				lblNewLabel.setText("Home");
 				MainMenu.setVisible(true);
+				HomeItem.setVisible(true);
 				TotalBookView.setVisible(false);
-				StaffView.setVisible(false);
-				BookReturniew.setVisible(false);
 				IssueBookView.setVisible(false);
-				ProfileView.setVisible(false);
+				ReturnBookView.setVisible(false);
+				StaffTables.setVisible(false);
+				StaffItem.setVisible(false);
 			}
 		}));
-		
-		
+//==============================================================	
 		HomeItem.setBackground(new Color(0, 0, 51));
 		HomeItem.setBounds(0, 246, 185, 492);
 		Drawer.add(HomeItem);
@@ -182,37 +152,25 @@ public class AdminHome extends JFrame {
 		HomeItem.add(DrawerItem.drawerItem("Total book",0,new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Total book");
-//				HomeItem.setVisible(false);
+				HomeItem.setVisible(false);
 				MainMenu.setVisible(false);
 				TotalBookView.setVisible(true);
-				StaffView.setVisible(false);
-				BookReturniew.setVisible(false);
-				IssueBookView.setVisible(false);
-				ProfileView.setVisible(false);
 			}
 		}));
 		HomeItem.add(DrawerItem.drawerItem("Issue book",46,new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Issue book");
-//				HomeItem.setVisible(false);
+				HomeItem.setVisible(false);
 				MainMenu.setVisible(false);
-				TotalBookView.setVisible(false);
-				StaffView.setVisible(false);
-				BookReturniew.setVisible(false);
 				IssueBookView.setVisible(true);
-				ProfileView.setVisible(false);
 			}
 		}));
 		HomeItem.add(DrawerItem.drawerItem("Book returned",46*2,new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Book returned");
-//				HomeItem.setVisible(false);
+				HomeItem.setVisible(false);
 				MainMenu.setVisible(false);
-				TotalBookView.setVisible(false);
-				StaffView.setVisible(false);
-				BookReturniew.setVisible(true);
-				IssueBookView.setVisible(false);
-				ProfileView.setVisible(false);
+				ReturnBookView.setVisible(true);
 			}
 		}));
 		HomeItem.add(DrawerItem.drawerItem("Staff",46*3,new ButtonClick() {
@@ -220,12 +178,8 @@ public class AdminHome extends JFrame {
 				lblNewLabel.setText("Staff");
 				HomeItem.setVisible(false);
 				MainMenu.setVisible(false);
-				TotalBookView.setVisible(false);
-				StaffView.setVisible(true);
-				BookReturniew.setVisible(false);
-				IssueBookView.setVisible(false);
+				StaffTables.setVisible(true);
 				StaffItem.setVisible(true);
-				ProfileView.setVisible(false);
 			}
 		}));
 		
@@ -237,9 +191,8 @@ public class AdminHome extends JFrame {
 		
 		StaffItem.add(DrawerItem.drawerItem("Add staff",0,new ButtonClick() {
 			public void action() {
-				lblNewLabel.setText("Drawer 1");
-				MainMenu.setVisible(false);
-//				StaffInput.setVisible(true);
+				lblNewLabel.setText("Add staff");
+				StaffView.setVisible(true);
 			}
 		}));
 		StaffItem.add(DrawerItem.drawerItem("Delete staff",46,new ButtonClick() {
@@ -252,29 +205,9 @@ public class AdminHome extends JFrame {
 				lblNewLabel.setText("Drawer 3");
 			}
 		}));
-		StaffItem.add(DrawerItem.drawerItem("Back",46*3,new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Home");
-				HomeItem.setVisible(true);
-				StaffItem.setVisible(false);
-				MainMenu.setVisible(true);
-			}
-		}));
-		
-		
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
-		lblNewLabel.setBounds(220, 83, 268, 38);
-		contentPane.add(lblNewLabel);
-		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(Color.BLACK);
-		separator.setBounds(220, 113, 254, 12);
-		contentPane.add(separator);
-		BookReturniew.setVisible(false);
 		ProfileView.setVisible(false);
 		
 		ProfileView.setBounds(220, 133, 989, 645);
-		contentPane.add(ProfileView);
 		ProfileView.setLayout(null);
 		ProfileView.setBackground(Color.WHITE);
 		
@@ -338,170 +271,19 @@ public class AdminHome extends JFrame {
 		textField_7.setBounds(358, 382, 218, 34);
 		ProfileView.add(textField_7);
 		
-		BookReturniew.setBackground(Color.WHITE);
-		BookReturniew.setBounds(220, 133, 989, 645);
-		contentPane.add(BookReturniew);
-		BookReturniew.setLayout(null);
 		
-		String[] head = { "No", "Title", "Book Number", "Qty", "Price" };
-
-		String[][] date = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
-				{ "2", "Leadership", "002", "34", "40.50" } };
-
-		JLabel lblBookID = new JLabel("Book ID");
-		lblBookID.setBounds(12, 13, 158, 35);
-		BookReturniew.add(lblBookID);
-
-		JTextField textField = new JTextField();
-		textField.setBounds(22, 61, 280, 35);
-		BookReturniew.add(textField);
-		textField.setColumns(10);
-
-		JTextField textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(392, 61, 280, 35);
-		BookReturniew.add(textField_1);
-
-		JButton btnFilterResults = new JButton("Filter Results ");
-		btnFilterResults.setBounds(728, 58, 200, 40);
-		BookReturniew.add(btnFilterResults);
-		JTable table = new JTable(date, head);
-		table.setBounds(12, 109, 965, 523);
-		BookReturniew.add(table);
-		
-		MainMenu.setBackground(Color.WHITE);
-		MainMenu.setBounds(220, 133, 989, 645);
-		contentPane.add(MainMenu);
-		
-		MainMenu.setLayout(null);
-		MainMenu.add(MenuItem.menu("Total book",JDBC.getCount("category"),Icons.Book,new Color(57, 124, 188),new Color(77, 134, 198),31, 21,new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Total book");
-				MainMenu.setVisible(false);
-				TotalBookView.setVisible(true);
-				StaffView.setVisible(false);
-				BookReturniew.setVisible(false);
-				IssueBookView.setVisible(false);
-			}
-		}));
-		MainMenu.add(MenuItem.menu("Issue book",JDBC.getCount("category"),Icons.Book,new Color(75, 163, 97),new Color(85, 173, 107),267, 21,new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Issue book");
-				MainMenu.setVisible(false);
-				TotalBookView.setVisible(false);
-				StaffView.setVisible(false);
-				BookReturniew.setVisible(false);
-				IssueBookView.setVisible(true);
-			}
-		}));
-		MainMenu.add(MenuItem.menu("Book returned",JDBC.getCount("category"),Icons.Book,new Color(231, 159, 62),new Color(241, 169, 72),503, 21,new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Book returned");
-				MainMenu.setVisible(false);
-				TotalBookView.setVisible(false);
-				StaffView.setVisible(false);
-				BookReturniew.setVisible(true);
-				IssueBookView.setVisible(false);
-			}
-		}));
-		MainMenu.add(MenuItem.menu("Staff",JDBC.getCount("category"),Icons.User,new Color(230, 113, 93),new Color(240, 123, 103),739, 21,new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Staff");
-				HomeItem.setVisible(false);
-				MainMenu.setVisible(false);
-				TotalBookView.setVisible(false);
-				StaffView.setVisible(true);
-				BookReturniew.setVisible(false);
-				IssueBookView.setVisible(false);
-				StaffItem.setVisible(true);;
-			}
-		}));
-		
-		TotalBookView.setBackground(Color.WHITE);
-		TotalBookView.setBounds(220, 133, 989, 645);
-		contentPane.add(TotalBookView);
-		TotalBookView.setLayout(null);
-		
-		String[] col = { "No", "Title", "Book Number", "Qty", "Price" };
-
-		String[][] row = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
-				{ "2", "Leadership", "002", "34", "40.50" } };
-
-		JLabel lblBookid = new JLabel("Book ID");
-		lblBookid.setBounds(12, 13, 158, 35);
-		TotalBookView.add(lblBookid);
-
-		JLabel lblMemberId = new JLabel("Member ID");
-		lblMemberId.setBounds(382, 13, 158, 35);
-		TotalBookView.add(lblMemberId);
-
-		textField = new JTextField();
-		textField.setBounds(22, 61, 280, 35);
-		TotalBookView.add(textField);
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(392, 61, 280, 35);
-		TotalBookView.add(textField_1);
-
-		JButton btnFilterResult = new JButton("Filter Results ");
-		btnFilterResult.setBounds(728, 58, 200, 40);
-		TotalBookView.add(btnFilterResult);
-		table = new JTable(row, col);
-		table.setBounds(12, 109, 965, 523);
-		TotalBookView.add(table);
-		
-		IssueBookView.setBackground(Color.WHITE);
-		IssueBookView.setBounds(220, 133, 989, 645);
-		contentPane.add(IssueBookView);
-		IssueBookView.setLayout(null);
-		
-		String[] header = { "No", "Title", "Book Number", "Qty", "Price" };
-
-		String[][] data = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
-				{ "2", "Leadership", "002", "34", "40.50" } };
-
-		JLabel lblbookID = new JLabel("Book ID");
-		lblbookID.setBounds(12, 13, 158, 35);
-		IssueBookView.add(lblbookID);
-
-		JLabel lblmemberId = new JLabel("Member ID");
-		lblmemberId.setBounds(382, 13, 158, 35);
-		IssueBookView.add(lblmemberId);
-
-		textField = new JTextField();
-		textField.setBounds(22, 61, 280, 35);
-		IssueBookView.add(textField);
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(392, 61, 280, 35);
-		IssueBookView.add(textField_1);
-
-		JButton btnFilterresult = new JButton("Filter Results ");
-		btnFilterresult.setBounds(728, 58, 200, 40);
-		IssueBookView.add(btnFilterresult);
-		table = new JTable(data, header);
-		table.setBounds(12, 109, 965, 523);
-		IssueBookView.add(table);
-
-		BookReturniew.setBackground(Color.WHITE);
-		BookReturniew.setBounds(220, 133, 989, 645);
-		contentPane.add(BookReturniew);
-		BookReturniew.setLayout(null);
-		
-		JLabel lblNewLabel_7 = new JLabel("New label");
-		lblNewLabel_7.setBounds(94, 70, 61, 16);
-		BookReturniew.add(lblNewLabel_7);
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
+		lblNewLabel.setBounds(220, 83, 268, 38);
 		
 		
+		separator.setForeground(Color.BLACK);
+		separator.setBounds(220, 113, 254, 12);
+		
+			
 		StaffView.setVisible(false);
 		
 		StaffView.setBackground(Color.WHITE);
 		StaffView.setBounds(220, 133, 989, 645);
-		contentPane.add(StaffView);
 		StaffView.setLayout(null);
 		final JTextField txtFristname = new JTextField();
 		txtFristname.setBounds(43, 62, 288, 34);
@@ -755,6 +537,98 @@ public class AdminHome extends JFrame {
 		lblCancel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCancel.setBounds(0, 0, 130, 39);
 		panel_3.add(lblCancel);
-		
+				
+				
+				
+//TotalBookView================================================
+				TotalBookView.setBackground(Color.WHITE);
+				TotalBookView.setBounds(220, 133, 989, 645);
+				TotalBookView.setLayout(null);
+				TotalBookView.add(ReuseTable.TotalBook());
+				contentPane.add(TotalBookView);
+				
+				txtSearch = new JTextField();
+				txtSearch.setBounds(625, 55, 208, 36);
+				TotalBookView.add(txtSearch);
+				txtSearch.setColumns(10);
+				
+				JButton search = new JButton("search");
+				search.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							ArrayList<ArrayList<String>> res = JDBC.readBy("Book","title",txtSearch.getText());
+							for(int i=0;i<res.size();i++) {
+								ReuseTable.model.setRowCount(0);
+								ReuseTable.model.addRow(new Object[] {res.get(i).get(0),res.get(i).get(1),res.get(i).get(2),res.get(i).get(3),res.get(i).get(4),res.get(i).get(5),res.get(i).get(6)});
+							}
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					}
+				});
+				search.setBounds(846, 60, 117, 29);
+				TotalBookView.add(search);
+				TotalBookView.setVisible(false);
+//IssueBookview=========================================================
+				IssueBookView.setBackground(Color.WHITE);
+				IssueBookView.setBounds(220, 133, 989, 645);
+				IssueBookView.setLayout(null);
+				IssueBookView.add(IssueBook.issuetable());
+				IssueBookView.setVisible(false);
+//IssueBookview=========================================================			
+				ReturnBookView.setBackground(Color.WHITE);
+				ReturnBookView.setBounds(220, 133, 989, 645);
+				ReturnBookView.setLayout(null);
+				ReturnBookView.add(ReturnBook.TotalBook());
+				ReturnBookView.setVisible(false);
+//IssueBookview=========================================================			
+				StaffTables.setBackground(Color.WHITE);
+				StaffTables.setBounds(220, 133, 989, 645);
+				StaffTables.setLayout(null);
+				StaffTables.add(StaffTable.staffTables());
+				StaffTables.setVisible(false);
+//MainMenul=============================================================
+				
+		MainMenu.setBackground(Color.WHITE);
+		MainMenu.setBounds(220, 133, 989, 645);
+		MainMenu.setLayout(null);
+		MainMenu.add(MenuItem.menu("Total book",JDBC.getCount("category"),Icons.Book,new Color(57, 124, 188),new Color(77, 134, 198),31, 21,new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Total book");
+				MainMenu.setVisible(false);
+			}
+		}));
+		MainMenu.add(MenuItem.menu("Issue book",JDBC.getCount("category"),Icons.Book,new Color(75, 163, 97),new Color(85, 173, 107),267, 21,new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Issue book");
+			}
+		}));
+		MainMenu.add(MenuItem.menu("Book returned",JDBC.getCount("category"),Icons.Book,new Color(231, 159, 62),new Color(241, 169, 72),503, 21,new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Book returned");
+			}
+		}));
+		MainMenu.add(MenuItem.menu("Staff",JDBC.getCount("category"),Icons.User,new Color(230, 113, 93),new Color(240, 123, 103),739, 21,new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Staff");
+			}
+		}));
+		//====================================================
+				contentPane.add(MainMenu);
+				contentPane.add(ProfileView);
+				contentPane.add(lblNewLabel);
+				contentPane.add(separator);
+				contentPane.add(StaffView);
+				contentPane.add(Header.header());
+				contentPane.add(Drawer);
+				contentPane.add(IssueBookView);
+				contentPane.add(ReturnBookView);
+				contentPane.add(IssueBookView);
+				contentPane.add(StaffTables);
+		//====================================================
+				MainMenu.setVisible(true);
+				StaffView.setVisible(false);
+				ProfileView.setVisible(false);
+				IssueBookView.setVisible(false);
 	}
 }

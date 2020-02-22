@@ -14,7 +14,7 @@ import configDB.JDBC;
 public class ReuseTable {
 	
 	public static DefaultTableModel model = new DefaultTableModel();
-	
+	//pek heng
 	
 	public static JScrollPane TotalBook() throws SQLException {
 		JTable TotalBookTable = new JTable(model);

@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class StaffTable {
 	public static DefaultTableModel model = new DefaultTableModel();
-	
+	//pek heang
 	public static JScrollPane staffTables() throws SQLException {
 		JTable TotalBookTable = new JTable(model);
 		model.addColumn("No");

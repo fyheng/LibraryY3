@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class IssueBook {
-
+	//pek heng
 	public static DefaultTableModel Issuemodel = new DefaultTableModel();
 	public static JScrollPane issuetable(){
 		JTable IssueBook = new JTable(Issuemodel);

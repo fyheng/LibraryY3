@@ -163,12 +163,12 @@ public class AdminHome extends JFrame {
 		});
 		ProfileIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		ProfileIcon.setBounds(0, 0, 185, 146);
-		Drawer.add(ProfileIcon);
 		if (Adpater.getInfo().get(4).toString().equals("Male")) {
 			ProfileIcon.setIcon(GetIcon.setIcon(Icons.MaleUser));
 		} else {
 			ProfileIcon.setIcon(GetIcon.setIcon(Icons.FemaleUser));
 		}
+		Drawer.add(ProfileIcon);
 
 //popUp ProfileInfo Login =============================================================
 		ProfileView.setVisible(false);
@@ -179,11 +179,17 @@ public class AdminHome extends JFrame {
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(179, 51, 183, 145);
-		label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+		if(Adpater.getInfo().get(4).toString().equals("Male")) {
+			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+		}else {
+			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+		}
 		ProfileView.add(label);
+		
 
 		JLabel lblNewLabel_8 = new JLabel("First Name");
 		lblNewLabel_8.setBounds(27, 209, 99, 16);
+		lblNewLabel_8.setText(Login.data.get(3));
 		ProfileView.add(lblNewLabel_8);
 
 		txtFirstN = new JTextField();
@@ -199,7 +205,6 @@ public class AdminHome extends JFrame {
 		txtLastN.setColumns(10);
 		txtLastN.setBounds(330, 237, 218, 34);
 		ProfileView.add(txtLastN);
-		// Adpater.componen(textField_3, ProfileView, 358, 234, 218, 34);
 		txtLastN.setText(Login.data.get(3).toString());
 
 		JLabel lblEmail_1 = new JLabel("Email");
@@ -215,9 +220,9 @@ public class AdminHome extends JFrame {
 		textEmailP.setBounds(27, 311, 218, 34);
 		ProfileView.add(textEmailP);
 
-		JLabel lblOldPassword = new JLabel("Password");
-		lblOldPassword.setBounds(330, 358, 99, 16);
-		ProfileView.add(lblOldPassword);
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(330, 358, 99, 16);
+		ProfileView.add(lblPassword);
 
 		txtPhone = new JTextField();
 		txtPhone.setColumns(10);

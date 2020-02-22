@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import admin.function.ButtonClick;
+import admin.table.AddIssueTable;
 import admin.table.IssueBook;
 import admin.table.ReturnBook;
 import admin.table.ReuseTable;
@@ -38,6 +39,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Dashboard extends JFrame {
 
@@ -72,17 +75,17 @@ public class Dashboard extends JFrame {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_18;
-	private JTable AddIssuse;
+	private JTextField txtMember;
+	private JTextField txtBookTitle;
+	private JTextField txtIssueDay;
+	private JTextField txtIssueMonth;
+	private JTextField txtIssueYear;
+	private JTextField txtQty;
+	private JTextField txtDueDay;
+	private JTextField txtDueMonth;
+	private JTextField txtDueYear;
+	private JTextField txtPrice;
+	int on=1;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -141,7 +144,7 @@ public class Dashboard extends JFrame {
 		HomeItem.add(DrawerItem.drawerItem("Total book", 0, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Total book");
-				
+
 				MainMenu.setVisible(false);
 				HomeItem.setVisible(false);
 				BookTable.setVisible(true);
@@ -204,56 +207,69 @@ public class Dashboard extends JFrame {
 		ReturnBook2.setBackground(Color.WHITE);
 		ReturnBook2.setBounds(220, 133, 989, 645);
 		ReturnBook2.setVisible(false);
-		ReturnBook2.add(ReturnBook.TotalBook());
-		contentPane.add(ReturnBook2);
-		ReturnBook2.setLayout(null);
 
-// AddIssuesedBook==============================================
+		// AddIssuesedBook==============================================
 
 		AddIssuesedBook.setBackground(Color.WHITE);
 		AddIssuesedBook.setBounds(220, 133, 989, 645);
 		AddIssuesedBook.setVisible(false);
 		contentPane.add(AddIssuesedBook);
+		AddIssuesedBook.add(AddIssueTable.issuetable());
+		
 		AddIssuesedBook.setLayout(null);
 
-		JLabel lblMenberName = new JLabel("Menber Name");
+		JLabel lblMenberName = new JLabel("Member Name");
 		lblMenberName.setBounds(50, 67, 97, 16);
 		AddIssuesedBook.add(lblMenberName);
 
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(50, 95, 679, 34);
-		AddIssuesedBook.add(textField_9);
+		txtMember = new JTextField();
+		txtMember.setColumns(10);
+		txtMember.setBounds(50, 95, 679, 34);
+		AddIssuesedBook.add(txtMember);
 
 		JLabel lblBookId = new JLabel("Book Title ");
 		lblBookId.setBounds(50, 141, 97, 16);
 		AddIssuesedBook.add(lblBookId);
 
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(50, 169, 319, 34);
-		AddIssuesedBook.add(textField_10);
+		txtBookTitle = new JTextField();
+		txtBookTitle.setColumns(10);
+		txtBookTitle.setBounds(50, 169, 319, 34);
+		AddIssuesedBook.add(txtBookTitle);
 
 		JLabel lblIssuesDate = new JLabel("Issues Date ( day / month / year )");
 		lblIssuesDate.setBounds(445, 141, 277, 16);
 		AddIssuesedBook.add(lblIssuesDate);
 
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(445, 169, 82, 34);
-		AddIssuesedBook.add(textField_11);
+		txtIssueDay = new JTextField();
+		txtIssueDay.setColumns(10);
+		txtIssueDay.setBounds(445, 169, 82, 34);
+		AddIssuesedBook.add(txtIssueDay);
 
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(539, 169, 82, 34);
-		AddIssuesedBook.add(textField_12);
+		txtIssueMonth = new JTextField();
+		txtIssueMonth.setColumns(10);
+		txtIssueMonth.setBounds(539, 169, 82, 34);
+		AddIssuesedBook.add(txtIssueMonth);
 
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
-		textField_13.setBounds(633, 169, 96, 34);
-		AddIssuesedBook.add(textField_13);
+		txtIssueYear = new JTextField();
+		txtIssueYear.setColumns(10);
+		txtIssueYear.setBounds(633, 169, 96, 34);
+		AddIssuesedBook.add(txtIssueYear);
 
 		JButton lblIssuesedBook = new JButton("Add");
+		
+		lblIssuesedBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddIssueTable.Issuemodel.addRow(new Object[] {
+						(on++),
+						txtMember.getText(),
+						txtBookTitle.getText(),
+						txtQty.getText(),
+						txtIssueYear.getText()+'-'+txtIssueMonth.getText()+'-'+txtIssueDay.getText(),
+						txtDueYear.getText()+'-'+txtDueMonth.getText()+'-'+txtDueDay.getText(),
+						txtPrice.getText()
+				});
+			}
+		});
 		lblIssuesedBook.setBackground(Color.GREEN);
 		lblIssuesedBook.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIssuesedBook.setBounds(738, 258, 219, 95);
@@ -263,53 +279,48 @@ public class Dashboard extends JFrame {
 		lblQty.setBounds(50, 216, 97, 16);
 		AddIssuesedBook.add(lblQty);
 
-		textField_14 = new JTextField();
-		textField_14.setColumns(10);
-		textField_14.setBounds(50, 244, 319, 34);
-		AddIssuesedBook.add(textField_14);
+		txtQty = new JTextField();
+		txtQty.setColumns(10);
+		txtQty.setBounds(50, 244, 319, 34);
+		AddIssuesedBook.add(txtQty);
 
 		JLabel lblDueDate = new JLabel("Due Date ( day / month / year )");
 		lblDueDate.setBounds(445, 216, 277, 16);
 		AddIssuesedBook.add(lblDueDate);
 
-		textField_15 = new JTextField();
-		textField_15.setColumns(10);
-		textField_15.setBounds(445, 244, 82, 34);
-		AddIssuesedBook.add(textField_15);
+		txtDueDay = new JTextField();
+		txtDueDay.setColumns(10);
+		txtDueDay.setBounds(445, 244, 82, 34);
+		AddIssuesedBook.add(txtDueDay);
 
-		textField_16 = new JTextField();
-		textField_16.setColumns(10);
-		textField_16.setBounds(539, 244, 82, 34);
-		AddIssuesedBook.add(textField_16);
+		txtDueMonth = new JTextField();
+		txtDueMonth.setColumns(10);
+		txtDueMonth.setBounds(539, 244, 82, 34);
+		AddIssuesedBook.add(txtDueMonth);
 
-		textField_17 = new JTextField();
-		textField_17.setColumns(10);
-		textField_17.setBounds(633, 244, 96, 34);
-		AddIssuesedBook.add(textField_17);
+		txtDueYear = new JTextField();
+		txtDueYear.setColumns(10);
+		txtDueYear.setBounds(633, 244, 96, 34);
+		AddIssuesedBook.add(txtDueYear);
 
 		JLabel lblBookPrices = new JLabel("Book Prices ");
 		lblBookPrices.setBounds(50, 291, 97, 16);
 		AddIssuesedBook.add(lblBookPrices);
 
-		textField_18 = new JTextField();
-		textField_18.setColumns(10);
-		textField_18.setBounds(50, 319, 319, 34);
-		AddIssuesedBook.add(textField_18);
+		txtPrice = new JTextField();
+		txtPrice.setColumns(10);
+		txtPrice.setBounds(50, 319, 319, 34);
+		txtPrice.setEditable(false);
+		AddIssuesedBook.add(txtPrice);
 
 		JButton button = new JButton("Issuesed Book");
 		button.setHorizontalAlignment(SwingConstants.CENTER);
 		button.setBackground(Color.GREEN);
 		button.setBounds(738, 137, 219, 95);
 		AddIssuesedBook.add(button);
-		
-		String[] head = { "No", "Title", "Book Number", "Qty", "Price" };
-
-		String[][] date = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
-				{ "2", "Leadership", "002", "34", "40.50" } };
-
-		AddIssuse = new JTable(date, head);
-		AddIssuse.setBounds(50, 631, 907, -256);
-		AddIssuesedBook.add(AddIssuse);
+		ReturnBook2.add(ReturnBook.TotalBook());
+		contentPane.add(ReturnBook2);
+		ReturnBook2.setLayout(null);
 
 		IssuesedBook.setBackground(Color.WHITE);
 		IssuesedBook.setBounds(220, 133, 989, 645);
@@ -385,7 +396,7 @@ public class Dashboard extends JFrame {
 		lblStatus.setBounds(43, 182, 97, 16);
 		BookInput.add(lblStatus);
 
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setBounds(43, 210, 288, 34);
 		BookInput.add(comboBox_1);
 
@@ -393,7 +404,7 @@ public class Dashboard extends JFrame {
 		label_2.setBounds(438, 182, 97, 16);
 		BookInput.add(label_2);
 
-		JComboBox comboBox_3 = new JComboBox();
+		JComboBox<String> comboBox_3 = new JComboBox<String>();
 		comboBox_3.setBounds(438, 214, 288, 34);
 		BookInput.add(comboBox_3);
 
@@ -672,8 +683,8 @@ public class Dashboard extends JFrame {
 		lblSex.setBounds(43, 108, 97, 16);
 		MemberInput.add(lblSex);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Male", "Female" }));
+		final JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
 		comboBox.setBounds(43, 136, 120, 34);
 		MemberInput.add(comboBox);
 
@@ -681,9 +692,9 @@ public class Dashboard extends JFrame {
 		lblNewLabel_3.setBounds(43, 182, 61, 16);
 		MemberInput.add(lblNewLabel_3);
 
-		final JComboBox txtMonth = new JComboBox();
-		txtMonth.setModel(new DefaultComboBoxModel(new String[] { "January", "February", "March", "April", "May",
-				"June", "July", "August", "September", "October", "November", "December" }));
+		final JComboBox<String> txtMonth = new JComboBox<String>();
+		txtMonth.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April",
+				"May", "June", "July", "August", "September", "October", "November", "December" }));
 		txtMonth.setBounds(43, 210, 204, 34);
 		MemberInput.add(txtMonth);
 
@@ -718,7 +729,7 @@ public class Dashboard extends JFrame {
 		lblNewLabel_5.setBounds(211, 108, 61, 16);
 		MemberInput.add(lblNewLabel_5);
 
-		JComboBox comboBox_2 = new JComboBox();
+		JComboBox<String> comboBox_2 = new JComboBox<String>();
 		comboBox_2.setBounds(211, 136, 120, 34);
 		MemberInput.add(comboBox_2);
 
@@ -778,8 +789,8 @@ public class Dashboard extends JFrame {
 		lblsex.setBounds(43, 108, 97, 16);
 		MemberInput.add(lblsex);
 
-		JComboBox comboBoxSex = new JComboBox();
-		comboBoxSex.setModel(new DefaultComboBoxModel(new String[] { "Male", "Female" }));
+		JComboBox<String> comboBoxSex = new JComboBox<String>();
+		comboBoxSex.setModel(new DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
 		comboBoxSex.setBounds(43, 136, 120, 34);
 		MemberInput.add(comboBoxSex);
 
@@ -787,8 +798,8 @@ public class Dashboard extends JFrame {
 		lblMonth.setBounds(43, 182, 61, 16);
 		MemberInput.add(lblMonth);
 
-		final JComboBox txtMonths = new JComboBox();
-		txtMonths.setModel(new DefaultComboBoxModel(new String[] { "January", "February", "March", "April", "May",
+		final JComboBox<String> txtMonths = new JComboBox<String>();
+		txtMonths.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April", "May",
 				"June", "July", "August", "September", "October", "November", "December" }));
 		txtMonths.setBounds(43, 210, 204, 34);
 		MemberInput.add(txtMonths);
@@ -828,6 +839,6 @@ public class Dashboard extends JFrame {
 		contentPane.add(MemberTable);
 		MemberTable.setLayout(null);
 		MemberTable.setLayout(null);
-		
+
 	}
 }

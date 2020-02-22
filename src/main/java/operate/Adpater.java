@@ -17,10 +17,9 @@ public class Adpater {
 	}
 	
 	public static ArrayList<String> getInfo() throws SQLException {
-		return JDBC.readBy("staff", "secuserId", Login.data.get(0)).get(0); 
+		return JDBC.readBy("staff", "SecUser_id", Login.data.get(0)).get(0);
 	}
-	
-	
+		
 	
 	public static void componen(JTextField jtextField,JPanel panel,int w,int x,int y,int z) {
 		jtextField = new JTextField();

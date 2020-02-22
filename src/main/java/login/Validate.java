@@ -76,4 +76,9 @@ public class Validate {
 		return null;
 	}
 
+	static String getFullName() {
+	
+		
+		return new String();
+	}
 }

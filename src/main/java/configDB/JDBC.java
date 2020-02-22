@@ -19,11 +19,10 @@ public class JDBC {
 	static ResultSet resultSet;
 
 	static String localHost = "localhost";
-	static String port = "3306";
-	static String dbName = "library";
+	static String port = "3307";
+	static String dbName = "libraryproject";
 	static String connectionName = "root";
-	static String password = "Sophea1911";
-	
+	static String password = "12345";
 	
 	static ArrayList<String> columnName = new ArrayList<String>();
 	static String keySets = new String();
@@ -31,7 +30,7 @@ public class JDBC {
 
 	public JDBC(String localHost,String port, String dbName, String connectionName, String password) {
 		JDBC.localHost = localHost;
-		JDBC.port = port; // JDBC mean this
+		JDBC.port = port;
 		JDBC.dbName = dbName;
 		JDBC.connectionName = connectionName;
 		JDBC.password = password;
@@ -240,6 +239,21 @@ public class JDBC {
 	}
 	
 	
+	
+	//use in forgetPassword========================================
+	
+	public static boolean updateBy(String tbName,String column,String Oldvalue,String newValue) throws SQLException {
+		statement = connection().createStatement();
+		String sql = "UPDATE " +tbName+ " SET "+column+" = "+newValue+" WHERE "+column+" = "+Oldvalue+" ";	
+		statement.executeUpdate(sql);
+		//connection().close();
+		Logger logger = Logger.getGlobal();
+		logger.info("update success");
+		return true;
+	}
+	
+	
+	
 	//============================================================
 	
 
@@ -257,7 +271,7 @@ public class JDBC {
 	}
 	
 	
-	public static boolean updateBy(String tbName,String column,String Oldvalue,String newValue) throws SQLException {
+	public static boolean updateDynamic(String tbName,String column,String Oldvalue,String newValue) throws SQLException {
 		
 		String sql = "update staff set 'version' = ? , 'address' = ?  where 'secuserId' = ? ";
 		PreparedStatement psm =  connection().prepareStatement(sql);

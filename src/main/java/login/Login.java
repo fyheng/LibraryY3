@@ -8,6 +8,7 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import admin.AdminHome;
+import staff.Dashboard;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -111,11 +112,15 @@ public class Login extends JFrame {
 							
 							//store info userLogin
 							data=varlidateData;
-							
-							AdminHome home;
 							try {
-								home = new AdminHome();
-								home.setVisible(true);
+								if(varlidateData.get(5).toString().equals("1")) {
+									AdminHome home = new AdminHome();
+									home.setVisible(true);
+								}else {
+									Dashboard dashboard =new Dashboard();
+									dashboard.setVisible(true);
+								}
+								
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}							

@@ -98,7 +98,7 @@ public class AdminHome extends JFrame {
 	 * @throws SQLException 
 	 */
 	public AdminHome() throws SQLException {
-		
+		//pek heng
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1240, 850);
 		contentPane = new JPanel();

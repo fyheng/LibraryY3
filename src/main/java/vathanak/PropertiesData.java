@@ -4,13 +4,13 @@ import java.awt.List;
 import java.sql.*;
 import java.util.ArrayList;
 
-import Domain.Role;
+import Domain.RoleDomain;
  
 public class PropertiesData {
 	
 	public ArrayList<String> comboboItem() {
 		ArrayList<String> obj = new ArrayList<String>();
-		Role role = new Role();
+		RoleDomain role = new RoleDomain();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/libraryproject","root","password");	   

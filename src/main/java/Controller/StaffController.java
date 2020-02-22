@@ -2,22 +2,64 @@ package Controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
-import Domain.Role;
-import Domain.Staff;
+import Domain.RoleDomain;
+import Domain.StaffDomain;
 import configDB.JDBC;
 
 public class StaffController {
-      public void create(String firstName,String lastName,String fullName,String sex , String address,String dob,String phoneNumber,String nationalId,String startAt,int roleId,String email) {
-    	  Staff staff = new Staff(firstName,lastName,fullName,sex,address,dob,phoneNumber,nationalId,startAt,roleId,email);
-    	  JDBC.setKey("first_name","last_name","full_name","sex","address","dob","phone_number",
-    			"national_id","start_at","role_id","email"); 
-    	 try {
-			JDBC.insert("staff",staff.getFistName(),staff.getLastName(),staff.getFullName(),staff.getSex(),staff.getAddress(),staff.getDob(),staff.getPhoneNumber(),
-					    staff.getNationalId(),staff.getStartAt(),staff.getRoleId().toString(),staff.getEmail().toString());
-		 } catch (SQLException e) {
-			e.printStackTrace();
-		 }
+      public void create(String firstName,String lastName,String sex , String phone,String email,String nationalId,String startAt,String address,int roleId,
+    		             String dob) {
+    	  StaffDomain staff = new StaffDomain();
+    	  staff.setFullName(firstName+lastName);
+//    	  //find phone staff
+//    	  ArrayList<ArrayList<String>> staffList = new ArrayList<ArrayList<String>>();
+//    	  try {
+//    		  staffList = JDBC.readBy("staff", "phone", phone);
+//    	  } catch (SQLException e1) {
+//    		  // TODO Auto-generated catch block
+//    		  e1.printStackTrace();
+//    	  }
+//    	
+//    	  System.out.println(staffList);
+//    	  String staffPhone = staffList.get(1).get(6);
+//    	  System.out.println(staffPhone);
+//    	  if(staffList==null) {
+    		  //create secuser
+        	  JDBC.setKey("password","username","role_id");
+        	  try {
+      			JDBC.insert("secuser",phone,phone,roleId+"");
+      		 } catch (SQLException e) {
+      			e.printStackTrace();
+      		 }
+        	  
+        	  //find secuser id
+        	  ArrayList<ArrayList<String>> secuser = new ArrayList<ArrayList<String>>();
+        	  try {
+        		  secuser = JDBC.readBy("secuser", "username", phone);
+        	  } catch (SQLException e1) {
+        		  // TODO Auto-generated catch block
+        		  e1.printStackTrace();
+        	  }
+        	  	 String secuserId = secuser.get(0).get(0); 
+
+        	  JDBC.setKey("first_name","last_name","sex","full_name","phone","email","national_id",
+        			"start_at","dob","address","role_id","SecUser_id"); 
+        	 try {
+    			JDBC.insert("staff",firstName,lastName,sex,staff.getFullName(),phone,email,nationalId,
+    					startAt,dob,address,roleId+"",secuserId);
+    		 } catch (SQLException e) {
+    			e.printStackTrace();
+    		 }
+    		  
+//    	  }
+//    	  else {
+//    		  Logger logger = Logger.getGlobal();
+//  			logger.info("phone number already exit");
+//    	  }
+    	  
+    	 
       }
     	  
 }

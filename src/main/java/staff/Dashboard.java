@@ -4,9 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import admin.function.ButtonClick;
 import admin.table.AddIssueTable;
@@ -16,17 +15,16 @@ import admin.table.ReuseTable;
 import admin.uiTool.DrawerItem;
 import admin.uiTool.MenuItem;
 import configDB.JDBC;
+import login.Login;
+import operate.Adpater;
 import picture.GetIcon;
 import picture.Icons;
 
 import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 
 import java.awt.Font;
-import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -38,7 +36,6 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
-import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -63,13 +60,12 @@ public class Dashboard extends JFrame {
 	JPanel AddReturnedBook = new JPanel();
 	JPanel ReturnBook2 = new JPanel();
 	JPanel AboutUs = new JPanel();
+	JPanel ProfileView = new JPanel();
 	private JTextField txtFristname;
 	private JTextField txtLastname;
 	private JTextField txtDay;
 	private JTextField txtYear;
 	private JTextField txtPhoneNumber;
-	private JTextField textField;
-	private JTable table;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
@@ -85,6 +81,14 @@ public class Dashboard extends JFrame {
 	private JTextField txtDueMonth;
 	private JTextField txtDueYear;
 	private JTextField txtPrice;
+	private JTextField txtFirstN;
+	private JTextField txtLastN;
+	private JTextField textEmailP;
+	private JTextField txtPhone;
+	private JTextField txtDob;
+	private JTextField textField_9;
+	private JPasswordField txtPass;
+	private JTextField txtSetQuote;
 	int on=1;
 
 	public static void main(String[] args) {
@@ -120,10 +124,153 @@ public class Dashboard extends JFrame {
 		Drawer.setLayout(null);
 
 		JLabel ProfileIcon = new JLabel("");
+		ProfileIcon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblNewLabel.setText("Profile");
+				MainMenu.setVisible(false);
+				ProfileView.setVisible(true);
+			}
+		});
 		ProfileIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		ProfileIcon.setBounds(0, 0, 185, 146);
 		Drawer.add(ProfileIcon);
 		ProfileIcon.setIcon(GetIcon.setIcon(Icons.MaleUser));
+		ProfileView.setBackground(Color.WHITE);
+//Profile view==========================================================
+		ProfileView.setBounds(220, 133, 989, 645);
+		contentPane.add(ProfileView);
+		ProfileView.setVisible(false);
+		ProfileView.setLayout(null);
+		JLabel label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(179, 18, 183, 145);
+		if(Adpater.getInfo().get(4).toString().equals("Male")) {
+			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+		}else {
+			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+		}
+		ProfileView.setLayout(null);
+		ProfileView.add(label);
+		
+
+		JLabel lblNewLabel_8 = new JLabel("First Name");
+		lblNewLabel_8.setBounds(27, 209, 73, 16);
+		lblNewLabel_8.setText(Login.data.get(3));
+		ProfileView.add(lblNewLabel_8);
+
+		txtFirstN = new JTextField();
+		txtFirstN.setBounds(27, 237, 218, 34);
+		ProfileView.add(txtFirstN);
+		txtFirstN.setColumns(10);
+
+		JLabel lblLastName_1 = new JLabel("Last Name");
+		lblLastName_1.setBounds(330, 200, 218, 34);
+		ProfileView.add(lblLastName_1);
+
+		txtLastN = new JTextField();
+		txtLastN.setBounds(330, 237, 218, 34);
+		txtLastN.setColumns(10);
+		ProfileView.add(txtLastN);
+		txtLastN.setText(Login.data.get(3).toString());
+
+		JLabel lblEmail_1 = new JLabel("Email");
+		lblEmail_1.setBounds(27, 283, 34, 16);
+		ProfileView.add(lblEmail_1);
+
+		JLabel lblPhoneNumber_1 = new JLabel("Phone number");
+		lblPhoneNumber_1.setBounds(330, 283, 90, 16);
+		ProfileView.add(lblPhoneNumber_1);
+
+		textEmailP = new JTextField();
+		textEmailP.setColumns(10);
+		textEmailP.setBounds(27, 311, 218, 34);
+		ProfileView.add(textEmailP);
+
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(330, 358, 59, 16);
+		ProfileView.add(lblPassword);
+
+		txtPhone = new JTextField();
+		txtPhone.setColumns(10);
+		txtPhone.setBounds(330, 311, 218, 34);
+		ProfileView.add(txtPhone);
+
+		txtDob = new JTextField();
+		txtDob.setColumns(10);
+		txtDob.setBounds(27, 386, 218, 34);
+		ProfileView.add(txtDob);
+
+		JLabel lblDateOfBirth = new JLabel("Date of birth");
+		lblDateOfBirth.setBounds(27, 358, 80, 16);
+		ProfileView.add(lblDateOfBirth);
+
+		textField_9 = new JTextField();
+		textField_9.setColumns(10);
+		textField_9.setBounds(27, 461, 521, 64);
+		ProfileView.add(textField_9);
+
+		JLabel lblAddress_3 = new JLabel("Address");
+		lblAddress_3.setBounds(27, 432, 51, 16);
+		ProfileView.add(lblAddress_3);
+
+		JButton btnEnable = new JButton("Enable");
+		btnEnable.setBounds(451, 561, 97, 34);
+		ProfileView.add(btnEnable);
+
+		txtPass = new JPasswordField();
+		txtPass.setBounds(330, 386, 218, 34);
+		ProfileView.add(txtPass);
+
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
+		lblNewLabel.setBounds(220, 83, 268, 38);
+
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblUsername.setBounds(630, 244, 77, 19);
+		ProfileView.add(lblUsername);
+
+		JLabel lblSetName = new JLabel("liza(098914678)");
+		lblSetName.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSetName.setBounds(772, 244, 131, 19);
+		ProfileView.add(lblSetName);
+
+		JLabel lblSetRole = new JLabel("admin");
+		lblSetRole.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSetRole.setBounds(772, 318, 47, 19);
+		ProfileView.add(lblSetRole);
+
+		JLabel lblRole = new JLabel("Role");
+		lblRole.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblRole.setBounds(630, 318, 34, 19);
+		ProfileView.add(lblRole);
+
+		JLabel lblStartDate = new JLabel("Start date");
+		lblStartDate.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblStartDate.setBounds(630, 393, 74, 19);
+		ProfileView.add(lblStartDate);
+
+		JLabel lblSetStart = new JLabel("12-12-2020");
+		lblSetStart.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSetStart.setBounds(772, 393, 92, 19);
+		ProfileView.add(lblSetStart);
+
+		JLabel lblMo = new JLabel("Motivational quotes");
+		lblMo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMo.setBounds(630, 461, 150, 19);
+		ProfileView.add(lblMo);
+
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(330, 561, 97, 34);
+		ProfileView.add(btnBack);
+
+		txtSetQuote = new JTextField();
+		txtSetQuote.setColumns(10);
+		txtSetQuote.setBounds(630, 492, 273, 26);
+		ProfileView.add(txtSetQuote);
+		contentPane.add(ProfileView);
+		ProfileView.setLayout(null);
+//======================================================================
 
 		JLabel lblNewLabel_2 = new JLabel("User Name");
 		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 16));
@@ -601,6 +748,7 @@ public class Dashboard extends JFrame {
 				AddReturnedBook.setVisible(false);
 				AddIssuesedBook.setVisible(false);
 				ReturnBook2.setVisible(false);
+				ProfileView.setVisible(false);
 			}
 		});
 
@@ -839,6 +987,8 @@ public class Dashboard extends JFrame {
 		contentPane.add(MemberTable);
 		MemberTable.setLayout(null);
 		MemberTable.setLayout(null);
+		
+		
 
 	}
 }

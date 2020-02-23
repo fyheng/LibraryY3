@@ -5,10 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import Controller.BookController;
+import Controller.CategoryController;
 import admin.function.ButtonClick;
 import admin.table.AddIssueTable;
 import admin.table.IssueBook;
@@ -25,6 +26,7 @@ import picture.Icons;
 import java.awt.Color;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -32,11 +34,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -59,24 +62,34 @@ public class Dashboard extends JFrame {
 	JPanel MemberTable = new JPanel();
 	JPanel IssuesedBook = new JPanel();
 	JPanel AddIssuesedBook = new JPanel();
+
 	JPanel ReturnedBook = new JPanel();
-	JPanel AddReturnedBook = new JPanel();
+	JPanel AddReturnBook = new JPanel();
 	JPanel ReturnBook2 = new JPanel();
 	JPanel AboutUs = new JPanel();
 	JPanel ProfileView = new JPanel();
+	JPanel AddBookCategory = new JPanel();
+	JPanel ImportBook = new JPanel();
+
+	final JLabel setMemberName = new JLabel("");
+	final JLabel setBookTitle = new JLabel("");
+	final JLabel setIssueDate = new JLabel("");
+	final JLabel setReturnDate = new JLabel("");
+	final JLabel setReturnDate_1 = new JLabel("");
+	final JLabel lblNewLabel_9 = new JLabel("Member name");
+	final JComboBox<String> txtCategoryBook = new JComboBox<String>();
+
 	private JTextField txtFristname;
+	private JTextField txtBookTitleBook;
 	private JTextField txtLastname;
 	private JTextField txtDay;
 	private JTextField txtYear;
 	private JTextField txtPhoneNumber;
-	private JTextField txtBookID;
-	private JTextField txtMemberID;
-	private JTable table;
-	private JTextField txtLanguage;
-	private JTextField txtAuthor;
-	private JTextField txtPublishDay;
-	private JTextField txtPublishMonth;
-	private JTextField txtPublishYear;
+	private JTextField txtLanguageBook;
+	private JTextField txtAuthorBook;
+	private JTextField txtYearBook;
+	private JTextField txtMonthBook;
+	private JTextField txtDayBook;
 	private JTextField txtMember;
 	private JTextField txtBookTitle;
 	private JTextField txtIssueDay;
@@ -92,11 +105,14 @@ public class Dashboard extends JFrame {
 	private JTextField textEmailP;
 	private JTextField txtPhone;
 	private JTextField txtDob;
-	private JTextField txtDOB;
+	private JTextField textField_9;
 	private JPasswordField txtPass;
 	private JTextField txtSetQuote;
 	int on = 1;
-	private JTable AddIssuesBook;
+	private JTextField getMemberName;
+	private JTextField txtCategoryTitle;
+	private JTextField txtEditionBook;
+	private JTextField txtBookCodeBook;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -143,250 +159,19 @@ public class Dashboard extends JFrame {
 		ProfileIcon.setBounds(0, 0, 185, 146);
 		Drawer.add(ProfileIcon);
 		ProfileIcon.setIcon(GetIcon.setIcon(Icons.MaleUser));
-		ProfileView.setBackground(Color.WHITE);
-//Profile view==========================================================
-		ProfileView.setBounds(220, 133, 989, 645);
-		contentPane.add(ProfileView);
-		ProfileView.setVisible(false);
-		ProfileView.setLayout(null);
-		JLabel label = new JLabel("");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(179, 18, 183, 145);
-		if (Adpater.getInfo().get(4).toString().equals("Male")) {
-			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
-		} else {
-			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
-		}
-		ProfileView.setLayout(null);
-		ProfileView.add(label);
-
-		JLabel lbleFirstName = new JLabel("First Name");
-		lbleFirstName.setBounds(27, 209, 73, 16);
-		lbleFirstName.setText(Login.data.get(3));
-		ProfileView.add(lbleFirstName);
-
-		txtFirstN = new JTextField();
-		txtFirstN.setBounds(27, 237, 218, 34);
-		ProfileView.add(txtFirstN);
-		txtFirstN.setColumns(10);
-
-		JLabel lblLastName_1 = new JLabel("Last Name");
-		lblLastName_1.setBounds(330, 200, 218, 34);
-		ProfileView.add(lblLastName_1);
-
-		txtLastN = new JTextField();
-		txtLastN.setBounds(330, 237, 218, 34);
-		txtLastN.setColumns(10);
-		ProfileView.add(txtLastN);
-		txtLastN.setText(Login.data.get(3).toString());
-
-		JLabel lblEmail_1 = new JLabel("Email");
-		lblEmail_1.setBounds(27, 283, 34, 16);
-		ProfileView.add(lblEmail_1);
-
-		JLabel lblPhoneNumber_1 = new JLabel("Phone number");
-		lblPhoneNumber_1.setBounds(330, 283, 90, 16);
-		ProfileView.add(lblPhoneNumber_1);
-
-		textEmailP = new JTextField();
-		textEmailP.setColumns(10);
-		textEmailP.setBounds(27, 311, 218, 34);
-		ProfileView.add(textEmailP);
-
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(330, 358, 59, 16);
-		ProfileView.add(lblPassword);
-
-		txtPhone = new JTextField();
-		txtPhone.setColumns(10);
-		txtPhone.setBounds(330, 311, 218, 34);
-		ProfileView.add(txtPhone);
-
-		txtDob = new JTextField();
-		txtDob.setColumns(10);
-		txtDob.setBounds(27, 386, 218, 34);
-		ProfileView.add(txtDob);
-
-		JLabel lblDateOfBirth = new JLabel("Date of birth");
-		lblDateOfBirth.setBounds(27, 358, 80, 16);
-		ProfileView.add(lblDateOfBirth);
-
-		txtDOB = new JTextField();
-		txtDOB.setColumns(10);
-		txtDOB.setBounds(27, 461, 521, 64);
-		ProfileView.add(txtDOB);
-
-		JLabel lblAddress_3 = new JLabel("Address");
-		lblAddress_3.setBounds(27, 432, 51, 16);
-		ProfileView.add(lblAddress_3);
-
-		JButton btnEnable = new JButton("Enable");
-		btnEnable.setBounds(451, 561, 97, 34);
-		ProfileView.add(btnEnable);
-
-		txtPass = new JPasswordField();
-		txtPass.setBounds(330, 386, 218, 34);
-		ProfileView.add(txtPass);
-
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
-		lblNewLabel.setBounds(220, 83, 268, 38);
-
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblUsername.setBounds(630, 244, 77, 19);
-		ProfileView.add(lblUsername);
-
-		JLabel lblSetName = new JLabel("liza(098914678)");
-		lblSetName.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSetName.setBounds(772, 244, 131, 19);
-		ProfileView.add(lblSetName);
-
-		JLabel lblSetRole = new JLabel("admin");
-		lblSetRole.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSetRole.setBounds(772, 318, 47, 19);
-		ProfileView.add(lblSetRole);
-
-		JLabel lblRole = new JLabel("Role");
-		lblRole.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblRole.setBounds(630, 318, 34, 19);
-		ProfileView.add(lblRole);
-
-		JLabel lblStartDate = new JLabel("Start date");
-		lblStartDate.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblStartDate.setBounds(630, 393, 74, 19);
-		ProfileView.add(lblStartDate);
-
-		JLabel lblSetStart = new JLabel("12-12-2020");
-		lblSetStart.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSetStart.setBounds(772, 393, 92, 19);
-		ProfileView.add(lblSetStart);
-
-		JLabel lblMo = new JLabel("Motivational quotes");
-		lblMo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblMo.setBounds(630, 461, 150, 19);
-		ProfileView.add(lblMo);
-
-		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(330, 561, 97, 34);
-		ProfileView.add(btnBack);
-
-		txtSetQuote = new JTextField();
-		txtSetQuote.setColumns(10);
-		txtSetQuote.setBounds(630, 492, 273, 26);
-		ProfileView.add(txtSetQuote);
-		contentPane.add(ProfileView);
-		ProfileView.setLayout(null);
-//======================================================================
-
-		JLabel lblUserName = new JLabel("User Name");
-		lblUserName.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		lblUserName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUserName.setForeground(Color.WHITE);
-		lblUserName.setBounds(0, 143, 185, 41);
-		Drawer.add(lblUserName);
-
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
-		lblNewLabel.setBounds(220, 83, 268, 38);
-		contentPane.add(lblNewLabel);
-
-		HomeItem.setBackground(new Color(0, 0, 51));
-		HomeItem.setBounds(0, 263, 185, 475);
-		Drawer.add(HomeItem);
-		HomeItem.setLayout(null);
-
-		HomeItem.add(DrawerItem.drawerItem("Total book", 0, new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Total book");
-
-				MainMenu.setVisible(false);
-				HomeItem.setVisible(false);
-				BookTable.setVisible(true);
-				BookItem.setVisible(true);
-			}
-		}));
-		HomeItem.add(DrawerItem.drawerItem("Member", 46, new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Member");
-				HomeItem.setVisible(false);
-				MemberItem.setVisible(true);
-				MainMenu.setVisible(false);
-				MemberTable.setVisible(true);
-			}
-		}));
-		HomeItem.add(DrawerItem.drawerItem("Issuesed Book", 46 * 2, new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Issuesed Book");
-				IssuesedBook.setVisible(true);
-				IssuebookItem.setVisible(true);
-				HomeItem.setVisible(false);
-				MainMenu.setVisible(false);
-			}
-		}));
-		HomeItem.add(DrawerItem.drawerItem("Returned Book", 46 * 3, new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("Returned Book");
-				MainMenu.setVisible(false);
-				MemberInput.setVisible(false);
-				ReturnBook2.setVisible(true);
-				ReturnedBook.setVisible(true);
-				ReturnedbookItem.setVisible(true);
-			}
-		}));
-		HomeItem.add(DrawerItem.drawerItem("About Us", 46 * 4, new ButtonClick() {
-			public void action() {
-				lblNewLabel.setText("About Us");
-				MainMenu.setVisible(false);
-				MemberInput.setVisible(false);
-				MemberTable.setVisible(false);
-				BookTable.setVisible(false);
-				BookInput.setVisible(false);
-				ReturnedBook.setVisible(false);
-				AboutUs.setVisible(true);
-			}
-		}));
-//IssuesedBook==================================================
-
-		IssuesedBook.setBackground(Color.WHITE);
-		IssuesedBook.setBounds(220, 133, 989, 645);
-		IssuesedBook.setVisible(true);
-		IssuesedBook.add(IssueBook.issuetable());
-		MemberTable.setVisible(false);
-		MemberInput.setVisible(false);
-//BookTable=====================================================
-		BookTable.add(ReuseTable.TotalBook());
-//		IssuesedBook.setToolTipText("");
-//Return book===================================================
-		ReturnBook2.setBackground(Color.WHITE);
-		ReturnBook2.setBounds(220, 133, 989, 645);
-		ReturnBook2.setVisible(false);
-		MemberTable.setVisible(false);
-		MemberInput.setVisible(false);
-		BookTable.setVisible(false);
-		BookInput.setVisible(false);
-
-		// AddIssuesedBook==============================================
-
-		AddIssuesedBook.setBackground(Color.WHITE);
-		AddIssuesedBook.setBounds(220, 133, 989, 645);
-		AddIssuesedBook.setVisible(false);
-
-		// IssuesedBook
-
-		IssuesedBook.setBackground(Color.WHITE);
-		IssuesedBook.setBounds(220, 133, 989, 645);
-		IssuesedBook.setVisible(true);
-
-		// AddReturnedBook
-
-		AddReturnedBook.setBackground(Color.WHITE);
-		AddReturnedBook.setBounds(220, 133, 989, 645);
-		AddReturnedBook.setVisible(false);
-
+		// ========================================================================================
 		// MainMenu
 
 		MainMenu.setBackground(Color.WHITE);
 		MainMenu.setBounds(220, 133, 989, 645);
 		MainMenu.setVisible(true);
+
+		Border border = BorderFactory.createLineBorder(Color.gray, 1);
+		ArrayList<ArrayList<String>> bookcategory = JDBC.readData("category");
+		for (int i = 0; i < bookcategory.size(); i++) {
+			txtCategoryBook.addItem(bookcategory.get(i).get(2));
+		}
+
 		contentPane.add(MainMenu);
 
 		MainMenu.setLayout(null);
@@ -440,82 +225,240 @@ public class Dashboard extends JFrame {
 						MemberTable.setVisible(true);
 					}
 				}));
-		contentPane.add(AddReturnedBook);
-		AddReturnedBook.setLayout(null);
+		MainMenu.setVisible(true);
+		// BookTable=====================================================
+		BookTable.add(ReuseTable.TotalBook());
+		BookTable.setVisible(false);
+		BookTable.setToolTipText("");
 
-		JLabel lblbookid = new JLabel("Book ID");
-		lblbookid.setBounds(50, 67, 97, 16);
-		AddReturnedBook.add(lblbookid);
+		BookTable.setBackground(Color.WHITE);
+		BookTable.setBounds(220, 133, 989, 645);
+		contentPane.add(BookTable);
+		BookTable.setLayout(null);
+		ProfileView.setBackground(Color.WHITE);
+//Profile view==========================================================
+		ProfileView.setBounds(220, 133, 989, 645);
+		contentPane.add(ProfileView);
+		ProfileView.setVisible(false);
+		ProfileView.setLayout(null);
+//		JLabel label = new JLabel("");
+//		label.setHorizontalAlignment(SwingConstants.CENTER);
+//		label.setBounds(179, 18, 183, 145);
+//		if(Adpater.getInfo().get(4).toString().equals("Male")) {
+//			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+//		}else {
+//			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+//		}
+//		ProfileView.setLayout(null);
+//		ProfileView.add(label);
+//		
+//
+//		JLabel lblNewLabel_8 = new JLabel("First Name");
+//		lblNewLabel_8.setBounds(27, 209, 73, 16);
+//		lblNewLabel_8.setText(Login.data.get(3));
+//		ProfileView.add(lblNewLabel_8);
+//
+//		txtFirstN = new JTextField();
+//		txtFirstN.setBounds(27, 237, 218, 34);
+//		ProfileView.add(txtFirstN);
+//		txtFirstN.setColumns(10);
+//
+//		JLabel lblLastName_1 = new JLabel("Last Name");
+//		lblLastName_1.setBounds(330, 200, 218, 34);
+//		ProfileView.add(lblLastName_1);
+//
+//		txtLastN = new JTextField();
+//		txtLastN.setBounds(330, 237, 218, 34);
+//		txtLastN.setColumns(10);
+//		ProfileView.add(txtLastN);
+//		txtLastN.setText(Login.data.get(3).toString());
+//
+//		JLabel lblEmail_1 = new JLabel("Email");
+//		lblEmail_1.setBounds(27, 283, 34, 16);
+//		ProfileView.add(lblEmail_1);
+//
+//		JLabel lblPhoneNumber_1 = new JLabel("Phone number");
+//		lblPhoneNumber_1.setBounds(330, 283, 90, 16);
+//		ProfileView.add(lblPhoneNumber_1);
+//
+//		textEmailP = new JTextField();
+//		textEmailP.setColumns(10);
+//		textEmailP.setBounds(27, 311, 218, 34);
+//		ProfileView.add(textEmailP);
+//
+//		JLabel lblPassword = new JLabel("Password");
+//		lblPassword.setBounds(330, 358, 59, 16);
+//		ProfileView.add(lblPassword);
+//
+//		txtPhone = new JTextField();
+//		txtPhone.setColumns(10);
+//		txtPhone.setBounds(330, 311, 218, 34);
+//		ProfileView.add(txtPhone);
+//
+//		txtDob = new JTextField();
+//		txtDob.setColumns(10);
+//		txtDob.setBounds(27, 386, 218, 34);
+//		ProfileView.add(txtDob);
+//
+//		JLabel lblDateOfBirth = new JLabel("Date of birth");
+//		lblDateOfBirth.setBounds(27, 358, 80, 16);
+//		ProfileView.add(lblDateOfBirth);
+//
+//		textField_9 = new JTextField();
+//		textField_9.setColumns(10);
+//		textField_9.setBounds(27, 461, 521, 64);
+//		ProfileView.add(textField_9);
+//
+//		JLabel lblAddress_3 = new JLabel("Address");
+//		lblAddress_3.setBounds(27, 432, 51, 16);
+//		ProfileView.add(lblAddress_3);
+//
+//		JButton btnEnable = new JButton("Enable");
+//		btnEnable.setBounds(451, 561, 97, 34);
+//		ProfileView.add(btnEnable);
+//
+//		txtPass = new JPasswordField();
+//		txtPass.setBounds(330, 386, 218, 34);
+//		ProfileView.add(txtPass);
+//
+//		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
+//		lblNewLabel.setBounds(220, 83, 268, 38);
+//
+//		JLabel lblUsername = new JLabel("Username");
+//		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
+//		lblUsername.setBounds(630, 244, 77, 19);
+//		ProfileView.add(lblUsername);
+//
+//		JLabel lblSetName = new JLabel("liza(098914678)");
+//		lblSetName.setFont(new Font("Tahoma", Font.BOLD, 15));
+//		lblSetName.setBounds(772, 244, 131, 19);
+//		ProfileView.add(lblSetName);
+//
+//		JLabel lblSetRole = new JLabel("admin");
+//		lblSetRole.setFont(new Font("Tahoma", Font.BOLD, 15));
+//		lblSetRole.setBounds(772, 318, 47, 19);
+//		ProfileView.add(lblSetRole);
+//
+//		JLabel lblRole = new JLabel("Role");
+//		lblRole.setFont(new Font("Tahoma", Font.BOLD, 15));
+//		lblRole.setBounds(630, 318, 34, 19);
+//		ProfileView.add(lblRole);
+//
+//		JLabel lblStartDate = new JLabel("Start date");
+//		lblStartDate.setFont(new Font("Tahoma", Font.BOLD, 15));
+//		lblStartDate.setBounds(630, 393, 74, 19);
+//		ProfileView.add(lblStartDate);
+//
+//		JLabel lblSetStart = new JLabel("12-12-2020");
+//		lblSetStart.setFont(new Font("Tahoma", Font.BOLD, 15));
+//		lblSetStart.setBounds(772, 393, 92, 19);
+//		ProfileView.add(lblSetStart);
+//
+//		JLabel lblMo = new JLabel("Motivational quotes");
+//		lblMo.setFont(new Font("Tahoma", Font.BOLD, 15));
+//		lblMo.setBounds(630, 461, 150, 19);
+//		ProfileView.add(lblMo);
+//
+//		JButton btnBack = new JButton("Back");
+//		btnBack.setBounds(330, 561, 97, 34);
+//		ProfileView.add(btnBack);
+//
+//		txtSetQuote = new JTextField();
+//		txtSetQuote.setColumns(10);
+//		txtSetQuote.setBounds(630, 492, 273, 26);
+//		ProfileView.add(txtSetQuote);
+//		contentPane.add(ProfileView);
+//		ProfileView.setLayout(null);
+//======================================================================
 
-		txtBookID = new JTextField();
-		txtBookID.setColumns(10);
-		txtBookID.setBounds(50, 95, 319, 34);
-		AddReturnedBook.add(txtBookID);
+		JLabel lblNewLabel_2 = new JLabel("User Name");
+		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setForeground(Color.WHITE);
+		lblNewLabel_2.setBounds(0, 143, 185, 41);
+		Drawer.add(lblNewLabel_2);
 
-		JButton btnSearch = new JButton("Search");
-		btnSearch.setHorizontalAlignment(SwingConstants.CENTER);
-		btnSearch.setBackground(Color.GREEN);
-		btnSearch.setBounds(712, 67, 241, 62);
-		AddReturnedBook.add(btnSearch);
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
+		lblNewLabel.setBounds(220, 83, 268, 38);
+		contentPane.add(lblNewLabel);
 
-		String[] AddReturnedHeadder = { "No", "Title", "Book Number", "Qty", "Price" };
+		HomeItem.setBackground(new Color(0, 0, 51));
+		HomeItem.setBounds(0, 263, 185, 475);
+		Drawer.add(HomeItem);
+		HomeItem.setLayout(null);
 
-		String[][] AddReturnedData = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
-				{ "2", "Leadership", "002", "34", "40.50" } };
+		HomeItem.add(DrawerItem.drawerItem("Total book", 0, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Total book");
 
-		JTable TableAddReturnedBook = new JTable(AddReturnedData, AddReturnedHeadder);
-		JScrollPane ScrollAddReturnedBook = new JScrollPane(TableAddReturnedBook);
-		ScrollAddReturnedBook.setBounds(50, 142, 903, 490);
-		AddReturnedBook.add(ScrollAddReturnedBook);
+				MainMenu.setVisible(false);
+				HomeItem.setVisible(false);
+				BookTable.setVisible(true);
+				BookItem.setVisible(true);
+			}
+		}));
+		HomeItem.add(DrawerItem.drawerItem("Member", 46, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Member");
+				HomeItem.setVisible(false);
+				MemberItem.setVisible(true);
+				MainMenu.setVisible(false);
+				MemberTable.setVisible(true);
+			}
+		}));
+		HomeItem.add(DrawerItem.drawerItem("Issuesed Book", 46 * 2, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Issuesed Book");
+				IssuesedBook.setVisible(true);
+				IssuebookItem.setVisible(true);
 
-		txtMemberID = new JTextField();
-		txtMemberID.setColumns(10);
-		txtMemberID.setBounds(381, 95, 319, 34);
-		AddReturnedBook.add(txtMemberID);
+				HomeItem.setVisible(false);
+				MainMenu.setVisible(false);
+			}
+		}));
+		HomeItem.add(DrawerItem.drawerItem("Returned Book", 46 * 3, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Returned Book");
+				MainMenu.setVisible(false);
+				MemberInput.setVisible(false);
+				HomeItem.setVisible(false);
+				ReturnBook2.setVisible(true);
+				ReturnedBook.setVisible(true);
+				ReturnedbookItem.setVisible(true);
+			}
+		}));
+		HomeItem.add(DrawerItem.drawerItem("About Us", 46 * 4, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("About Us");
+				MainMenu.setVisible(false);
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				BookInput.setVisible(false);
+				ReturnedBook.setVisible(false);
+				AboutUs.setVisible(true);
+			}
+		}));
 
-		JLabel lblMenberId = new JLabel("Menber ID");
-		lblMenberId.setBounds(381, 67, 97, 16);
-		AddReturnedBook.add(lblMenberId);
-		IssuesedBook.setToolTipText("");
+//IssuesedBook==================================================
 
 		IssuesedBook.setBackground(Color.WHITE);
 		IssuesedBook.setBounds(220, 133, 989, 645);
-		contentPane.add(IssuesedBook);
-		IssuesedBook.setLayout(null);
-		contentPane.add(IssuesedBook);
-		IssuesedBook.setLayout(null);
-
-		JLabel labelbookid = new JLabel("Book ID :");
-		labelbookid.setBounds(12, 13, 100, 35);
-		IssuesedBook.add(labelbookid);
-
-		txtBookID = new JTextField();
-		txtBookID.setColumns(10);
-		txtBookID.setBounds(124, 15, 300, 35);
-		IssuesedBook.add(txtBookID);
-
-		JLabel lblMemberID = new JLabel("Menber ID :");
-		lblMemberID.setBounds(436, 13, 100, 35);
-		IssuesedBook.add(lblMemberID);
-
-		txtMemberID = new JTextField();
-		txtMemberID.setColumns(10);
-		txtMemberID.setBounds(548, 13, 300, 35);
-		IssuesedBook.add(txtMemberID);
-
-		JButton btnOK = new JButton("OK");
-		btnOK.setBackground(new Color(0, 0, 102));
-		btnOK.setForeground(Color.WHITE);
-		btnOK.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-
-			}
-		});
-		btnOK.setBounds(860, 13, 115, 35);
-		IssuesedBook.add(btnOK);
-
 		IssuesedBook.setVisible(false);
+		IssuesedBook.add(IssueBook.issuetable());
+		MemberTable.setVisible(false);
+		MemberInput.setVisible(false);
+//		IssuesedBook.setToolTipText("");
+//Return book===================================================
+		ReturnBook2.setBackground(Color.WHITE);
+		ReturnBook2.setBounds(220, 133, 989, 645);
+		ReturnBook2.setVisible(false);
+
+		// AddIssuesedBook==============================================
+
+		AddIssuesedBook.setBackground(Color.WHITE);
+		AddIssuesedBook.setBounds(220, 133, 989, 645);
+		AddIssuesedBook.setVisible(false);
 		contentPane.add(AddIssuesedBook);
 		AddIssuesedBook.add(AddIssueTable.issuetable());
 
@@ -530,9 +473,9 @@ public class Dashboard extends JFrame {
 		txtMember.setBounds(50, 95, 679, 34);
 		AddIssuesedBook.add(txtMember);
 
-		JLabel lblBookTitle = new JLabel("Book Title ");
-		lblBookTitle.setBounds(50, 141, 97, 16);
-		AddIssuesedBook.add(lblBookTitle);
+		JLabel lblBookId = new JLabel("Book Title ");
+		lblBookId.setBounds(50, 141, 97, 16);
+		AddIssuesedBook.add(lblBookId);
 
 		txtBookTitle = new JTextField();
 		txtBookTitle.setColumns(10);
@@ -562,16 +505,52 @@ public class Dashboard extends JFrame {
 
 		lblIssuesedBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddIssueTable.Issuemodel
-						.addRow(new Object[] { (on++), txtMember.getText(), txtBookTitle.getText(), txtQty.getText(),
-								txtIssueYear.getText() + '-' + txtIssueMonth.getText() + '-' + txtIssueDay.getText(),
-								txtDueYear.getText() + '-' + txtDueMonth.getText() + '-' + txtDueDay.getText(),
-								txtPrice.getText() });
+				if (txtMember.getText().length() == 0 || txtBookTitle.getText().length() == 0
+						|| txtQty.getText().length() == 0 || txtIssueYear.getText().length() == 0
+						|| txtIssueMonth.getText().length() == 0 || txtIssueDay.getText().length() == 0
+						|| txtDueYear.getText().length() == 0 || txtDueMonth.getText().length() == 0
+						|| txtDueDay.getText().length() == 0) {
+					JOptionPane.showMessageDialog(contentPane, "Please insert all field", "Fail",
+							JOptionPane.WARNING_MESSAGE);
+				} else {
+					try {
+						ArrayList<ArrayList<String>> book = JDBC.readBy("Book", "title", txtBookTitle.getText());
+						ArrayList<ArrayList<String>> member = JDBC.readBy("member", "first_name", txtMember.getText());
+						if (member.size() == 0) {
+							JOptionPane.showMessageDialog(contentPane, "Member not found", "Fail",
+									JOptionPane.WARNING_MESSAGE);
+						} else if (book.size() == 0) {
+							JOptionPane.showMessageDialog(contentPane, "Book not found", "Fail",
+									JOptionPane.WARNING_MESSAGE);
+						} else {
+							txtPrice.setText(book.get(0).get(10) + " Riel");
+							AddIssueTable.Issuemodel.addRow(new Object[] { (on++), txtMember.getText(),
+									txtBookTitle.getText(), txtQty.getText(),
+									txtIssueYear.getText() + '-' + txtIssueMonth.getText() + '-'
+											+ txtIssueDay.getText(),
+									txtDueYear.getText() + '-' + txtDueMonth.getText() + '-' + txtDueDay.getText(),
+									txtPrice.getText() });
+							txtBookTitle.setText("");
+							txtQty.setText("");
+							txtIssueYear.setText("");
+							txtIssueMonth.setText("");
+							txtIssueDay.setText("");
+							txtDueYear.setText("");
+							txtDueMonth.setText("");
+							txtDueDay.setText("");
+							txtPrice.setText("");
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+
 			}
 		});
 		lblIssuesedBook.setBackground(Color.GREEN);
 		lblIssuesedBook.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIssuesedBook.setBounds(738, 258, 219, 95);
+		lblIssuesedBook.setBounds(738, 277, 219, 76);
 		AddIssuesedBook.add(lblIssuesedBook);
 
 		JLabel lblQty = new JLabel("Qty");
@@ -613,81 +592,78 @@ public class Dashboard extends JFrame {
 		AddIssuesedBook.add(txtPrice);
 
 		JButton button = new JButton("Issuesed Book");
-		button.setHorizontalAlignment(SwingConstants.CENTER);
-		button.setBackground(Color.GREEN);
-		button.setBounds(738, 137, 219, 95);
-		AddIssuesedBook.add(button);
-		ReturnBook2.add(ReturnBook.TotalBook());
-		contentPane.add(ReturnBook2);
-		ReturnBook2.setLayout(null);
-		String[] AddIssuseHeadder = { "No", "Title", "Book Number", "Qty", "Price" };
-
-		String[][] AddIssuseData = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
-				{ "2", "Leadership", "002", "34", "40.50" } };
-
-		AddIssuesBook = new JTable(AddIssuseData, AddIssuseHeadder);
-		JScrollPane ScrollAddIssuesBook = new JScrollPane(AddIssuesBook);
-		ScrollAddIssuesBook.setBounds(50, 366, 903, 266);
-		AddIssuesedBook.add(ScrollAddIssuesBook);
-
-		// AddReturnedBook
-
-		AddReturnedBook.setBackground(Color.WHITE);
-		AddReturnedBook.setBounds(220, 133, 989, 645);
-		AddReturnedBook.setVisible(false);
-		ReturnedBook.setBackground(Color.WHITE);
-		ReturnedBook.setBounds(220, 133, 989, 645);
-		ReturnedBook.setVisible(true);
-		ReturnedBook.setToolTipText("");
-		
-		String[] AddReturnHeadder = { "No", "Title", "Book Number", "Qty", "Price" };
-
-		String[][] AddReturnData = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
-				{ "2", "Leadership", "002", "34", "40.50" } };
-		
-		JTable TableReturnedBook = new JTable(AddReturnData, AddReturnHeadder);
-		JScrollPane ScrollTableReturnedBook = new JScrollPane(TableReturnedBook);
-		ScrollTableReturnedBook.setBounds(12, 109, 965, 523);
-		ReturnedBook.add(ScrollTableReturnedBook);
-
-		ReturnedBook.setBackground(Color.WHITE);
-		ReturnedBook.setBounds(220, 133, 989, 645);
-		contentPane.add(ReturnedBook);
-		ReturnedBook.setLayout(null);
-		contentPane.add(ReturnedBook);
-		ReturnedBook.setLayout(null);
-
-		JLabel lblBookID = new JLabel("Book ID :");
-		lblBookID.setBounds(12, 13, 100, 35);
-		ReturnedBook.add(lblBookID);
-
-		txtBookID = new JTextField();
-		txtBookID.setColumns(10);
-		txtBookID.setBounds(124, 15, 300, 35);
-		ReturnedBook.add(txtBookID);
-
-		JLabel lblMemberid = new JLabel("Menber ID :");
-		lblMemberid.setBounds(436, 13, 100, 35);
-		ReturnedBook.add(lblMemberid);
-
-		txtMemberID = new JTextField();
-		txtMemberID.setColumns(10);
-		txtMemberID.setBounds(548, 13, 300, 35);
-		ReturnedBook.add(txtMemberID);
-
-		JButton btnok = new JButton("OK");
-		btnok.setBackground(new Color(0, 0, 102));
-		btnok.setForeground(Color.WHITE);
-		btnok.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
-		btnok.setBounds(860, 13, 115, 35);
-		ReturnedBook.add(btnok);
+		button.setHorizontalAlignment(SwingConstants.CENTER);
+		button.setBackground(Color.GREEN);
+		button.setBounds(741, 95, 219, 76);
+		AddIssuesedBook.add(button);
 
-		ReturnedBook.setVisible(false);
+		JButton btnRemove = new JButton("Remove");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddIssueTable.Issuemodel.removeRow(AddIssueTable.IssueBook.getSelectedRow());
+			}
+		});
+		btnRemove.setHorizontalAlignment(SwingConstants.CENTER);
+		btnRemove.setBackground(Color.GREEN);
+		btnRemove.setBounds(741, 189, 219, 76);
+		AddIssuesedBook.add(btnRemove);
+		ReturnBook2.add(ReturnBook.TotalBook());
+		contentPane.add(ReturnBook2);
+		ReturnBook2.setLayout(null);
+		// Add book
+		// category======================================================================================
+		AddBookCategory.setBackground(Color.WHITE);
+		AddBookCategory.setBounds(220, 133, 989, 645);
+		contentPane.add(AddBookCategory);
+		AddBookCategory.setLayout(null);
+
+		JLabel lblNewLabel_11 = new JLabel("Title");
+		lblNewLabel_11.setBounds(49, 61, 61, 16);
+		AddBookCategory.add(lblNewLabel_11);
+
+		txtCategoryTitle = new JTextField();
+		txtCategoryTitle.setColumns(10);
+		txtCategoryTitle.setBounds(49, 89, 260, 36);
+		AddBookCategory.add(txtCategoryTitle);
+
+		JLabel lblDecrip = new JLabel("Description");
+		lblDecrip.setBounds(49, 137, 127, 16);
+		AddBookCategory.add(lblDecrip);
+		final JTextArea txtCategoryDescription = new JTextArea();
+		txtCategoryDescription.setBorder(border);
+		txtCategoryDescription.setBounds(49, 165, 260, 114);
+		AddBookCategory.add(txtCategoryDescription);
+
+		JButton btnCreateCategory = new JButton("Create");
+		btnCreateCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtCategoryTitle.getText().length()==0||txtCategoryDescription.getText().length()==0) {
+					JOptionPane.showMessageDialog(contentPane, "Please insert all field", "Fail",
+							JOptionPane.WARNING_MESSAGE);
+				}else {
+					CategoryController categoryController = new CategoryController();
+					categoryController.create(txtCategoryTitle.getText(), txtCategoryDescription.getText());
+				}
+				
+			}
+		});
+		btnCreateCategory.setBounds(294, 361, 117, 29);
+		AddBookCategory.add(btnCreateCategory);
+
+		JButton btnCancelCategory = new JButton("Cancel");
+		btnCancelCategory.setBounds(500, 361, 117, 29);
+		btnCancelCategory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddBookCategory.setVisible(false);
+				BookTable.setVisible(true);
+			}
+		});
+		AddBookCategory.add(btnCancelCategory);
 		BookInput.setVisible(false);
 
 		// Input Book
@@ -697,152 +673,192 @@ public class Dashboard extends JFrame {
 		contentPane.add(BookInput);
 		BookInput.setLayout(null);
 
-		txtFristname = new JTextField();
-		txtFristname.setBounds(43, 62, 288, 34);
-		BookInput.add(txtFristname);
-		txtFristname.setColumns(10);
+		txtBookTitleBook = new JTextField();
+		txtBookTitleBook.setBounds(43, 62, 288, 34);
+		BookInput.add(txtBookTitleBook);
+		txtBookTitleBook.setColumns(10);
 
-		JLabel lblBooktitle = new JLabel("Book title");
-		lblBooktitle.setBounds(43, 34, 97, 16);
-		BookInput.add(lblBooktitle);
+		JLabel lblNewLabel_1 = new JLabel("Book title");
+		lblNewLabel_1.setBounds(43, 34, 97, 16);
+		BookInput.add(lblNewLabel_1);
 
 		JLabel lblLastName = new JLabel("Language");
 		lblLastName.setBounds(438, 34, 97, 16);
 		BookInput.add(lblLastName);
 
-		txtLanguage = new JTextField();
-		txtLanguage.setColumns(10);
-		txtLanguage.setBounds(438, 62, 288, 34);
-		BookInput.add(txtLanguage);
+		txtLanguageBook = new JTextField();
+		txtLanguageBook.setColumns(10);
+		txtLanguageBook.setBounds(438, 62, 288, 34);
+		BookInput.add(txtLanguageBook);
 
 		JLabel lblAuthor = new JLabel("Author");
 		lblAuthor.setBounds(43, 108, 97, 16);
 		BookInput.add(lblAuthor);
 
-		txtAuthor = new JTextField();
-		txtAuthor.setColumns(10);
-		txtAuthor.setBounds(43, 136, 288, 34);
-		BookInput.add(txtAuthor);
+		txtAuthorBook = new JTextField();
+		txtAuthorBook.setColumns(10);
+		txtAuthorBook.setBounds(43, 136, 288, 34);
+		BookInput.add(txtAuthorBook);
 
-		JLabel lblPublish = new JLabel("Publish at   ( day / month / year )");
+		JLabel lblPublish = new JLabel("Publish at   ( Year / month / day )");
 		lblPublish.setBounds(438, 108, 277, 16);
 		BookInput.add(lblPublish);
 
-		txtPublishDay = new JTextField();
-		txtPublishDay.setColumns(10);
-		txtPublishDay.setBounds(438, 136, 82, 34);
-		BookInput.add(txtPublishDay);
+		txtYearBook = new JTextField();
+		txtYearBook.setColumns(10);
+		txtYearBook.setBounds(438, 136, 82, 34);
+		BookInput.add(txtYearBook);
 
-		txtPublishMonth = new JTextField();
-		txtPublishMonth.setColumns(10);
-		txtPublishMonth.setBounds(532, 136, 82, 34);
-		BookInput.add(txtPublishMonth);
+		txtMonthBook = new JTextField();
+		txtMonthBook.setColumns(10);
+		txtMonthBook.setBounds(532, 136, 82, 34);
+		BookInput.add(txtMonthBook);
 
-		txtPublishYear = new JTextField();
-		txtPublishYear.setColumns(10);
-		txtPublishYear.setBounds(626, 136, 96, 34);
-		BookInput.add(txtPublishYear);
+		txtDayBook = new JTextField();
+		txtDayBook.setColumns(10);
+		txtDayBook.setBounds(626, 136, 96, 34);
+		BookInput.add(txtDayBook);
 
 		JLabel lblStatus = new JLabel("Category");
-		lblStatus.setBounds(43, 182, 97, 16);
+		lblStatus.setBounds(438, 182, 97, 16);
 		BookInput.add(lblStatus);
 
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(43, 210, 288, 34);
-		BookInput.add(comboBox_1);
+		JLabel lblEdition = new JLabel("Edition");
+		lblEdition.setBounds(43, 182, 97, 16);
+		BookInput.add(lblEdition);
 
-		JLabel labelStatus = new JLabel("Status");
-		labelStatus.setBounds(438, 182, 97, 16);
-		BookInput.add(labelStatus);
+		txtEditionBook = new JTextField();
+		txtEditionBook.setColumns(10);
+		txtEditionBook.setBounds(43, 213, 288, 34);
+		BookInput.add(txtEditionBook);
 
-		JComboBox<String> comboBox_3 = new JComboBox<String>();
-		comboBox_3.setBounds(438, 214, 288, 34);
-		BookInput.add(comboBox_3);
+		txtBookCodeBook = new JTextField();
+		txtBookCodeBook.setColumns(10);
+		txtBookCodeBook.setBounds(43, 287, 288, 34);
+		BookInput.add(txtBookCodeBook);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(224, 310, 122, 34);
-		BookInput.add(panel_1);
-		panel_1.setLayout(null);
+		
+		txtCategoryBook.setBounds(438, 210, 288, 34);
+		BookInput.add(txtCategoryBook);
 
-		JLabel lblAdd = new JLabel("Add");
-		lblAdd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAdd.setBounds(0, 0, 122, 34);
-		panel_1.add(lblAdd);
+		JButton btnCreate = new JButton("Create");
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (txtBookTitleBook.getText().length() == 0 || txtLanguageBook.getText().length() == 0
+						|| txtAuthorBook.getText().length() == 0 || txtYearBook.getText().length() == 0
+						|| txtMonthBook.getText().length() == 0 || txtDayBook.getText().length() == 0
+						|| txtEditionBook.getText().length() == 0 || txtBookCodeBook.getText().length() == 0) {
+					JOptionPane.showMessageDialog(contentPane, "Please insert all file", "Fail",
+							JOptionPane.WARNING_MESSAGE);
+				} else {
+					BookController bookcontroller = new BookController();
+					String date = txtYearBook.getText() + "-" + txtMonthBook.getText() + "-" + txtDayBook.getText();
+					bookcontroller.create(txtBookCodeBook.getText(), txtBookTitleBook.getText(),
+							txtLanguageBook.getText(), txtAuthorBook.getText(), date, txtEditionBook.getText(),
+							txtCategoryBook.getSelectedIndex() + 4);
+				}
+			}
+		});
+		btnCreate.setBounds(215, 346, 117, 29);
+		BookInput.add(btnCreate);
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(438, 310, 122, 34);
-		BookInput.add(panel_3);
-		panel_3.setLayout(null);
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BookInput.setVisible(false);
+				BookTable.setVisible(true);
+			}
+		});
+		btnCancel.setBounds(438, 346, 117, 29);
+		BookInput.add(btnCancel);
 
-		JLabel lblCancel = new JLabel("Cancel");
-		lblCancel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCancel.setBounds(0, 0, 122, 34);
-		panel_3.add(lblCancel);
-		contentPane.add(MainMenu);
+		JLabel lblBookCode = new JLabel("Book Code");
+		lblBookCode.setBounds(43, 259, 97, 16);
+		BookInput.add(lblBookCode);
+		// ========================================================================================
+		// AddReturnedBook
+		AddReturnBook.setBackground(Color.WHITE);
+		AddReturnBook.setBounds(220, 133, 989, 645);
+		contentPane.add(AddReturnBook);
+		AddReturnBook.setLayout(null);
 
-		MainMenu.setLayout(null);
-		MainMenu.add(MenuItem.menu("Total Book", JDBC.getCount("category"), Icons.Book, new Color(57, 124, 188),
-				new Color(77, 134, 198), 31, 21, new ButtonClick() {
-					public void action() {
-						lblNewLabel.setText("Total Book");
-						BookTable.setVisible(true);
-						MainMenu.setVisible(false);
-						HomeItem.setVisible(false);
-						BookItem.setVisible(true);
+		getMemberName = new JTextField();
+		getMemberName.setBounds(72, 43, 300, 32);
+		AddReturnBook.add(getMemberName);
+		getMemberName.setColumns(10);
+
+		JButton btnNewButton = new JButton("Search");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ArrayList<ArrayList<String>> member = JDBC.readBy("member", "first_name", getMemberName.getText());
+					if (member.size() == 0) {
+
+					} else {
+						setMemberName.setText(member.get(0).get(3) + " " + member.get(0).get(4));
+						ArrayList<ArrayList<String>> booking = JDBC.readBy("booking", "member_ship_id",
+								member.get(0).get(0));
+						ArrayList<ArrayList<String>> bookDetail = JDBC.readBy("Book", "id", booking.get(0).get(9));
+						setIssueDate.setText(booking.get(0).get(3));
+						setReturnDate.setText(booking.get(0).get(4));
+						setBookTitle.setText(bookDetail.get(0).get(2));
+						System.out.print(bookDetail);
 					}
-				}));
-		MainMenu.add(MenuItem.menu("Issuesed Book", JDBC.getCount("category"), Icons.Book, new Color(75, 163, 97),
-				new Color(85, 173, 107), 267, 21, new ButtonClick() {
-					public void action() {
-						lblNewLabel.setText("Issuesed Book");
-						MainMenu.setVisible(false);
-						MemberInput.setVisible(false);
-						MemberTable.setVisible(false);
-						BookTable.setVisible(false);
-						BookInput.setVisible(false);
-						AboutUs.setVisible(false);
-						IssuesedBook.setVisible(true);
-						IssuebookItem.setVisible(true);
-						HomeItem.setVisible(false);
-					}
-				}));
-		MainMenu.add(MenuItem.menu("Book Returned", JDBC.getCount("category"), Icons.Book, new Color(231, 159, 62),
-				new Color(241, 169, 72), 503, 21, new ButtonClick() {
-					public void action() {
-						lblNewLabel.setText("Returned Book");
-						MainMenu.setVisible(false);
-						MemberInput.setVisible(false);
-						MemberTable.setVisible(false);
-						BookTable.setVisible(false);
-						BookInput.setVisible(false);
-						AboutUs.setVisible(false);
-						HomeItem.setVisible(false);
-						ReturnedBook.setVisible(true);
-						ReturnedbookItem.setVisible(true);
-					}
-				}));
-		MainMenu.add(MenuItem.menu("Total Member", JDBC.getCount("category"), Icons.User, new Color(230, 113, 93),
-				new Color(240, 123, 103), 739, 21, new ButtonClick() {
-					public void action() {
-						lblNewLabel.setText("Member");
-						HomeItem.setVisible(false);
-						MemberItem.setVisible(true);
-						MainMenu.setVisible(false);
-						MemberTable.setVisible(true);
-					}
-				}));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(412, 46, 117, 29);
+		AddReturnBook.add(btnNewButton);
+
+		JLabel lblNewLabel_8 = new JLabel("Member name :");
+		lblNewLabel_8.setBounds(72, 143, 132, 29);
+		AddReturnBook.add(lblNewLabel_8);
+
+		JLabel lblBookTitle = new JLabel("Book title :");
+		lblBookTitle.setBounds(72, 184, 132, 29);
+		AddReturnBook.add(lblBookTitle);
+
+		JLabel lblIssueDate = new JLabel("Issue date :");
+		lblIssueDate.setBounds(72, 225, 132, 29);
+		AddReturnBook.add(lblIssueDate);
+
+		JLabel lblReturnMoney = new JLabel("Return money :");
+		lblReturnMoney.setBounds(72, 307, 132, 29);
+		AddReturnBook.add(lblReturnMoney);
+
+		JLabel lblReturnDate = new JLabel("Return date :");
+		lblReturnDate.setBounds(72, 266, 132, 29);
+		AddReturnBook.add(lblReturnDate);
+
+		setMemberName.setBounds(216, 143, 313, 29);
+		AddReturnBook.add(setMemberName);
+
+		setBookTitle.setBounds(216, 184, 313, 29);
+		AddReturnBook.add(setBookTitle);
+
+		setIssueDate.setBounds(216, 225, 313, 29);
+		AddReturnBook.add(setIssueDate);
+
+		setReturnDate.setBounds(216, 266, 313, 29);
+		AddReturnBook.add(setReturnDate);
+
+		setReturnDate_1.setBounds(216, 307, 313, 29);
+		AddReturnBook.add(setReturnDate_1);
+
+		lblNewLabel_9.setBounds(72, 15, 102, 16);
+		AddReturnBook.add(lblNewLabel_9);
+
+		IssuesedBook.setBackground(Color.WHITE);
+		IssuesedBook.setBounds(220, 133, 989, 645);
+		contentPane.add(IssuesedBook);
+		IssuesedBook.setLayout(null);
 		contentPane.add(IssuesedBook);
 		IssuesedBook.setLayout(null);
 
-		String[] row = { "No", "Book Title", "Book ID", "Member Name", "Member ID", "Issuesed Date", "Due Date",
-				"Due Date" };
-
-		String[][] col = {
-				{ "1", "Book Title", "Book ID", "Member Name", "Member ID", "Issuesed Date", "Due Date", "Due Date" },
-				{ "2", "Book Title", "Book ID", "Member Name", "Member ID", "Issuesed Date", "Due Date", "Due Date" } };
-
 		// BOOK
-
 		BookItem.setBackground(new Color(0, 0, 51));
 		BookItem.setBounds(0, 263, 185, 475);
 		BookItem.setLayout(null);
@@ -852,13 +868,15 @@ public class Dashboard extends JFrame {
 		BookItem.add(DrawerItem.drawerItem("Create category", 0, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Create category");
-//				MainMenu.setVisible(false);
-//				MemberInput.setVisible(false);
-//				MemberTable.setVisible(false);
-//				BookTable.setVisible(false);
-//				IssuesedBook.setVisible(false);
-//				AboutUs.setVisible(false);
-//				BookInput.setVisible(true);
+				MainMenu.setVisible(false);
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				IssuesedBook.setVisible(false);
+				AboutUs.setVisible(false);
+				ImportBook.setVisible(false);
+				AddBookCategory.setVisible(true);
+				BookInput.setVisible(false);
 			}
 		}));
 		BookItem.add(DrawerItem.drawerItem("Create book", 46, new ButtonClick() {
@@ -871,50 +889,43 @@ public class Dashboard extends JFrame {
 				IssuesedBook.setVisible(false);
 				AboutUs.setVisible(false);
 				BookInput.setVisible(true);
+				ImportBook.setVisible(false);
+				AddBookCategory.setVisible(false);
 			}
 		}));
 		BookItem.add(DrawerItem.drawerItem("Import Book", 46 * 2, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("Import Book");
-//				MainMenu.setVisible(false);
-//				MemberInput.setVisible(false);
-//				MemberTable.setVisible(false);
-//				BookTable.setVisible(false);
-//				IssuesedBook.setVisible(false);
-//				AboutUs.setVisible(false);
-//				BookInput.setVisible(true);
+				MainMenu.setVisible(false);
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				IssuesedBook.setVisible(false);
+				AboutUs.setVisible(false);
+				ImportBook.setVisible(true);
+				AddBookCategory.setVisible(false);
+				BookInput.setVisible(false);
 			}
 		}));
+//Import book============================================================================================
+		ImportBook.setBackground(Color.WHITE);
+		ImportBook.setBounds(220, 133, 989, 645);
+		contentPane.add(ImportBook);
+		ImportBook.setLayout(null);
+//=======================================================================================================
+		// About Us
+
+		AboutUs.setToolTipText("");
+
+		AboutUs.setBackground(Color.WHITE);
+		AboutUs.setBounds(220, 133, 989, 645);
+		contentPane.add(AboutUs);
+		AboutUs.setLayout(null);
 
 		// Book Table
 		MemberTable.setVisible(false);
 		MemberInput.setVisible(false);
-		BookTable.setVisible(false);
-		BookTable.setToolTipText("");
-
-		BookTable.setBackground(Color.WHITE);
-		BookTable.setBounds(220, 133, 989, 645);
-		contentPane.add(BookTable);
-		BookTable.setLayout(null);
-
-		JLabel lbBookID = new JLabel("Book ID");
-		lbBookID.setBounds(12, 13, 158, 35);
-		BookTable.add(lbBookID);
-
-		txtBookID = new JTextField();
-		txtBookID.setBounds(22, 61, 280, 35);
-		BookTable.add(txtBookID);
-		txtBookID.setColumns(10);
-
-		JButton btFilterResults = new JButton("Search");
-		btFilterResults.setBounds(728, 58, 200, 40);
-		btFilterResults.setBackground(Color.WHITE);
-		btFilterResults.setForeground(Color.GRAY);
-		BookTable.add(btFilterResults);
-//		table = new JTable(datas, header);
-//		JScrollPane ScrollBookTable = new JScrollPane(table);
-//		ScrollBookTable.setBounds(12, 109, 965, 523);
-//		BookTable.add(ScrollBookTable);
+		IssuesedBook.setVisible(false);
 
 		// MEMBER
 
@@ -966,19 +977,22 @@ public class Dashboard extends JFrame {
 				HomeItem.setVisible(true);
 				MainMenu.setVisible(true);
 				BookItem.setVisible(false);
-				AddReturnedBook.setVisible(false);
+				AddReturnBook.setVisible(false);
 				AddIssuesedBook.setVisible(false);
 				ReturnBook2.setVisible(false);
 				ProfileView.setVisible(false);
+				IssuebookItem.setVisible(false);
+				ReturnedbookItem.setVisible(false);
+				MemberItem.setVisible(false);
 			}
 		});
 
-		JLabel lblDashboard = new JLabel("Dashboard");
-		lblDashboard.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDashboard.setBounds(20, 0, 160, 46);
-		lblDashboard.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		dashBoard.add(lblDashboard);
-		lblDashboard.setForeground(Color.WHITE);
+		JLabel lblNewLabel_7 = new JLabel("Dashboard");
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_7.setBounds(20, 0, 160, 46);
+		lblNewLabel_7.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		dashBoard.add(lblNewLabel_7);
+		lblNewLabel_7.setForeground(Color.WHITE);
 
 		//
 		IssuebookItem.setBackground(new Color(0, 0, 51));
@@ -996,7 +1010,6 @@ public class Dashboard extends JFrame {
 				BookInput.setVisible(false);
 				IssuesedBook.setVisible(false);
 				AboutUs.setVisible(false);
-				ReturnedBook.setVisible(false);
 				AddIssuesedBook.setVisible(true);
 
 			}
@@ -1008,17 +1021,17 @@ public class Dashboard extends JFrame {
 		ReturnedbookItem.setVisible(false);
 		Drawer.add(ReturnedbookItem);
 
-		ReturnedbookItem.add(DrawerItem.drawerItem("Add Returned book", 0, new ButtonClick() {
+		ReturnedbookItem.add(DrawerItem.drawerItem("Add returned book", 0, new ButtonClick() {
 			public void action() {
-				lblNewLabel.setText("Add Returned book");
+				lblNewLabel.setText("Add returned book");
 				MainMenu.setVisible(false);
 				MemberTable.setVisible(false);
 				BookTable.setVisible(false);
 				BookInput.setVisible(false);
 				IssuesedBook.setVisible(false);
 				AboutUs.setVisible(false);
-				ReturnedBook.setVisible(false);
-				AddReturnedBook.setVisible(true);
+				ReturnBook2.setVisible(false);
+				AddReturnBook.setVisible(true);
 			}
 		}));
 		//
@@ -1059,9 +1072,9 @@ public class Dashboard extends JFrame {
 		comboBox.setBounds(43, 136, 120, 34);
 		MemberInput.add(comboBox);
 
-		JLabel lblMonth = new JLabel("Month");
-		lblMonth.setBounds(43, 182, 61, 16);
-		MemberInput.add(lblMonth);
+		JLabel lblNewLabel_3 = new JLabel("Month");
+		lblNewLabel_3.setBounds(43, 182, 61, 16);
+		MemberInput.add(lblNewLabel_3);
 
 		final JComboBox<String> txtMonth = new JComboBox<String>();
 		txtMonth.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April",
@@ -1069,9 +1082,9 @@ public class Dashboard extends JFrame {
 		txtMonth.setBounds(43, 210, 204, 34);
 		MemberInput.add(txtMonth);
 
-		JLabel lblDay = new JLabel("Day");
-		lblDay.setBounds(307, 182, 61, 16);
-		MemberInput.add(lblDay);
+		JLabel lblNewLabel_4 = new JLabel("Day");
+		lblNewLabel_4.setBounds(307, 182, 61, 16);
+		MemberInput.add(lblNewLabel_4);
 
 		JLabel lblYear = new JLabel("Year");
 		lblYear.setBounds(549, 182, 61, 16);
@@ -1096,9 +1109,9 @@ public class Dashboard extends JFrame {
 		lblPhoneNumber.setBounds(438, 108, 109, 16);
 		MemberInput.add(lblPhoneNumber);
 
-		JLabel lblrole = new JLabel("Role");
-		lblrole.setBounds(211, 108, 61, 16);
-		MemberInput.add(lblrole);
+		JLabel lblNewLabel_5 = new JLabel("Role");
+		lblNewLabel_5.setBounds(211, 108, 61, 16);
+		MemberInput.add(lblNewLabel_5);
 
 		JComboBox<String> comboBox_2 = new JComboBox<String>();
 		comboBox_2.setBounds(211, 136, 120, 34);
@@ -1165,9 +1178,9 @@ public class Dashboard extends JFrame {
 		comboBoxSex.setBounds(43, 136, 120, 34);
 		MemberInput.add(comboBoxSex);
 
-		JLabel lblMonths = new JLabel("Month");
-		lblMonths.setBounds(43, 182, 61, 16);
-		MemberInput.add(lblMonths);
+		JLabel lblMonth = new JLabel("Month");
+		lblMonth.setBounds(43, 182, 61, 16);
+		MemberInput.add(lblMonth);
 
 		final JComboBox<String> txtMonths = new JComboBox<String>();
 		txtMonths.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April",
@@ -1175,9 +1188,9 @@ public class Dashboard extends JFrame {
 		txtMonths.setBounds(43, 210, 204, 34);
 		MemberInput.add(txtMonths);
 
-		JLabel lblDays = new JLabel("Day");
-		lblDays.setBounds(307, 182, 61, 16);
-		MemberInput.add(lblDays);
+		JLabel lblDay = new JLabel("Day");
+		lblDay.setBounds(307, 182, 61, 16);
+		MemberInput.add(lblDay);
 
 		JLabel lblYears = new JLabel("Year");
 		lblYears.setBounds(549, 182, 61, 16);
@@ -1210,93 +1223,23 @@ public class Dashboard extends JFrame {
 		contentPane.add(MemberTable);
 		MemberTable.setLayout(null);
 		MemberTable.setLayout(null);
+// setVisible
+		MainMenu.setVisible(true);
+		BookInput.setVisible(false);
+		BookTable.setVisible(false);
+		MemberInput.setVisible(false);
+		MemberTable.setVisible(false);
+		IssuesedBook.setVisible(false);
+		AddIssuesedBook.setVisible(false);
+		MemberItem.setVisible(false);
 
-		JLabel lableMemberID = new JLabel("Member ID");
-		lableMemberID.setBounds(12, 13, 158, 35);
-		MemberTable.add(lableMemberID);
-
-		txtMemberID = new JTextField();
-		txtMemberID.setBounds(22, 61, 280, 35);
-		MemberTable.add(txtMemberID);
-		txtMemberID.setColumns(10);
-
-		JButton btnFilterResult = new JButton("Search");
-		btnFilterResult.setBounds(728, 58, 200, 40);
-		MemberTable.add(btnFilterResult);
-
-//		JTable TableMember = new JTable(dates, headMember);
-//		JScrollPane SrcollTableMember = new JScrollPane(TableMember);
-//		SrcollTableMember.setBounds(12, 109, 965, 523);
-//		MemberTable.add(SrcollTableMember);
-
-		// About Us
-
-		AboutUs.setToolTipText("");
-
-		AboutUs.setBackground(Color.WHITE);
-		AboutUs.setBounds(220, 133, 989, 645);
-		contentPane.add(AboutUs);
-		AboutUs.setLayout(null);
-
-		JLabel lblRUPP = new JLabel(new ImageIcon("D:\\JavaE1C21\\LibraryY3\\img\\rupp-logo.png"));
-		lblRUPP.setBounds(29, 13, 100, 100);
-		AboutUs.add(lblRUPP);
-
-		JLabel lblAboutUs = new JLabel("About Us");
-		lblAboutUs.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAboutUs.setBounds(349, 13, 630, 100);
-		AboutUs.add(lblAboutUs);
-
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(349, 126, 630, 506);
-		AboutUs.add(panel_4);
-		panel_4.setLayout(null);
-
-		JLabel lblProfessor = new JLabel("Professor");
-		lblProfessor.setBounds(12, 13, 150, 35);
-		panel_4.add(lblProfessor);
-
-		JLabel lblChiKoung = new JLabel("Chi Koung");
-		lblChiKoung.setBounds(174, 13, 444, 35);
-		panel_4.add(lblChiKoung);
-
-		JLabel label_5 = new JLabel("New label");
-		label_5.setBounds(174, 61, 170, 35);
-		panel_4.add(label_5);
-
-		JLabel lblGroupMembers = new JLabel("Group Members");
-		lblGroupMembers.setBounds(12, 61, 150, 35);
-		panel_4.add(lblGroupMembers);
-
-		JLabel label_6 = new JLabel("New label");
-		label_6.setBounds(356, 61, 170, 35);
-		panel_4.add(label_6);
-
-		JLabel label_7 = new JLabel("New label");
-		label_7.setBounds(174, 109, 170, 35);
-		panel_4.add(label_7);
-
-		JLabel lblOrnSophea = new JLabel("Orn Sophea");
-		lblOrnSophea.setBounds(356, 109, 170, 35);
-		panel_4.add(lblOrnSophea);
-
-		JLabel lblPurposeOfThe = new JLabel("Purpose of the program");
-		lblPurposeOfThe.setBounds(12, 157, 606, 50);
-		panel_4.add(lblPurposeOfThe);
-
-		JLabel lblPurpose = new JLabel("New label");
-		lblPurpose.setBounds(12, 220, 606, 273);
-		panel_4.add(lblPurpose);
-
-		JLabel lblLibraryManagementSystem = new JLabel("Library Management System ");
-		lblLibraryManagementSystem.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLibraryManagementSystem.setBounds(12, 228, 325, 80);
-		AboutUs.add(lblLibraryManagementSystem);
-
-		JLabel lblVYear = new JLabel("Year 2019-2020 v1.0 ");
-		lblVYear.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVYear.setBounds(12, 321, 325, 80);
-		AboutUs.add(lblVYear);
+		ReturnedBook.setVisible(false);
+		AddReturnBook.setVisible(false);
+		ReturnBook2.setVisible(false);
+		AboutUs.setVisible(false);
+		ProfileView.setVisible(false);
+		AddBookCategory.setVisible(false);
+		ImportBook.setVisible(false);
 
 	}
 }

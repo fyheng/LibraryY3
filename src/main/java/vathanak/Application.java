@@ -8,7 +8,7 @@ public class Application {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/libraryproject","root","password");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/libraryproject","root","mengsieng");
 		}catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage()); 

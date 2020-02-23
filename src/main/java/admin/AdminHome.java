@@ -24,6 +24,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.color.CMMException;
+
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
@@ -84,7 +86,6 @@ public class AdminHome extends JFrame {
 	 * Launch the application.
 	 */
 	static AdminHome adminHome;
-	private JTextField txtPSex;
 
 	/**
 	 * Create the frame.
@@ -175,7 +176,7 @@ public class AdminHome extends JFrame {
 		if (Adpater.getInfo().get(4).toString().equals("Male")) {
 			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
 		} else {
-			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+			label.setIcon(GetIcon.setIcon(Icons.FemaleUser));
 		}
 
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
@@ -373,15 +374,21 @@ public class AdminHome extends JFrame {
 		JLabel lblPSex = new JLabel("Gender");
 		lblPSex.setBounds(330, 358, 99, 16);
 		ProfileView.add(lblPSex);
-
-		txtPSex = new JTextField();
-		txtPSex.setColumns(10);
-		txtPSex.setBounds(330, 386, 218, 34);
 		final String cSex = Adpater.getInfo().get(4);
-		txtPSex.setText(cSex);
-		ProfileView.add(txtPSex);
 
-		// ------==---===--
+		final JComboBox<String> CbmSex = new JComboBox<String>();
+		CbmSex.setModel(new DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
+		CbmSex.setBounds(330, 386, 217, 34);
+
+		if (cSex.equals("Male")) {
+			CbmSex.setSelectedIndex(0);
+		} else {
+			CbmSex.setSelectedIndex(1);
+		}
+		ProfileView.add(CbmSex);
+
+		//===========
+		
 
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -425,7 +432,7 @@ public class AdminHome extends JFrame {
 			txtPhone.disable();
 			txtAddress.disable();
 			txtDob.disable();
-			txtPSex.disable();
+			CbmSex.disable();
 		}
 		btnEnable.addActionListener(new ActionListener() {
 			private boolean check = false;
@@ -440,7 +447,7 @@ public class AdminHome extends JFrame {
 				txtPhone.enable();
 				txtAddress.enable();
 				txtDob.enable();
-				txtPSex.enable();
+				CbmSex.enable();
 
 				txtFirstN.setFont(txtFirstN.getFont().deriveFont(Font.BOLD, 14f));
 				txtLastN.setFont(txtLastN.getFont().deriveFont(Font.BOLD, 14f));
@@ -449,7 +456,7 @@ public class AdminHome extends JFrame {
 				txtPhone.setFont(txtPhone.getFont().deriveFont(Font.BOLD, 14f));
 				txtAddress.setFont(txtAddress.getFont().deriveFont(Font.BOLD, 14f));
 				txtDob.setFont(txtDob.getFont().deriveFont(Font.BOLD, 14f));
-				txtPSex.setFont(txtPSex.getFont().deriveFont(Font.BOLD, 14f));
+				CbmSex.setFont(txtDob.getFont().deriveFont(Font.BOLD, 14f));
 
 				if (btnEnable.getText().equals("Save")) {
 					btnEnable.setText("Enable");
@@ -464,9 +471,9 @@ public class AdminHome extends JFrame {
 						JDBC.updateBy("staff", "last_name", cLastName, txtLastN.getText());
 					}
 
-					if (!txtPSex.getText().equals(cSex)) {
+					if (CbmSex.isEditable()==false) {
 						change = true;
-						JDBC.updateBy("staff", "sex", cSex, txtPSex.getText());
+						JDBC.updateBy("staff", "sex", cSex, CbmSex.getSelectedItem().toString());
 					}
 
 					if (!textEmailP.getText().equals(cEmail)) {
@@ -506,7 +513,7 @@ public class AdminHome extends JFrame {
 					txtPhone.disable();
 					txtAddress.disable();
 					txtDob.disable();
-					txtPSex.disable();
+					CbmSex.disable();
 					btnEnable.setText("Enable");
 				} else {
 					btnEnable.setText("Save");
@@ -528,6 +535,8 @@ public class AdminHome extends JFrame {
 
 		ProfileView.setVisible(false);
 //--------------------------------------------------END
+		
+		
 		MainMenu.setBackground(Color.WHITE);
 		MainMenu.setBounds(220, 133, 989, 645);
 		contentPane.add(MainMenu);

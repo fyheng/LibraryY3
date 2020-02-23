@@ -435,6 +435,7 @@ public class AdminHome extends JFrame {
 			CbmSex.disable();
 		}
 		btnEnable.addActionListener(new ActionListener() {
+			//Test kok fuck U
 			private boolean check = false;
 			private boolean change = false;
 

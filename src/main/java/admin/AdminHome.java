@@ -609,10 +609,10 @@ public class AdminHome extends JFrame {
 		lblSex.setBounds(43, 108, 97, 16);
 		StaffView.add(lblSex);
 
-		final JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Male", "Female" }));
-		comboBox.setBounds(43, 136, 120, 34);
-		StaffView.add(comboBox);
+		final JComboBox cmbSex = new JComboBox();
+		cmbSex.setModel(new DefaultComboBoxModel(new String[] { "Male", "Female" }));
+		cmbSex.setBounds(43, 136, 120, 34);
+		StaffView.add(cmbSex);
 
 		JLabel lblNewLabel_3 = new JLabel("Month");
 		lblNewLabel_3.setBounds(201, 108, 61, 16);
@@ -721,9 +721,10 @@ public class AdminHome extends JFrame {
 		lblNewLabel_5.setBounds(603, 181, 61, 16);
 		StaffView.add(lblNewLabel_5);
 
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(603, 211, 120, 34);
-		StaffView.add(comboBox_2);
+		JComboBox cmbRole = new JComboBox();
+		cmbRole.setBounds(603, 211, 120, 34);
+		cmbRole.setModel(new DefaultComboBoxModel(new String[] { "admin", "staff" }));
+		StaffView.add(cmbRole);
 
 		JLabel lblAddress = new JLabel("Your birthday");
 		lblAddress.setForeground(Color.LIGHT_GRAY);
@@ -822,6 +823,8 @@ public class AdminHome extends JFrame {
 				String address = txtStreet.getText() + ',' + txtHouseNumber.getText() + ',' + txtCommune.getText() + ','
 						+ txtDistict.getText() + ',' + txtCity.getText();
 				String dob = txtMonth.getSelectedItem().toString() + ',' + txtDay.getText() + ',' + txtYear.getText();
+				
+				
 				/*
 				 
 				*/
@@ -830,6 +833,11 @@ public class AdminHome extends JFrame {
 				// comboBox.getSelectedItem(), address, dob, txtPhoneNumber.getText(),
 				// txtPhoneNumber.getText(), txtPhoneNumber.getText());
 				System.out.println(address + dob);
+				
+				StaffController staff = new StaffController();
+				//staff.create(txtFristname, txtLastname, sex, phone, email, nationalId, startAt, cAddress, roleId, cDob);
+				
+				
 			}
 		});
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);

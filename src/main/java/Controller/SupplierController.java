@@ -21,8 +21,8 @@ public class SupplierController {
 	 		   ps.setString(4, sex);
 	 		   ps.setString(5, email);
 	 		   ps.setString(6, phone);
-	 		   ps.setString(7, address);
-	 		   ps.setInt(8, roleId);
+	 		   ps.setString(7, address); 
+	 		   ps.setInt(8, roleId); 
 	 		   ps.execute();
 	 		   con.close();
 	 		  Logger logger = Logger.getGlobal();

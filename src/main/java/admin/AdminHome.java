@@ -176,7 +176,7 @@ public class AdminHome extends JFrame {
 		if (Adpater.getInfo().get(4).toString().equals("Male")) {
 			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
 		} else {
-			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+			label.setIcon(GetIcon.setIcon(Icons.FemaleUser));
 		}
 
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
@@ -435,7 +435,6 @@ public class AdminHome extends JFrame {
 			CbmSex.disable();
 		}
 		btnEnable.addActionListener(new ActionListener() {
-			//Test kok fuck U
 			private boolean check = false;
 			private boolean change = false;
 
@@ -536,6 +535,8 @@ public class AdminHome extends JFrame {
 
 		ProfileView.setVisible(false);
 //--------------------------------------------------END
+		
+		
 		MainMenu.setBackground(Color.WHITE);
 		MainMenu.setBounds(220, 133, 989, 645);
 		contentPane.add(MainMenu);

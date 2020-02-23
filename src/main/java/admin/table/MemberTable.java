@@ -1,26 +1,25 @@
 package admin.table;
 
-import java.awt.Component;
-import java.sql.SQLException;
+import java.awt.EventQueue;
 
+import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class IssueBook {
-	//pek heng
-	public static DefaultTableModel Issuemodel = new DefaultTableModel();
+public class MemberTable {
+
+	public static DefaultTableModel MemberTableModel = new DefaultTableModel();
 	public static JScrollPane issuetable(){
-		JTable IssueBook = new JTable(Issuemodel);
-		Issuemodel.addColumn("No");
-		Issuemodel.addColumn("Book Title");
-		Issuemodel.addColumn("Book ID");
-		Issuemodel.addColumn("Member Name");
-		Issuemodel.addColumn("Issuesed Date");
-		Issuemodel.addColumn("Due Date");
-		Issuemodel.addColumn("Staffname");
+		JTable MemberTable = new JTable(MemberTableModel);
+		MemberTableModel.addColumn("No");
+		MemberTableModel.addColumn("Member name");
+		MemberTableModel.addColumn("Menber ID");
+		MemberTableModel.addColumn("Date of brith");
+		MemberTableModel.addColumn("Phone Number");
+		MemberTableModel.addColumn("Address");
+		MemberTableModel.addColumn("Email");
 		
-		Issuemodel.addRow(new Object[] {"1","Elon","12-12-12","kok"});
 		
 //		ArrayList<ArrayList<String>> res = JDBC.readData("Book");
 //		
@@ -32,8 +31,9 @@ public class IssueBook {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 109, 965, 523);
 		
-		scrollPane.setViewportView(IssueBook);
+		scrollPane.setViewportView(MemberTable);
 		
 		return scrollPane;
 	}
+
 }

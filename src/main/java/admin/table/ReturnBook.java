@@ -16,8 +16,11 @@ public class ReturnBook {
 	public static JScrollPane TotalBook() throws SQLException {
 		JTable TotalBookTable = new JTable(model);
 		model.addColumn("No");
-		model.addColumn("Title");
-		model.addColumn("Date");
+		model.addColumn("Book Title");
+		model.addColumn("Book ID");
+		model.addColumn("Member Name");
+		model.addColumn("Issuesed Date");
+		model.addColumn("Due Date");
 		model.addColumn("Staffname");
 		
 //		ArrayList<ArrayList<String>> res = JDBC.readData("Book");

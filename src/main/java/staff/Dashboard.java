@@ -639,8 +639,13 @@ public class Dashboard extends JFrame {
 		ReturnedBook.setBounds(220, 133, 989, 645);
 		ReturnedBook.setVisible(true);
 		ReturnedBook.setToolTipText("");
+		
+		String[] AddReturnHeadder = { "No", "Title", "Book Number", "Qty", "Price" };
 
-		JTable TableReturnedBook = new JTable(data, headder);
+		String[][] AddReturnData = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
+				{ "2", "Leadership", "002", "34", "40.50" } };
+		
+		JTable TableReturnedBook = new JTable(AddReturnData, AddReturnHeadder);
 		JScrollPane ScrollTableReturnedBook = new JScrollPane(TableReturnedBook);
 		ScrollTableReturnedBook.setBounds(12, 109, 965, 523);
 		ReturnedBook.add(ScrollTableReturnedBook);
@@ -906,10 +911,10 @@ public class Dashboard extends JFrame {
 		btFilterResults.setBackground(Color.WHITE);
 		btFilterResults.setForeground(Color.GRAY);
 		BookTable.add(btFilterResults);
-		table = new JTable(datas, header);
-		JScrollPane ScrollBookTable = new JScrollPane(table);
-		ScrollBookTable.setBounds(12, 109, 965, 523);
-		BookTable.add(ScrollBookTable);
+//		table = new JTable(datas, header);
+//		JScrollPane ScrollBookTable = new JScrollPane(table);
+//		ScrollBookTable.setBounds(12, 109, 965, 523);
+//		BookTable.add(ScrollBookTable);
 
 		// MEMBER
 
@@ -1219,10 +1224,10 @@ public class Dashboard extends JFrame {
 		btnFilterResult.setBounds(728, 58, 200, 40);
 		MemberTable.add(btnFilterResult);
 
-		JTable TableMember = new JTable(dates, headMember);
-		JScrollPane SrcollTableMember = new JScrollPane(TableMember);
-		SrcollTableMember.setBounds(12, 109, 965, 523);
-		MemberTable.add(SrcollTableMember);
+//		JTable TableMember = new JTable(dates, headMember);
+//		JScrollPane SrcollTableMember = new JScrollPane(TableMember);
+//		SrcollTableMember.setBounds(12, 109, 965, 523);
+//		MemberTable.add(SrcollTableMember);
 
 		// About Us
 

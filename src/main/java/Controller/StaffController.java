@@ -12,7 +12,7 @@ public class StaffController {
       public void create(String firstName,String lastName,String sex , String phone,String email,String nationalId,String startAt,String address,int roleId,
     		             String dob) {
     	  StaffDomain staff = new StaffDomain();
-    	  staff.setFullName(firstName+lastName);
+    	  staff.setFullName(firstName+lastName); 
 //    	  //find phone staff
 //    	  ArrayList<ArrayList<String>> staffList = new ArrayList<ArrayList<String>>();
 //    	  try {
@@ -45,10 +45,10 @@ public class StaffController {
         	  	 String secuserId = secuser.get(0).get(0); 
 
         	  JDBC.setKey("first_name","last_name","sex","full_name","phone","email","national_id",
-        			"start_at","dob","address","role_id","SecUser_id"); 
+        			"start_at","dob","address","SecUser_id","SecUser_role_id"); 
         	 try {
     			JDBC.insert("staff",firstName,lastName,sex,staff.getFullName(),phone,email,nationalId,
-    					startAt,dob,address,roleId+"",secuserId);
+    					startAt,dob,address,secuserId,roleId+"");
     		 } catch (SQLException e) {
     			e.printStackTrace();
     		 }

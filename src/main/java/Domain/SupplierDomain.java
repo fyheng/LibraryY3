@@ -7,6 +7,7 @@ public class SupplierDomain {
     private String email;
     private String phone;
     private String address;
+    RoleDomain roleId; 
 	public String getFirst_name() {
 		return first_name;
 	}
@@ -18,7 +19,7 @@ public class SupplierDomain {
 	}
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
-	}
+	} 
 	public String getFull_name() {
 		return full_name;
 	}

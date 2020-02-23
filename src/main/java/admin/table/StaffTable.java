@@ -17,14 +17,12 @@ public class StaffTable {
 		JTable TotalBookTable = new JTable(model);
 		model.addColumn("No");
 		model.addColumn("Name");
-		model.addColumn("Sex");;
+		model.addColumn("Sex");
 		model.addColumn("Email");
 		model.addColumn("Phone number");
 		model.addColumn("Role");
 		
 		ArrayList<ArrayList<String>> res = JDBC.readData("staff");
-//		ArrayList<ArrayList<String>> role = JDBC.readBy("role","name",res.get(0).get(13));
-//		System.out.println(role+" role");
 		String role;
 		int no;
 		for(int i = 0; i < res.size();i++) {

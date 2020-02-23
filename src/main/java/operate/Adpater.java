@@ -19,6 +19,24 @@ public class Adpater {
 	public static ArrayList<String> getInfo() throws SQLException {
 		return JDBC.readBy("staff", "SecUser_id", Login.data.get(0)).get(0);
 	}
+	
+	public static ArrayList<String> getRole() throws SQLException {
+		
+		//System.out.println("test"+JDBC.readBy("role", "id", Login.data.get(0)));
+		
+		return JDBC.readBy("role", "id", Login.data.get(0)).get(0);
+	}
+	
+	
+//	public static boolean updateBy(String tbName ,String column , String Oldvalue , String newValue) {
+//		try {
+//			JDBC.updateBy(tbName, column, Oldvalue, newValue);
+//		} catch (SQLException e) {
+//			System.out.println(e.getMessage());
+//		}
+//		return true;
+//	}
+		
 		
 	
 	public static void componen(JTextField jtextField,JPanel panel,int w,int x,int y,int z) {

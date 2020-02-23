@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import login.Validate;
+import operate.Adpater;
 
 public class Main {
 
@@ -35,7 +36,7 @@ public class Main {
 //		user.toArray();
 		
 //		System.out.println(user.get(0));
-		JDBC.updateBy("", "", "", "");
+		
 		
 	
 		

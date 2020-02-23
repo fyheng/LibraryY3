@@ -141,11 +141,8 @@ public class ForgetPassword extends JFrame {
 						// update Password
 						ArrayList<String> varlidateData = Validate.getUserName(txtUsername.getText());
 						if (varlidateData != null) {
-							try {
-								checkUpdate = JDBC.updateBy("secuser", "password", varlidateData.get(2).toString(),
-										txtConfirmPassword.getText().toString());
-							} catch (SQLException e1) {
-							}
+							checkUpdate = JDBC.updateBy("secuser", "password", varlidateData.get(2).toString(),
+									txtConfirmPassword.getText().toString());
 						}
 					}
 				}

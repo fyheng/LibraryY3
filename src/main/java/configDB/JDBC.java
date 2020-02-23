@@ -242,13 +242,16 @@ public class JDBC {
 	
 	//use in forgetPassword========================================
 	
-	public static boolean updateBy(String tbName,String column,String Oldvalue,String newValue) throws SQLException {
-		statement = connection().createStatement();
-		String sql = "UPDATE " +tbName+ " SET "+column+" = "+newValue+" WHERE "+column+" = "+Oldvalue+" ";	
-		statement.executeUpdate(sql);
-		//connection().close();
-		Logger logger = Logger.getGlobal();
-		logger.info("update success");
+	public static boolean updateBy(String tbName,String column,String Oldvalue,String newValue) {
+		
+		String sql = "UPDATE " +tbName+ " SET "+column+" = '"+newValue+"' WHERE "+ column +" = '"+Oldvalue+"' ";	
+		try {			statement = connection().createStatement();
+			statement.executeUpdate(sql);
+			Logger logger = Logger.getGlobal();
+			logger.info("update success");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 	

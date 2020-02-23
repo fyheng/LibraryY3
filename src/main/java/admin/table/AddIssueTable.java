@@ -6,9 +6,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class AddIssueTable {
 	public static DefaultTableModel Issuemodel = new DefaultTableModel();
-	public static JTable IssueBook;
 	public static JScrollPane issuetable(){
-		IssueBook = new JTable(Issuemodel);
+		JTable IssueBook = new JTable(Issuemodel);
 		Issuemodel.addColumn("No");
 		Issuemodel.addColumn("Member name");
 		Issuemodel.addColumn("Book title");

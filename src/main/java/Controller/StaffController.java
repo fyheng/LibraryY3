@@ -38,4 +38,22 @@ public class StaffController {
 		}
 	}
 
+        	  JDBC.setKey("first_name","last_name","sex","full_name","phone","email","national_id",
+        			"start_at","dob","address","SecUser_id","SecUser_role_id"); 
+        	 try {
+    			JDBC.insert("staff",firstName,lastName,sex,staff.getFullName(),phone,email,nationalId,
+    					startAt,dob,address,secuserId,roleId+"");
+    		 } catch (SQLException e) {
+    			e.printStackTrace();
+    		 }
+    		  
+//    	  }
+//    	  else {
+//    		  Logger logger = Logger.getGlobal();
+//  			logger.info("phone number already exit");
+//    	  }
+    	  
+    	 
+      }
+    	  
 }

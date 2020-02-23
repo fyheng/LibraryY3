@@ -105,9 +105,8 @@ public class Dashboard extends JFrame {
 	private JTextField textEmailP;
 	private JTextField txtPhone;
 	private JTextField txtDob;
-	private JTextField textField_9;
+	private JTextField txtPAddress;
 	private JPasswordField txtPass;
-	private JTextField txtSetQuote;
 	int on = 1;
 	private JTextField getMemberName;
 	private JTextField txtCategoryTitle;
@@ -155,25 +154,289 @@ public class Dashboard extends JFrame {
 				ProfileView.setVisible(true);
 			}
 		});
+		
+		if (Adpater.getInfo().get(4).toString().equals("Male")) {
+			ProfileIcon.setIcon(GetIcon.setIcon(Icons.MaleUser));
+		} else {
+			ProfileIcon.setIcon(GetIcon.setIcon(Icons.FemaleUser));
+		}
+		
 		ProfileIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		ProfileIcon.setBounds(0, 0, 185, 146);
 		Drawer.add(ProfileIcon);
-		ProfileIcon.setIcon(GetIcon.setIcon(Icons.MaleUser));
-		// ========================================================================================
-		// MainMenu
+
+		ProfileView.setBackground(Color.WHITE);		
+		
+		// popUp ProfileInfo Login
+				// =============================================================
+				ProfileView.setVisible(false);
+				ProfileView.setBounds(220, 133, 989, 645);
+				ProfileView.setLayout(null);
+				ProfileView.setBackground(Color.WHITE);
+
+//				label.setHorizontalAlignment(SwingConstants.CENTER);
+//				label.setBounds(179, 51, 183, 145);
+//				ProfileView.add(label);
+
+				JLabel lblPFirstName = new JLabel("First Name");
+				lblPFirstName.setBounds(27, 209, 99, 16);
+				ProfileView.add(lblPFirstName);
+
+				txtFirstN = new JTextField();
+				txtFirstN.setBounds(27, 237, 218, 34);
+				ProfileView.add(txtFirstN);
+				txtFirstN.setColumns(10);
+				final String cFirstName = Adpater.getInfo().get(2);
+				txtFirstN.setText(cFirstName);
+
+				JLabel lblLastName_1 = new JLabel("Last Name");
+				lblLastName_1.setBounds(330, 209, 99, 16);
+				ProfileView.add(lblLastName_1);
+
+				txtLastN = new JTextField();
+				txtLastN.setColumns(10);
+				txtLastN.setBounds(330, 237, 218, 34);
+				ProfileView.add(txtLastN);
+				final String cLastName = Adpater.getInfo().get(3);
+				txtLastN.setText(cLastName);
+
+				JLabel lblEmail_1 = new JLabel("Email");
+				lblEmail_1.setBounds(27, 283, 99, 16);
+				ProfileView.add(lblEmail_1);
+
+				textEmailP = new JTextField();
+				textEmailP.setColumns(10);
+				textEmailP.setBounds(27, 311, 218, 34);
+				ProfileView.add(textEmailP);
+				final String cEmail = Adpater.getInfo().get(7);
+				textEmailP.setText(cEmail);
+
+				JLabel lblPassword = new JLabel("Password");
+				lblPassword.setBounds(630, 463, 99, 16);
+				ProfileView.add(lblPassword);
+
+				txtPass = new JPasswordField();
+				txtPass.setBounds(630, 491, 218, 34);
+				ProfileView.add(txtPass);
+				final String cPassword = Login.data.get(3);
+				txtPass.setText(cPassword);
+
+				JLabel lblPhoneNumber_1 = new JLabel("Phone number");
+				lblPhoneNumber_1.setBounds(330, 283, 99, 16);
+				ProfileView.add(lblPhoneNumber_1);
+
+				txtPhone = new JTextField();
+				txtPhone.setColumns(10);
+				txtPhone.setBounds(330, 311, 218, 34);
+				ProfileView.add(txtPhone);
+				final String cPhone = Adpater.getInfo().get(6);
+				txtPhone.setText(cPhone);
+
+				txtDob = new JTextField();
+				txtDob.setColumns(10);
+				txtDob.setBounds(27, 386, 218, 34);
+				ProfileView.add(txtDob);
+				final String cDob = Adpater.getInfo().get(12);
+				txtDob.setText(cDob);
+
+				JLabel lblDateOfBirth = new JLabel("Date of birth");
+				lblDateOfBirth.setBounds(27, 358, 99, 16);
+				ProfileView.add(lblDateOfBirth);
+
+				JLabel lblAddress_3 = new JLabel("Address");
+				lblAddress_3.setBounds(27, 433, 99, 16);
+				ProfileView.add(lblAddress_3);
+
+				txtPAddress = new JTextField();
+				txtPAddress.setColumns(10);
+				txtPAddress.setBounds(27, 461, 521, 64);
+				ProfileView.add(txtPAddress);
+				final String cAddress = Adpater.getInfo().get(13);
+				txtPAddress.setText(cAddress);
+
+				JLabel lblPSex = new JLabel("Gender");
+				lblPSex.setBounds(330, 358, 99, 16);
+				ProfileView.add(lblPSex);
+				final String cSex = Adpater.getInfo().get(4);
+
+				final JComboBox<String> CbmSex = new JComboBox<String>();
+				CbmSex.setModel(new DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
+				CbmSex.setBounds(330, 386, 217, 34);
+
+				if (cSex.equals("Male")) {
+					CbmSex.setSelectedIndex(0);
+				} else {
+					CbmSex.setSelectedIndex(1);
+				}
+				ProfileView.add(CbmSex);
+
+				//===========
+				
+
+				JLabel lblUsername = new JLabel("Username");
+				lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblUsername.setBounds(630, 236, 99, 34);
+				ProfileView.add(lblUsername);
+
+				JLabel lblSetName = new JLabel(Login.data.get(3));
+				lblSetName.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblSetName.setBounds(772, 233, 144, 40);
+				ProfileView.add(lblSetName);
+
+				JLabel lblSetRole = new JLabel(Adpater.getRole().get(1));
+				lblSetRole.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblSetRole.setBounds(772, 315, 99, 30);
+				ProfileView.add(lblSetRole);
+
+				JLabel lblRole = new JLabel("Role");
+				lblRole.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblRole.setBounds(630, 311, 99, 34);
+				ProfileView.add(lblRole);
+
+				JLabel lblStartDate = new JLabel("Start date");
+				lblStartDate.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblStartDate.setBounds(630, 386, 99, 34);
+				ProfileView.add(lblStartDate);
+
+				final String cStartDate = Adpater.getInfo().get(9);
+				JLabel lblSetStart = new JLabel(cStartDate);
+				lblSetStart.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblSetStart.setBounds(772, 386, 99, 34);
+				ProfileView.add(lblSetStart);
+
+				final JButton btnEnable = new JButton("Enable");
+				contentPane.add(ProfileView);
+				// DisableJTextBox
+				if (btnEnable.getText().equals("Enable")) {
+					txtFirstN.disable();
+					txtLastN.disable();
+					textEmailP.disable();
+					txtPass.disable();
+					txtPhone.disable();
+					txtPAddress.disable();
+					txtDob.disable();
+					CbmSex.disable();
+				}
+				btnEnable.addActionListener(new ActionListener() {
+					//Test kok fuck U
+					private boolean check = false;
+					private boolean change = false;
+
+					public void actionPerformed(ActionEvent e) {
+						txtFirstN.enable();
+						txtLastN.enable();
+						textEmailP.enable();
+						txtPass.enable();
+						txtPass.show();
+						txtPhone.enable();
+						txtPAddress.enable();
+						txtDob.enable();
+						CbmSex.enable();
+
+						txtFirstN.setFont(txtFirstN.getFont().deriveFont(Font.BOLD, 14f));
+						txtLastN.setFont(txtLastN.getFont().deriveFont(Font.BOLD, 14f));
+						textEmailP.setFont(textEmailP.getFont().deriveFont(Font.BOLD, 14f));
+						txtPass.setFont(txtPass.getFont().deriveFont(Font.BOLD, 14f));
+						txtPhone.setFont(txtPhone.getFont().deriveFont(Font.BOLD, 14f));
+						txtPAddress.setFont(txtPAddress.getFont().deriveFont(Font.BOLD, 14f));
+						txtDob.setFont(txtDob.getFont().deriveFont(Font.BOLD, 14f));
+						CbmSex.setFont(txtDob.getFont().deriveFont(Font.BOLD, 14f));
+
+						if (btnEnable.getText().equals("Save")) {
+							btnEnable.setText("Enable");
+
+							if (!txtFirstN.getText().equals(cFirstName)) {
+								change = true;
+								JDBC.updateBy("staff", "first_name", cFirstName, txtFirstN.getText());
+							}
+
+							if (!txtLastN.getText().equals(cLastName)) {
+								change = true;
+								JDBC.updateBy("staff", "last_name", cLastName, txtLastN.getText());
+							}
+
+							if (CbmSex.isEditable()==false) {
+								change = true;
+								JDBC.updateBy("staff", "sex", cSex, CbmSex.getSelectedItem().toString());
+							}
+
+							if (!textEmailP.getText().equals(cEmail)) {
+								change = true;
+								JDBC.updateBy("staff", "email", cEmail, textEmailP.getText());
+							}
+
+							if (!txtDob.getText().equals(cDob)) {
+								change = true;
+								JDBC.updateBy("staff", "dob", cDob, txtDob.getText());
+							}
+
+							if (!txtPAddress.getText().equals(cAddress)) {
+								change = true;
+								JDBC.updateBy("staff", "address", cAddress, txtPAddress.getText());
+							}
+
+							if (!txtPass.getText().equals(cPassword)) {
+								change = true;
+								JDBC.updateBy("secuser", "password", cPassword, txtPass.getText());
+							}
+
+							if (change == true) {
+								JOptionPane.showMessageDialog(contentPane, "Update Your Profile Success", "Success",
+										JOptionPane.INFORMATION_MESSAGE);
+							}
+							check = true;
+						} else {
+							check = false;
+						}
+
+						if (check == true) {
+							txtFirstN.disable();
+							txtLastN.disable();
+							textEmailP.disable();
+							txtPass.disable();
+							txtPhone.disable();
+							txtPAddress.disable();
+							txtDob.disable();
+							CbmSex.disable();
+							btnEnable.setText("Enable");
+						} else {
+							btnEnable.setText("Save");
+						}
+					}
+				});
+
+				btnEnable.setText("Enable");
+				btnEnable.setBounds(451, 561, 97, 34);
+				ProfileView.add(btnEnable);
+
+				JButton btnBack = new JButton("Back");
+				btnBack.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+					}
+				});
+				btnBack.setBounds(330, 561, 97, 34);
+				ProfileView.add(btnBack);
+
+				ProfileView.setVisible(false);
+		//--------------------------------------------------END
+		
+		
 
 		MainMenu.setBackground(Color.WHITE);
 		MainMenu.setBounds(220, 133, 989, 645);
 		MainMenu.setVisible(true);
+		JLabel lbleFirstName = new JLabel("First Name");
+		lbleFirstName.setBounds(27, 209, 73, 16);
+		ProfileView.add(lbleFirstName);
 
 		Border border = BorderFactory.createLineBorder(Color.gray, 1);
 		ArrayList<ArrayList<String>> bookcategory = JDBC.readData("category");
 		for (int i = 0; i < bookcategory.size(); i++) {
 			txtCategoryBook.addItem(bookcategory.get(i).get(2));
-		}
-
-		contentPane.add(MainMenu);
-
+		}	
+		
+		
+		//---------------------------------------------------------------------------
 		MainMenu.setLayout(null);
 		MainMenu.add(MenuItem.menu("Total Book", JDBC.getCount("category"), Icons.Book, new Color(57, 124, 188),
 				new Color(77, 134, 198), 31, 21, new ButtonClick() {
@@ -241,142 +504,14 @@ public class Dashboard extends JFrame {
 		contentPane.add(ProfileView);
 		ProfileView.setVisible(false);
 		ProfileView.setLayout(null);
-//		JLabel label = new JLabel("");
-//		label.setHorizontalAlignment(SwingConstants.CENTER);
-//		label.setBounds(179, 18, 183, 145);
-//		if(Adpater.getInfo().get(4).toString().equals("Male")) {
-//			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
-//		}else {
-//			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
-//		}
-//		ProfileView.setLayout(null);
-//		ProfileView.add(label);
-//		
-//
-//		JLabel lblNewLabel_8 = new JLabel("First Name");
-//		lblNewLabel_8.setBounds(27, 209, 73, 16);
-//		lblNewLabel_8.setText(Login.data.get(3));
-//		ProfileView.add(lblNewLabel_8);
-//
-//		txtFirstN = new JTextField();
-//		txtFirstN.setBounds(27, 237, 218, 34);
-//		ProfileView.add(txtFirstN);
-//		txtFirstN.setColumns(10);
-//
-//		JLabel lblLastName_1 = new JLabel("Last Name");
-//		lblLastName_1.setBounds(330, 200, 218, 34);
-//		ProfileView.add(lblLastName_1);
-//
-//		txtLastN = new JTextField();
-//		txtLastN.setBounds(330, 237, 218, 34);
-//		txtLastN.setColumns(10);
-//		ProfileView.add(txtLastN);
-//		txtLastN.setText(Login.data.get(3).toString());
-//
-//		JLabel lblEmail_1 = new JLabel("Email");
-//		lblEmail_1.setBounds(27, 283, 34, 16);
-//		ProfileView.add(lblEmail_1);
-//
-//		JLabel lblPhoneNumber_1 = new JLabel("Phone number");
-//		lblPhoneNumber_1.setBounds(330, 283, 90, 16);
-//		ProfileView.add(lblPhoneNumber_1);
-//
-//		textEmailP = new JTextField();
-//		textEmailP.setColumns(10);
-//		textEmailP.setBounds(27, 311, 218, 34);
-//		ProfileView.add(textEmailP);
-//
-//		JLabel lblPassword = new JLabel("Password");
-//		lblPassword.setBounds(330, 358, 59, 16);
-//		ProfileView.add(lblPassword);
-//
-//		txtPhone = new JTextField();
-//		txtPhone.setColumns(10);
-//		txtPhone.setBounds(330, 311, 218, 34);
-//		ProfileView.add(txtPhone);
-//
-//		txtDob = new JTextField();
-//		txtDob.setColumns(10);
-//		txtDob.setBounds(27, 386, 218, 34);
-//		ProfileView.add(txtDob);
-//
-//		JLabel lblDateOfBirth = new JLabel("Date of birth");
-//		lblDateOfBirth.setBounds(27, 358, 80, 16);
-//		ProfileView.add(lblDateOfBirth);
-//
-//		textField_9 = new JTextField();
-//		textField_9.setColumns(10);
-//		textField_9.setBounds(27, 461, 521, 64);
-//		ProfileView.add(textField_9);
-//
-//		JLabel lblAddress_3 = new JLabel("Address");
-//		lblAddress_3.setBounds(27, 432, 51, 16);
-//		ProfileView.add(lblAddress_3);
-//
-//		JButton btnEnable = new JButton("Enable");
-//		btnEnable.setBounds(451, 561, 97, 34);
-//		ProfileView.add(btnEnable);
-//
-//		txtPass = new JPasswordField();
-//		txtPass.setBounds(330, 386, 218, 34);
-//		ProfileView.add(txtPass);
-//
-//		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
-//		lblNewLabel.setBounds(220, 83, 268, 38);
-//
-//		JLabel lblUsername = new JLabel("Username");
-//		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
-//		lblUsername.setBounds(630, 244, 77, 19);
-//		ProfileView.add(lblUsername);
-//
-//		JLabel lblSetName = new JLabel("liza(098914678)");
-//		lblSetName.setFont(new Font("Tahoma", Font.BOLD, 15));
-//		lblSetName.setBounds(772, 244, 131, 19);
-//		ProfileView.add(lblSetName);
-//
-//		JLabel lblSetRole = new JLabel("admin");
-//		lblSetRole.setFont(new Font("Tahoma", Font.BOLD, 15));
-//		lblSetRole.setBounds(772, 318, 47, 19);
-//		ProfileView.add(lblSetRole);
-//
-//		JLabel lblRole = new JLabel("Role");
-//		lblRole.setFont(new Font("Tahoma", Font.BOLD, 15));
-//		lblRole.setBounds(630, 318, 34, 19);
-//		ProfileView.add(lblRole);
-//
-//		JLabel lblStartDate = new JLabel("Start date");
-//		lblStartDate.setFont(new Font("Tahoma", Font.BOLD, 15));
-//		lblStartDate.setBounds(630, 393, 74, 19);
-//		ProfileView.add(lblStartDate);
-//
-//		JLabel lblSetStart = new JLabel("12-12-2020");
-//		lblSetStart.setFont(new Font("Tahoma", Font.BOLD, 15));
-//		lblSetStart.setBounds(772, 393, 92, 19);
-//		ProfileView.add(lblSetStart);
-//
-//		JLabel lblMo = new JLabel("Motivational quotes");
-//		lblMo.setFont(new Font("Tahoma", Font.BOLD, 15));
-//		lblMo.setBounds(630, 461, 150, 19);
-//		ProfileView.add(lblMo);
-//
-//		JButton btnBack = new JButton("Back");
-//		btnBack.setBounds(330, 561, 97, 34);
-//		ProfileView.add(btnBack);
-//
-//		txtSetQuote = new JTextField();
-//		txtSetQuote.setColumns(10);
-//		txtSetQuote.setBounds(630, 492, 273, 26);
-//		ProfileView.add(txtSetQuote);
-//		contentPane.add(ProfileView);
-//		ProfileView.setLayout(null);
 //======================================================================
 
-		JLabel lblNewLabel_2 = new JLabel("User Name");
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setBounds(0, 143, 185, 41);
-		Drawer.add(lblNewLabel_2);
+		JLabel lblUserName = new JLabel(Adpater.getInfo().get(2)+" "+Adpater.getInfo().get(3));
+		lblUserName.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		lblUserName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUserName.setForeground(Color.WHITE);
+		lblUserName.setBounds(0, 159, 185, 41);
+		Drawer.add(lblUserName);
 
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
 		lblNewLabel.setBounds(220, 83, 268, 38);

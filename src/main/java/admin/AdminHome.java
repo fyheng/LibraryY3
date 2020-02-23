@@ -826,9 +826,10 @@ public class AdminHome extends JFrame {
 				String sex = cmbSex.getSelectedItem().toString();
 				String startAt = JDBC.getDate();
 				int roleId = cmbRole.getSelectedIndex();
-				
+
 				StaffController staff = new StaffController();
-				staff.create(txtFristname.getText(), txtLastname.getText(), sex, txtPhoneNumber.getText(), txtEmail.getText(), "Na01", startAt, address, roleId, dob);
+				staff.create(txtFristname.getText(), txtLastname.getText(), sex, txtPhoneNumber.getText(),
+						txtEmail.getText(), "Na01", startAt, address, roleId, dob);
 				JOptionPane.showMessageDialog(contentPane, "Create Profile Success", "Success",
 						JOptionPane.INFORMATION_MESSAGE);
 				txtFristname.setText("");
@@ -846,7 +847,7 @@ public class AdminHome extends JFrame {
 				txtCommune.setText("");
 				txtDistict.setText("");
 				txtCity.setText("");
-				
+
 			}
 		});
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -864,6 +865,26 @@ public class AdminHome extends JFrame {
 		panel_3.setLayout(null);
 
 		JLabel lblCancel = new JLabel("Cancel");
+		lblCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtFristname.setText("");
+				txtLastname.setText("");
+				txtDay.setText("");
+				cmbRole.setSelectedIndex(1);
+				txtMonth.setSelectedIndex(0);
+				txtYear.setText("");
+				txtPhoneNumber.setText("");
+				txtDob.setText("");
+				txtEmail.setText("");
+				txtHouseNumber.setText("");
+				txtStreet.setText("");
+				txtCity.setText("");
+				txtCommune.setText("");
+				txtDistict.setText("");
+				txtCity.setText("");
+			}
+		});
 		lblCancel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCancel.setBounds(0, 0, 130, 39);
 		panel_3.add(lblCancel);

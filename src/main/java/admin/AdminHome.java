@@ -721,7 +721,7 @@ public class AdminHome extends JFrame {
 		lblNewLabel_5.setBounds(603, 181, 61, 16);
 		StaffView.add(lblNewLabel_5);
 
-		JComboBox cmbRole = new JComboBox();
+		final JComboBox cmbRole = new JComboBox();
 		cmbRole.setBounds(603, 211, 120, 34);
 		cmbRole.setModel(new DefaultComboBoxModel(new String[] { "admin", "staff" }));
 		StaffView.add(cmbRole);
@@ -823,20 +823,29 @@ public class AdminHome extends JFrame {
 				String address = txtStreet.getText() + ',' + txtHouseNumber.getText() + ',' + txtCommune.getText() + ','
 						+ txtDistict.getText() + ',' + txtCity.getText();
 				String dob = txtMonth.getSelectedItem().toString() + ',' + txtDay.getText() + ',' + txtYear.getText();
-				
-				
-				/*
-				 
-				*/
-				// obj.create(txtFristname.getText(), txtLastname.getText(),
-				// txtFristname.getText()+' '+txtLastname.getText(), (String)
-				// comboBox.getSelectedItem(), address, dob, txtPhoneNumber.getText(),
-				// txtPhoneNumber.getText(), txtPhoneNumber.getText());
-				System.out.println(address + dob);
+				String sex = cmbSex.getSelectedItem().toString();
+				String startAt = JDBC.getDate();
+				int roleId = cmbRole.getSelectedIndex();
 				
 				StaffController staff = new StaffController();
-				//staff.create(txtFristname, txtLastname, sex, phone, email, nationalId, startAt, cAddress, roleId, cDob);
-				
+				staff.create(txtFristname.getText(), txtLastname.getText(), sex, txtPhoneNumber.getText(), txtEmail.getText(), "Na01", startAt, address, roleId, dob);
+				JOptionPane.showMessageDialog(contentPane, "Create Profile Success", "Success",
+						JOptionPane.INFORMATION_MESSAGE);
+				txtFristname.setText("");
+				txtLastname.setText("");
+				txtDay.setText("");
+				cmbRole.setSelectedIndex(1);
+				txtMonth.setSelectedIndex(0);
+				txtYear.setText("");
+				txtPhoneNumber.setText("");
+				txtDob.setText("");
+				txtEmail.setText("");
+				txtHouseNumber.setText("");
+				txtStreet.setText("");
+				txtCity.setText("");
+				txtCommune.setText("");
+				txtDistict.setText("");
+				txtCity.setText("");
 				
 			}
 		});

@@ -18,11 +18,11 @@ public class JDBC {
 	static Statement statement;
 	static ResultSet resultSet;
 
-	static String localHost = "localhost";
-	static String port = "3307";
+	static String localHost = "127.0.0.1";
+	static String port = "3306";
 	static String dbName = "libraryproject";
 	static String connectionName = "root";
-	static String password = "12345";
+	static String password = "password";
 	
 	static ArrayList<String> columnName = new ArrayList<String>();
 	static String keySets = new String();
@@ -255,6 +255,21 @@ public class JDBC {
 		return true;
 	}
 	
+	public static boolean updateBy(String tbName, String column, String newValue, String where, String condi) {
+
+		String sql = "UPDATE " + tbName + " SET " + column + " = '" + newValue + "' WHERE " + where + " = '" + condi
+				+ "' ";
+		try {
+			statement = connection().createStatement();
+			statement.executeUpdate(sql);
+			Logger logger = Logger.getGlobal();
+			logger.info("update success");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
 	
 	
 	//============================================================
@@ -351,8 +366,8 @@ public class JDBC {
 		for (String keys : key) {
 			keyNames.add(keys);
 		}
-
+ 
 		columnName = keyNames;
-		System.out.println(columnName);
+		System.out.println(columnName); 
 	}
 }

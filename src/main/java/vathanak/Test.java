@@ -11,6 +11,7 @@ import java.util.Properties;
 import Controller.BookController;
 import Controller.CategoryController;
 import Controller.ImportDetailController;
+import Controller.MemberController;
 import Controller.StaffController;
 import Controller.SupplierController;
 import Domain.BookDomain;
@@ -55,12 +56,14 @@ public class Test {
 //    	 Date date= (Date) importDatecv.parse(importDate); 
 		
 		
-		ImportDetailController importDetail = new ImportDetailController();
+//		ImportDetailController importDetail = new ImportDetailController();
+//		importDetail.create(10, 100,"111223", "2020-02-23", "test", 1, 1);
 
-		importDetail.create(10, 100,"111223", "2020-02-23", "test", 1, 1);
-	
 //		importDetail.create(10, 100, , importDate, description, StaffId, SupplierId);
 //		importDetail.create(10,100,"2020-02-23", "test", 1, 1);
+		
+		MemberController member = new MemberController();
+		member.create("23456", "aaa", "bbb", "m", "aaa@gmail.com", "0987654", "pp", 3);
 	}
 	
 

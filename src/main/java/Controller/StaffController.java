@@ -28,9 +28,9 @@ public class StaffController {
         	  } catch (SQLException e1) {
         		  e1.printStackTrace();
         	  }
-        	  	 String secuserId = secuser.get(0).get(0); 
+        	  	 String secuserId = secuser.get(0).get(0);  
 //# step 3  insert to staff table
-		try {
+		try { 
 			JDBC.setKey("first_name", "last_name", "sex", "full_name", "phone", "email", "national_id", "start_at",
 					"dob", "address", "SecUser_id", "SecUser_role_id");
 			JDBC.insert("staff", firstName, lastName, sex, staff.getFullName(), phone, email, nationalId, startAt, dob,

@@ -112,6 +112,7 @@ public class Dashboard extends JFrame {
 	private JTextField txtCategoryTitle;
 	private JTextField txtEditionBook;
 	private JTextField txtBookCodeBook;
+	JLabel label = new JLabel("");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -167,16 +168,22 @@ public class Dashboard extends JFrame {
 
 		ProfileView.setBackground(Color.WHITE);		
 		
-		// popUp ProfileInfo Login
+		// popUp ProfileInfo Login for User
 				// =============================================================
 				ProfileView.setVisible(false);
 				ProfileView.setBounds(220, 133, 989, 645);
 				ProfileView.setLayout(null);
 				ProfileView.setBackground(Color.WHITE);
 
-//				label.setHorizontalAlignment(SwingConstants.CENTER);
-//				label.setBounds(179, 51, 183, 145);
-//				ProfileView.add(label);
+				if (Adpater.getInfo().get(4).toString().equals("Male")) {
+					label.setIcon(GetIcon.setIcon(Icons.MaleUser));
+				} else {
+					label.setIcon(GetIcon.setIcon(Icons.FemaleUser));
+				}
+				
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setBounds(179, 51, 183, 145);
+				ProfileView.add(label);
 
 				JLabel lblPFirstName = new JLabel("First Name");
 				lblPFirstName.setBounds(27, 209, 99, 16);

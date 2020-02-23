@@ -12,8 +12,8 @@ public class StaffController {
       public void create(String firstName,String lastName,String sex , String phone,String email,String nationalId,String startAt,String address,int roleId,
     		             String dob) {
     	  StaffDomain staff = new StaffDomain();
-    	  staff.setFullName(firstName+lastName); 
-//    	  //find phone staff
+    	  staff.setFullName(firstName+lastName);  
+//    	  //find phone staff 
 //    	  ArrayList<ArrayList<String>> staffList = new ArrayList<ArrayList<String>>();
 //    	  try {
 //    		  staffList = JDBC.readBy("staff", "phone", phone);
@@ -22,14 +22,14 @@ public class StaffController {
 //    		  e1.printStackTrace();
 //    	  }
 //    	
-//    	  System.out.println(staffList);
+//    	  System.out.println(staffList); 
 //    	  String staffPhone = staffList.get(1).get(6);
 //    	  System.out.println(staffPhone);
 //    	  if(staffList==null) {
     		  //create secuser
-        	  JDBC.setKey("password","username","role_id");
+        	  JDBC.setKey("password","username","email","role_id");
         	  try {
-      			JDBC.insert("secuser",phone,phone,roleId+"");
+      			JDBC.insert("secuser",phone,phone,email,roleId+"");
       		 } catch (SQLException e) {
       			e.printStackTrace();
       		 }

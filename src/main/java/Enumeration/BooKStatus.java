@@ -2,7 +2,7 @@ package Enumeration;
 
 public enum BooKStatus {
    AVAILABLE(1),
-   BUSY(2),
+   BUSY(2), 
    NEW(3),
    VOID(4);
    

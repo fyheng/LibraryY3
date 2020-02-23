@@ -291,9 +291,9 @@ public class AdminHome extends JFrame {
 		ProfileView.setLayout(null);
 		ProfileView.setBackground(Color.WHITE);
 
-//		label.setHorizontalAlignment(SwingConstants.CENTER);
-//		label.setBounds(179, 51, 183, 145);
-//		ProfileView.add(label);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(179, 51, 183, 145);
+		ProfileView.add(label);
 
 		JLabel lblNewLabel_8 = new JLabel("First Name");
 		lblNewLabel_8.setBounds(27, 209, 99, 16);
@@ -387,7 +387,9 @@ public class AdminHome extends JFrame {
 		}
 		ProfileView.add(CbmSex);
 
-		// ------==---===--
+		//===========
+		
+
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblUsername.setBounds(630, 236, 99, 34);
@@ -418,7 +420,6 @@ public class AdminHome extends JFrame {
 		lblSetStart.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblSetStart.setBounds(772, 386, 99, 34);
 		ProfileView.add(lblSetStart);
-
 
 		final JButton btnEnable = new JButton("Enable");
 		contentPane.add(ProfileView);

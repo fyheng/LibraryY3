@@ -306,6 +306,76 @@ public class Dashboard extends JFrame {
 				ProfileView.add(lblStartDate);
 
 				final String cStartDate = Adpater.getInfo().get(9);
+				//--------------------------------------------------END
+				
+				
+
+				MainMenu.setBackground(Color.WHITE);
+				MainMenu.setBounds(220, 133, 989, 645);
+				MainMenu.setVisible(true);
+				
+				
+				//---------------------------------------------------------------------------
+				MainMenu.setLayout(null);
+				MainMenu.add(MenuItem.menu("Total Book", JDBC.getCount("category"), Icons.Book, new Color(57, 124, 188),
+						new Color(77, 134, 198), 31, 21, new ButtonClick() {
+							public void action() {
+								lblNewLabel.setText("Total Book");
+								BookTable.setVisible(true);
+								MainMenu.setVisible(false);
+								HomeItem.setVisible(false);
+								BookItem.setVisible(true);
+							}
+						}));
+				MainMenu.add(MenuItem.menu("Issuesed Book", JDBC.getCount("category"), Icons.Book, new Color(75, 163, 97),
+						new Color(85, 173, 107), 267, 21, new ButtonClick() {
+							public void action() {
+								lblNewLabel.setText("Issuesed Book");
+								MainMenu.setVisible(false);
+								MemberInput.setVisible(false);
+								MemberTable.setVisible(false);
+								BookTable.setVisible(false);
+								BookInput.setVisible(false);
+								AboutUs.setVisible(false);
+								IssuesedBook.setVisible(true);
+								IssuebookItem.setVisible(true);
+								HomeItem.setVisible(false);
+							}
+						}));
+				MainMenu.add(MenuItem.menu("Book Returned", JDBC.getCount("category"), Icons.Book, new Color(231, 159, 62),
+						new Color(241, 169, 72), 503, 21, new ButtonClick() {
+							public void action() {
+								lblNewLabel.setText("Returned Book");
+								MainMenu.setVisible(false);
+								MemberInput.setVisible(false);
+								MemberTable.setVisible(false);
+								BookTable.setVisible(false);
+								BookInput.setVisible(false);
+								AboutUs.setVisible(false);
+								HomeItem.setVisible(false);
+								ReturnedBook.setVisible(true);
+								ReturnedbookItem.setVisible(true);
+							}
+						}));
+				MainMenu.add(MenuItem.menu("Total Member", JDBC.getCount("category"), Icons.User, new Color(230, 113, 93),
+						new Color(240, 123, 103), 739, 21, new ButtonClick() {
+							public void action() {
+								lblNewLabel.setText("Member");
+								HomeItem.setVisible(false);
+								MemberItem.setVisible(true);
+								MainMenu.setVisible(false);
+								MemberTable.setVisible(true);
+							}
+						}));
+				MainMenu.setVisible(true);
+				
+				
+				MainMenu.setBackground(Color.WHITE);
+				MainMenu.setBounds(220, 133, 989, 645);
+				contentPane.add(MainMenu);
+				MainMenu.setLayout(null);
+				// setVisible
+						MainMenu.setVisible(true);
 				JLabel lblSetStart = new JLabel(cStartDate);
 				lblSetStart.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblSetStart.setBounds(772, 386, 99, 34);
@@ -425,13 +495,6 @@ public class Dashboard extends JFrame {
 				ProfileView.add(btnBack);
 
 				ProfileView.setVisible(false);
-		//--------------------------------------------------END
-		
-		
-
-		MainMenu.setBackground(Color.WHITE);
-		MainMenu.setBounds(220, 133, 989, 645);
-		MainMenu.setVisible(true);
 		JLabel lbleFirstName = new JLabel("First Name");
 		lbleFirstName.setBounds(27, 209, 73, 16);
 		ProfileView.add(lbleFirstName);
@@ -441,61 +504,6 @@ public class Dashboard extends JFrame {
 		for (int i = 0; i < bookcategory.size(); i++) {
 			txtCategoryBook.addItem(bookcategory.get(i).get(2));
 		}	
-		
-		
-		//---------------------------------------------------------------------------
-		MainMenu.setLayout(null);
-		MainMenu.add(MenuItem.menu("Total Book", JDBC.getCount("category"), Icons.Book, new Color(57, 124, 188),
-				new Color(77, 134, 198), 31, 21, new ButtonClick() {
-					public void action() {
-						lblNewLabel.setText("Total Book");
-						BookTable.setVisible(true);
-						MainMenu.setVisible(false);
-						HomeItem.setVisible(false);
-						BookItem.setVisible(true);
-					}
-				}));
-		MainMenu.add(MenuItem.menu("Issuesed Book", JDBC.getCount("category"), Icons.Book, new Color(75, 163, 97),
-				new Color(85, 173, 107), 267, 21, new ButtonClick() {
-					public void action() {
-						lblNewLabel.setText("Issuesed Book");
-						MainMenu.setVisible(false);
-						MemberInput.setVisible(false);
-						MemberTable.setVisible(false);
-						BookTable.setVisible(false);
-						BookInput.setVisible(false);
-						AboutUs.setVisible(false);
-						IssuesedBook.setVisible(true);
-						IssuebookItem.setVisible(true);
-						HomeItem.setVisible(false);
-					}
-				}));
-		MainMenu.add(MenuItem.menu("Book Returned", JDBC.getCount("category"), Icons.Book, new Color(231, 159, 62),
-				new Color(241, 169, 72), 503, 21, new ButtonClick() {
-					public void action() {
-						lblNewLabel.setText("Returned Book");
-						MainMenu.setVisible(false);
-						MemberInput.setVisible(false);
-						MemberTable.setVisible(false);
-						BookTable.setVisible(false);
-						BookInput.setVisible(false);
-						AboutUs.setVisible(false);
-						HomeItem.setVisible(false);
-						ReturnedBook.setVisible(true);
-						ReturnedbookItem.setVisible(true);
-					}
-				}));
-		MainMenu.add(MenuItem.menu("Total Member", JDBC.getCount("category"), Icons.User, new Color(230, 113, 93),
-				new Color(240, 123, 103), 739, 21, new ButtonClick() {
-					public void action() {
-						lblNewLabel.setText("Member");
-						HomeItem.setVisible(false);
-						MemberItem.setVisible(true);
-						MainMenu.setVisible(false);
-						MemberTable.setVisible(true);
-					}
-				}));
-		MainMenu.setVisible(true);
 		// BookTable=====================================================
 		BookTable.add(ReuseTable.TotalBook());
 		BookTable.setVisible(false);
@@ -1365,8 +1373,7 @@ public class Dashboard extends JFrame {
 		contentPane.add(MemberTable);
 		MemberTable.setLayout(null);
 		MemberTable.setLayout(null);
-// setVisible
-		MainMenu.setVisible(true);
+		
 		BookInput.setVisible(false);
 		BookTable.setVisible(false);
 		MemberInput.setVisible(false);
@@ -1374,7 +1381,7 @@ public class Dashboard extends JFrame {
 		IssuesedBook.setVisible(false);
 		AddIssuesedBook.setVisible(false);
 		MemberItem.setVisible(false);
-
+		ProfileView.setVisible(false);
 		ReturnedBook.setVisible(false);
 		AddReturnBook.setVisible(false);
 		ReturnBook2.setVisible(false);

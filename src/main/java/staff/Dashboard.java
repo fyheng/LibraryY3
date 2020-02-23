@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import admin.function.ButtonClick;
@@ -67,19 +69,14 @@ public class Dashboard extends JFrame {
 	private JTextField txtDay;
 	private JTextField txtYear;
 	private JTextField txtPhoneNumber;
-<<<<<<< Updated upstream
-=======
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtBookID;
+	private JTextField txtMemberID;
 	private JTable table;
-	private JTextField textField_2;
-	private JTextField textField_3;
->>>>>>> Stashed changes
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField txtLanguage;
+	private JTextField txtAuthor;
+	private JTextField txtPublishDay;
+	private JTextField txtPublishMonth;
+	private JTextField txtPublishYear;
 	private JTextField txtMember;
 	private JTextField txtBookTitle;
 	private JTextField txtIssueDay;
@@ -95,24 +92,11 @@ public class Dashboard extends JFrame {
 	private JTextField textEmailP;
 	private JTextField txtPhone;
 	private JTextField txtDob;
-	private JTextField textField_9;
-<<<<<<< Updated upstream
+	private JTextField txtDOB;
 	private JPasswordField txtPass;
 	private JTextField txtSetQuote;
-	int on=1;
-=======
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_18;
+	int on = 1;
 	private JTable AddIssuesBook;
-	private JTextField textField_19;
->>>>>>> Stashed changes
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -168,19 +152,18 @@ public class Dashboard extends JFrame {
 		JLabel label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(179, 18, 183, 145);
-		if(Adpater.getInfo().get(4).toString().equals("Male")) {
+		if (Adpater.getInfo().get(4).toString().equals("Male")) {
 			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
-		}else {
+		} else {
 			label.setIcon(GetIcon.setIcon(Icons.MaleUser));
 		}
 		ProfileView.setLayout(null);
 		ProfileView.add(label);
-		
 
-		JLabel lblNewLabel_8 = new JLabel("First Name");
-		lblNewLabel_8.setBounds(27, 209, 73, 16);
-		lblNewLabel_8.setText(Login.data.get(3));
-		ProfileView.add(lblNewLabel_8);
+		JLabel lbleFirstName = new JLabel("First Name");
+		lbleFirstName.setBounds(27, 209, 73, 16);
+		lbleFirstName.setText(Login.data.get(3));
+		ProfileView.add(lbleFirstName);
 
 		txtFirstN = new JTextField();
 		txtFirstN.setBounds(27, 237, 218, 34);
@@ -228,10 +211,10 @@ public class Dashboard extends JFrame {
 		lblDateOfBirth.setBounds(27, 358, 80, 16);
 		ProfileView.add(lblDateOfBirth);
 
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(27, 461, 521, 64);
-		ProfileView.add(textField_9);
+		txtDOB = new JTextField();
+		txtDOB.setColumns(10);
+		txtDOB.setBounds(27, 461, 521, 64);
+		ProfileView.add(txtDOB);
 
 		JLabel lblAddress_3 = new JLabel("Address");
 		lblAddress_3.setBounds(27, 432, 51, 16);
@@ -295,12 +278,12 @@ public class Dashboard extends JFrame {
 		ProfileView.setLayout(null);
 //======================================================================
 
-		JLabel lblNewLabel_2 = new JLabel("User Name");
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setBounds(0, 143, 185, 41);
-		Drawer.add(lblNewLabel_2);
+		JLabel lblUserName = new JLabel("User Name");
+		lblUserName.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		lblUserName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUserName.setForeground(Color.WHITE);
+		lblUserName.setBounds(0, 143, 185, 41);
+		Drawer.add(lblUserName);
 
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 23));
 		lblNewLabel.setBounds(220, 83, 268, 38);
@@ -361,8 +344,6 @@ public class Dashboard extends JFrame {
 				AboutUs.setVisible(true);
 			}
 		}));
-<<<<<<< Updated upstream
-
 //IssuesedBook==================================================
 
 		IssuesedBook.setBackground(Color.WHITE);
@@ -378,12 +359,10 @@ public class Dashboard extends JFrame {
 		ReturnBook2.setBackground(Color.WHITE);
 		ReturnBook2.setBounds(220, 133, 989, 645);
 		ReturnBook2.setVisible(false);
-=======
 		MemberTable.setVisible(false);
 		MemberInput.setVisible(false);
 		BookTable.setVisible(false);
 		BookInput.setVisible(false);
->>>>>>> Stashed changes
 
 		// AddIssuesedBook==============================================
 
@@ -468,10 +447,10 @@ public class Dashboard extends JFrame {
 		lblbookid.setBounds(50, 67, 97, 16);
 		AddReturnedBook.add(lblbookid);
 
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(50, 95, 319, 34);
-		AddReturnedBook.add(textField_9);
+		txtBookID = new JTextField();
+		txtBookID.setColumns(10);
+		txtBookID.setBounds(50, 95, 319, 34);
+		AddReturnedBook.add(txtBookID);
 
 		JButton btnSearch = new JButton("Search");
 		btnSearch.setHorizontalAlignment(SwingConstants.CENTER);
@@ -489,10 +468,10 @@ public class Dashboard extends JFrame {
 		ScrollAddReturnedBook.setBounds(50, 142, 903, 490);
 		AddReturnedBook.add(ScrollAddReturnedBook);
 
-		textField_19 = new JTextField();
-		textField_19.setColumns(10);
-		textField_19.setBounds(381, 95, 319, 34);
-		AddReturnedBook.add(textField_19);
+		txtMemberID = new JTextField();
+		txtMemberID.setColumns(10);
+		txtMemberID.setBounds(381, 95, 319, 34);
+		AddReturnedBook.add(txtMemberID);
 
 		JLabel lblMenberId = new JLabel("Menber ID");
 		lblMenberId.setBounds(381, 67, 97, 16);
@@ -506,23 +485,23 @@ public class Dashboard extends JFrame {
 		contentPane.add(IssuesedBook);
 		IssuesedBook.setLayout(null);
 
-		JLabel label = new JLabel("Book ID :");
-		label.setBounds(12, 13, 100, 35);
-		IssuesedBook.add(label);
+		JLabel labelbookid = new JLabel("Book ID :");
+		labelbookid.setBounds(12, 13, 100, 35);
+		IssuesedBook.add(labelbookid);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(124, 15, 300, 35);
-		IssuesedBook.add(textField_2);
+		txtBookID = new JTextField();
+		txtBookID.setColumns(10);
+		txtBookID.setBounds(124, 15, 300, 35);
+		IssuesedBook.add(txtBookID);
 
-		JLabel label_1 = new JLabel("Menber ID :");
-		label_1.setBounds(436, 13, 100, 35);
-		IssuesedBook.add(label_1);
+		JLabel lblMemberID = new JLabel("Menber ID :");
+		lblMemberID.setBounds(436, 13, 100, 35);
+		IssuesedBook.add(lblMemberID);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(548, 13, 300, 35);
-		IssuesedBook.add(textField_3);
+		txtMemberID = new JTextField();
+		txtMemberID.setColumns(10);
+		txtMemberID.setBounds(548, 13, 300, 35);
+		IssuesedBook.add(txtMemberID);
 
 		JButton btnOK = new JButton("OK");
 		btnOK.setBackground(new Color(0, 0, 102));
@@ -539,7 +518,7 @@ public class Dashboard extends JFrame {
 		IssuesedBook.setVisible(false);
 		contentPane.add(AddIssuesedBook);
 		AddIssuesedBook.add(AddIssueTable.issuetable());
-		
+
 		AddIssuesedBook.setLayout(null);
 
 		JLabel lblMenberName = new JLabel("Member Name");
@@ -551,9 +530,9 @@ public class Dashboard extends JFrame {
 		txtMember.setBounds(50, 95, 679, 34);
 		AddIssuesedBook.add(txtMember);
 
-		JLabel lblBookId = new JLabel("Book Title ");
-		lblBookId.setBounds(50, 141, 97, 16);
-		AddIssuesedBook.add(lblBookId);
+		JLabel lblBookTitle = new JLabel("Book Title ");
+		lblBookTitle.setBounds(50, 141, 97, 16);
+		AddIssuesedBook.add(lblBookTitle);
 
 		txtBookTitle = new JTextField();
 		txtBookTitle.setColumns(10);
@@ -580,18 +559,14 @@ public class Dashboard extends JFrame {
 		AddIssuesedBook.add(txtIssueYear);
 
 		JButton lblIssuesedBook = new JButton("Add");
-		
+
 		lblIssuesedBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddIssueTable.Issuemodel.addRow(new Object[] {
-						(on++),
-						txtMember.getText(),
-						txtBookTitle.getText(),
-						txtQty.getText(),
-						txtIssueYear.getText()+'-'+txtIssueMonth.getText()+'-'+txtIssueDay.getText(),
-						txtDueYear.getText()+'-'+txtDueMonth.getText()+'-'+txtDueDay.getText(),
-						txtPrice.getText()
-				});
+				AddIssueTable.Issuemodel
+						.addRow(new Object[] { (on++), txtMember.getText(), txtBookTitle.getText(), txtQty.getText(),
+								txtIssueYear.getText() + '-' + txtIssueMonth.getText() + '-' + txtIssueDay.getText(),
+								txtDueYear.getText() + '-' + txtDueMonth.getText() + '-' + txtDueDay.getText(),
+								txtPrice.getText() });
 			}
 		});
 		lblIssuesedBook.setBackground(Color.GREEN);
@@ -642,12 +617,9 @@ public class Dashboard extends JFrame {
 		button.setBackground(Color.GREEN);
 		button.setBounds(738, 137, 219, 95);
 		AddIssuesedBook.add(button);
-<<<<<<< Updated upstream
 		ReturnBook2.add(ReturnBook.TotalBook());
 		contentPane.add(ReturnBook2);
 		ReturnBook2.setLayout(null);
-=======
-
 		String[] AddIssuseHeadder = { "No", "Title", "Book Number", "Qty", "Price" };
 
 		String[][] AddIssuseData = { { "1", "All The Light You Can`t See", "001", "23", "40.00" },
@@ -657,16 +629,12 @@ public class Dashboard extends JFrame {
 		JScrollPane ScrollAddIssuesBook = new JScrollPane(AddIssuesBook);
 		ScrollAddIssuesBook.setBounds(50, 366, 903, 266);
 		AddIssuesedBook.add(ScrollAddIssuesBook);
->>>>>>> Stashed changes
 
-		// ReturnedBook
-
-<<<<<<< Updated upstream
 		// AddReturnedBook
+
 		AddReturnedBook.setBackground(Color.WHITE);
 		AddReturnedBook.setBounds(220, 133, 989, 645);
 		AddReturnedBook.setVisible(false);
-=======
 		ReturnedBook.setBackground(Color.WHITE);
 		ReturnedBook.setBounds(220, 133, 989, 645);
 		ReturnedBook.setVisible(true);
@@ -676,7 +644,6 @@ public class Dashboard extends JFrame {
 		JScrollPane ScrollTableReturnedBook = new JScrollPane(TableReturnedBook);
 		ScrollTableReturnedBook.setBounds(12, 109, 965, 523);
 		ReturnedBook.add(ScrollTableReturnedBook);
->>>>>>> Stashed changes
 
 		ReturnedBook.setBackground(Color.WHITE);
 		ReturnedBook.setBounds(220, 133, 989, 645);
@@ -689,19 +656,19 @@ public class Dashboard extends JFrame {
 		lblBookID.setBounds(12, 13, 100, 35);
 		ReturnedBook.add(lblBookID);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(124, 15, 300, 35);
-		ReturnedBook.add(textField_2);
+		txtBookID = new JTextField();
+		txtBookID.setColumns(10);
+		txtBookID.setBounds(124, 15, 300, 35);
+		ReturnedBook.add(txtBookID);
 
-		JLabel lblMemberID = new JLabel("Menber ID :");
-		lblMemberID.setBounds(436, 13, 100, 35);
-		ReturnedBook.add(lblMemberID);
+		JLabel lblMemberid = new JLabel("Menber ID :");
+		lblMemberid.setBounds(436, 13, 100, 35);
+		ReturnedBook.add(lblMemberid);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(548, 13, 300, 35);
-		ReturnedBook.add(textField_3);
+		txtMemberID = new JTextField();
+		txtMemberID.setColumns(10);
+		txtMemberID.setBounds(548, 13, 300, 35);
+		ReturnedBook.add(txtMemberID);
 
 		JButton btnok = new JButton("OK");
 		btnok.setBackground(new Color(0, 0, 102));
@@ -730,46 +697,46 @@ public class Dashboard extends JFrame {
 		BookInput.add(txtFristname);
 		txtFristname.setColumns(10);
 
-		JLabel lblNewLabel_1 = new JLabel("Book title");
-		lblNewLabel_1.setBounds(43, 34, 97, 16);
-		BookInput.add(lblNewLabel_1);
+		JLabel lblBooktitle = new JLabel("Book title");
+		lblBooktitle.setBounds(43, 34, 97, 16);
+		BookInput.add(lblBooktitle);
 
 		JLabel lblLastName = new JLabel("Language");
 		lblLastName.setBounds(438, 34, 97, 16);
 		BookInput.add(lblLastName);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(438, 62, 288, 34);
-		BookInput.add(textField_4);
+		txtLanguage = new JTextField();
+		txtLanguage.setColumns(10);
+		txtLanguage.setBounds(438, 62, 288, 34);
+		BookInput.add(txtLanguage);
 
 		JLabel lblAuthor = new JLabel("Author");
 		lblAuthor.setBounds(43, 108, 97, 16);
 		BookInput.add(lblAuthor);
 
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(43, 136, 288, 34);
-		BookInput.add(textField_5);
+		txtAuthor = new JTextField();
+		txtAuthor.setColumns(10);
+		txtAuthor.setBounds(43, 136, 288, 34);
+		BookInput.add(txtAuthor);
 
 		JLabel lblPublish = new JLabel("Publish at   ( day / month / year )");
 		lblPublish.setBounds(438, 108, 277, 16);
 		BookInput.add(lblPublish);
 
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(438, 136, 82, 34);
-		BookInput.add(textField_6);
+		txtPublishDay = new JTextField();
+		txtPublishDay.setColumns(10);
+		txtPublishDay.setBounds(438, 136, 82, 34);
+		BookInput.add(txtPublishDay);
 
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(532, 136, 82, 34);
-		BookInput.add(textField_7);
+		txtPublishMonth = new JTextField();
+		txtPublishMonth.setColumns(10);
+		txtPublishMonth.setBounds(532, 136, 82, 34);
+		BookInput.add(txtPublishMonth);
 
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(626, 136, 96, 34);
-		BookInput.add(textField_8);
+		txtPublishYear = new JTextField();
+		txtPublishYear.setColumns(10);
+		txtPublishYear.setBounds(626, 136, 96, 34);
+		BookInput.add(txtPublishYear);
 
 		JLabel lblStatus = new JLabel("Category");
 		lblStatus.setBounds(43, 182, 97, 16);
@@ -779,9 +746,9 @@ public class Dashboard extends JFrame {
 		comboBox_1.setBounds(43, 210, 288, 34);
 		BookInput.add(comboBox_1);
 
-		JLabel label_2 = new JLabel("Status");
-		label_2.setBounds(438, 182, 97, 16);
-		BookInput.add(label_2);
+		JLabel labelStatus = new JLabel("Status");
+		labelStatus.setBounds(438, 182, 97, 16);
+		BookInput.add(labelStatus);
 
 		JComboBox<String> comboBox_3 = new JComboBox<String>();
 		comboBox_3.setBounds(438, 214, 288, 34);
@@ -792,10 +759,10 @@ public class Dashboard extends JFrame {
 		BookInput.add(panel_1);
 		panel_1.setLayout(null);
 
-		JLabel lblNewLabel_6 = new JLabel("Add");
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setBounds(0, 0, 122, 34);
-		panel_1.add(lblNewLabel_6);
+		JLabel lblAdd = new JLabel("Add");
+		lblAdd.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAdd.setBounds(0, 0, 122, 34);
+		panel_1.add(lblAdd);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(438, 310, 122, 34);
@@ -806,7 +773,6 @@ public class Dashboard extends JFrame {
 		lblCancel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCancel.setBounds(0, 0, 122, 34);
 		panel_3.add(lblCancel);
-<<<<<<< Updated upstream
 		contentPane.add(MainMenu);
 
 		MainMenu.setLayout(null);
@@ -862,7 +828,6 @@ public class Dashboard extends JFrame {
 				}));
 		contentPane.add(IssuesedBook);
 		IssuesedBook.setLayout(null);
-=======
 
 		String[] row = { "No", "Book Title", "Book ID", "Member Name", "Member ID", "Issuesed Date", "Due Date",
 				"Due Date" };
@@ -870,7 +835,6 @@ public class Dashboard extends JFrame {
 		String[][] col = {
 				{ "1", "Book Title", "Book ID", "Member Name", "Member ID", "Issuesed Date", "Due Date", "Due Date" },
 				{ "2", "Book Title", "Book ID", "Member Name", "Member ID", "Issuesed Date", "Due Date", "Due Date" } };
->>>>>>> Stashed changes
 
 		// BOOK
 
@@ -928,21 +892,14 @@ public class Dashboard extends JFrame {
 		contentPane.add(BookTable);
 		BookTable.setLayout(null);
 
-<<<<<<< Updated upstream
-=======
 		JLabel lbBookID = new JLabel("Book ID");
 		lbBookID.setBounds(12, 13, 158, 35);
 		BookTable.add(lbBookID);
 
-		textField = new JTextField();
-		textField.setBounds(22, 61, 280, 35);
-		BookTable.add(textField);
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(392, 61, 280, 35);
-		BookTable.add(textField_1);
+		txtBookID = new JTextField();
+		txtBookID.setBounds(22, 61, 280, 35);
+		BookTable.add(txtBookID);
+		txtBookID.setColumns(10);
 
 		JButton btFilterResults = new JButton("Search");
 		btFilterResults.setBounds(728, 58, 200, 40);
@@ -954,7 +911,6 @@ public class Dashboard extends JFrame {
 		ScrollBookTable.setBounds(12, 109, 965, 523);
 		BookTable.add(ScrollBookTable);
 
->>>>>>> Stashed changes
 		// MEMBER
 
 		MemberItem.setBackground(new Color(0, 0, 51));
@@ -1012,12 +968,12 @@ public class Dashboard extends JFrame {
 			}
 		});
 
-		JLabel lblNewLabel_7 = new JLabel("Dashboard");
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_7.setBounds(20, 0, 160, 46);
-		lblNewLabel_7.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		dashBoard.add(lblNewLabel_7);
-		lblNewLabel_7.setForeground(Color.WHITE);
+		JLabel lblDashboard = new JLabel("Dashboard");
+		lblDashboard.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDashboard.setBounds(20, 0, 160, 46);
+		lblDashboard.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		dashBoard.add(lblDashboard);
+		lblDashboard.setForeground(Color.WHITE);
 
 		//
 		IssuebookItem.setBackground(new Color(0, 0, 51));
@@ -1098,9 +1054,9 @@ public class Dashboard extends JFrame {
 		comboBox.setBounds(43, 136, 120, 34);
 		MemberInput.add(comboBox);
 
-		JLabel lblNewLabel_3 = new JLabel("Month");
-		lblNewLabel_3.setBounds(43, 182, 61, 16);
-		MemberInput.add(lblNewLabel_3);
+		JLabel lblMonth = new JLabel("Month");
+		lblMonth.setBounds(43, 182, 61, 16);
+		MemberInput.add(lblMonth);
 
 		final JComboBox<String> txtMonth = new JComboBox<String>();
 		txtMonth.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April",
@@ -1108,9 +1064,9 @@ public class Dashboard extends JFrame {
 		txtMonth.setBounds(43, 210, 204, 34);
 		MemberInput.add(txtMonth);
 
-		JLabel lblNewLabel_4 = new JLabel("Day");
-		lblNewLabel_4.setBounds(307, 182, 61, 16);
-		MemberInput.add(lblNewLabel_4);
+		JLabel lblDay = new JLabel("Day");
+		lblDay.setBounds(307, 182, 61, 16);
+		MemberInput.add(lblDay);
 
 		JLabel lblYear = new JLabel("Year");
 		lblYear.setBounds(549, 182, 61, 16);
@@ -1135,9 +1091,9 @@ public class Dashboard extends JFrame {
 		lblPhoneNumber.setBounds(438, 108, 109, 16);
 		MemberInput.add(lblPhoneNumber);
 
-		JLabel lblNewLabel_5 = new JLabel("Role");
-		lblNewLabel_5.setBounds(211, 108, 61, 16);
-		MemberInput.add(lblNewLabel_5);
+		JLabel lblrole = new JLabel("Role");
+		lblrole.setBounds(211, 108, 61, 16);
+		MemberInput.add(lblrole);
 
 		JComboBox<String> comboBox_2 = new JComboBox<String>();
 		comboBox_2.setBounds(211, 136, 120, 34);
@@ -1204,19 +1160,19 @@ public class Dashboard extends JFrame {
 		comboBoxSex.setBounds(43, 136, 120, 34);
 		MemberInput.add(comboBoxSex);
 
-		JLabel lblMonth = new JLabel("Month");
-		lblMonth.setBounds(43, 182, 61, 16);
-		MemberInput.add(lblMonth);
+		JLabel lblMonths = new JLabel("Month");
+		lblMonths.setBounds(43, 182, 61, 16);
+		MemberInput.add(lblMonths);
 
 		final JComboBox<String> txtMonths = new JComboBox<String>();
-		txtMonths.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April", "May",
-				"June", "July", "August", "September", "October", "November", "December" }));
+		txtMonths.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April",
+				"May", "June", "July", "August", "September", "October", "November", "December" }));
 		txtMonths.setBounds(43, 210, 204, 34);
 		MemberInput.add(txtMonths);
 
-		JLabel lblDay = new JLabel("Day");
-		lblDay.setBounds(307, 182, 61, 16);
-		MemberInput.add(lblDay);
+		JLabel lblDays = new JLabel("Day");
+		lblDays.setBounds(307, 182, 61, 16);
+		MemberInput.add(lblDays);
 
 		JLabel lblYears = new JLabel("Year");
 		lblYears.setBounds(549, 182, 61, 16);
@@ -1248,20 +1204,16 @@ public class Dashboard extends JFrame {
 		MemberTable.setBounds(220, 133, 989, 645);
 		contentPane.add(MemberTable);
 		MemberTable.setLayout(null);
-<<<<<<< Updated upstream
 		MemberTable.setLayout(null);
-		
-		
-=======
 
 		JLabel lableMemberID = new JLabel("Member ID");
 		lableMemberID.setBounds(12, 13, 158, 35);
 		MemberTable.add(lableMemberID);
 
-		textField = new JTextField();
-		textField.setBounds(22, 61, 280, 35);
-		MemberTable.add(textField);
-		textField.setColumns(10);
+		txtMemberID = new JTextField();
+		txtMemberID.setBounds(22, 61, 280, 35);
+		MemberTable.add(txtMemberID);
+		txtMemberID.setColumns(10);
 
 		JButton btnFilterResult = new JButton("Search");
 		btnFilterResult.setBounds(728, 58, 200, 40);
@@ -1281,9 +1233,9 @@ public class Dashboard extends JFrame {
 		contentPane.add(AboutUs);
 		AboutUs.setLayout(null);
 
-		JLabel lblNewLabel_8 = new JLabel(new ImageIcon("D:\\JavaE1C21\\LibraryY3\\img\\rupp-logo.png"));
-		lblNewLabel_8.setBounds(29, 13, 100, 100);
-		AboutUs.add(lblNewLabel_8);
+		JLabel lblRUPP = new JLabel(new ImageIcon("D:\\JavaE1C21\\LibraryY3\\img\\rupp-logo.png"));
+		lblRUPP.setBounds(29, 13, 100, 100);
+		AboutUs.add(lblRUPP);
 
 		JLabel lblAboutUs = new JLabel("About Us");
 		lblAboutUs.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1295,9 +1247,9 @@ public class Dashboard extends JFrame {
 		AboutUs.add(panel_4);
 		panel_4.setLayout(null);
 
-		JLabel lblNewLabel_9 = new JLabel("Professor");
-		lblNewLabel_9.setBounds(12, 13, 150, 35);
-		panel_4.add(lblNewLabel_9);
+		JLabel lblProfessor = new JLabel("Professor");
+		lblProfessor.setBounds(12, 13, 150, 35);
+		panel_4.add(lblProfessor);
 
 		JLabel lblChiKoung = new JLabel("Chi Koung");
 		lblChiKoung.setBounds(174, 13, 444, 35);
@@ -1327,20 +1279,19 @@ public class Dashboard extends JFrame {
 		lblPurposeOfThe.setBounds(12, 157, 606, 50);
 		panel_4.add(lblPurposeOfThe);
 
-		JLabel lblNewLabel_10 = new JLabel("New label");
-		lblNewLabel_10.setBounds(12, 220, 606, 273);
-		panel_4.add(lblNewLabel_10);
+		JLabel lblPurpose = new JLabel("New label");
+		lblPurpose.setBounds(12, 220, 606, 273);
+		panel_4.add(lblPurpose);
 
-		JLabel lblNewLabel_11 = new JLabel("Library Management System ");
-		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_11.setBounds(12, 228, 325, 80);
-		AboutUs.add(lblNewLabel_11);
+		JLabel lblLibraryManagementSystem = new JLabel("Library Management System ");
+		lblLibraryManagementSystem.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLibraryManagementSystem.setBounds(12, 228, 325, 80);
+		AboutUs.add(lblLibraryManagementSystem);
 
 		JLabel lblVYear = new JLabel("Year 2019-2020 v1.0 ");
 		lblVYear.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVYear.setBounds(12, 321, 325, 80);
 		AboutUs.add(lblVYear);
->>>>>>> Stashed changes
 
 	}
 }

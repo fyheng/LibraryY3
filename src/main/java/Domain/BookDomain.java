@@ -57,7 +57,7 @@ public class BookDomain {
 		this.pricePaid = pricePaid;
 	}
 	public BooKStatus getStatus() {
-		return status;
+		return status; 
 	}
 	public void setStatus(BooKStatus new1) {
 		this.status = new1;

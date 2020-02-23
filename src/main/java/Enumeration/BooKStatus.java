@@ -8,6 +8,7 @@ public enum BooKStatus {
    
     private final int value;
 	BooKStatus(int value){
-		this.value= value;
+		this.value= value;   
 	}
+	//vathanak
 }

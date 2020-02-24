@@ -11,9 +11,11 @@ import javax.swing.border.EmptyBorder;
 import Controller.BookController;
 import Controller.CategoryController;
 import Controller.ImportDetailController;
+import Controller.MemberController;
 import admin.function.ButtonClick;
 import admin.table.AddIssueTable;
 import admin.table.IssueBook;
+import admin.table.MemberTable2;
 import admin.table.ReturnBook;
 import admin.table.ReuseTable;
 import admin.uiTool.DrawerItem;
@@ -81,12 +83,11 @@ public class Dashboard extends JFrame {
 	final JLabel lblNewLabel_9 = new JLabel("Member name");
 	final JComboBox<String> txtCategoryBook = new JComboBox<String>();
 
-	private JTextField txtFristname;
+	private JTextField txtFristnameMember2;
+	private JTextField txtFristnameMember;
 	private JTextField txtBookTitleBook;
-	private JTextField txtLastname;
-	private JTextField txtDay;
-	private JTextField txtYear;
-	private JTextField txtPhoneNumber;
+	private JTextField txtLastnameMember;
+	private JTextField txtPhoneNumberMember;
 	private JTextField txtLanguageBook;
 	private JTextField txtAuthorBook;
 	private JTextField txtYearBook;
@@ -785,10 +786,10 @@ public class Dashboard extends JFrame {
 		contentPane.add(MemberInput);
 		MemberInput.setLayout(null);
 
-		txtFristname = new JTextField();
-		txtFristname.setBounds(43, 62, 288, 34);
-		MemberInput.add(txtFristname);
-		txtFristname.setColumns(10);
+		txtFristnameMember = new JTextField();
+		txtFristnameMember.setBounds(43, 62, 288, 34);
+		MemberInput.add(txtFristnameMember);
+		txtFristnameMember.setColumns(10);
 
 		JLabel lblFristname = new JLabel("Frist name");
 		lblFristname.setBounds(43, 34, 97, 16);
@@ -798,10 +799,10 @@ public class Dashboard extends JFrame {
 		lblLastname.setBounds(438, 34, 97, 16);
 		MemberInput.add(lblLastname);
 
-		txtLastname = new JTextField();
-		txtLastname.setColumns(10);
-		txtLastname.setBounds(436, 62, 288, 34);
-		MemberInput.add(txtLastname);
+		txtLastnameMember = new JTextField();
+		txtLastnameMember.setColumns(10);
+		txtLastnameMember.setBounds(436, 62, 288, 34);
+		MemberInput.add(txtLastnameMember);
 
 		JLabel lblSex = new JLabel("Sex");
 		lblSex.setBounds(43, 108, 97, 16);
@@ -809,53 +810,17 @@ public class Dashboard extends JFrame {
 
 		final JComboBox<String> sexCombo = new JComboBox<String>();
 		sexCombo.setModel(new DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
-		sexCombo.setBounds(43, 136, 120, 34);
+		sexCombo.setBounds(43, 136, 288, 34);
 		MemberInput.add(sexCombo);
 
-		JLabel lblNewLabel_3 = new JLabel("Month");
-		lblNewLabel_3.setBounds(43, 182, 61, 16);
-		MemberInput.add(lblNewLabel_3);
-
-		final JComboBox<String> txtMonth = new JComboBox<String>();
-		txtMonth.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April",
-				"May", "June", "July", "August", "September", "October", "November", "December" }));
-		txtMonth.setBounds(43, 210, 204, 34);
-		MemberInput.add(txtMonth);
-
-		JLabel lblNewLabel_4 = new JLabel("Day");
-		lblNewLabel_4.setBounds(307, 182, 61, 16);
-		MemberInput.add(lblNewLabel_4);
-
-		JLabel lblYear = new JLabel("Year");
-		lblYear.setBounds(549, 182, 61, 16);
-		MemberInput.add(lblYear);
-
-		txtDay = new JTextField();
-		txtDay.setBounds(307, 209, 175, 34);
-		MemberInput.add(txtDay);
-		txtDay.setColumns(10);
-
-		txtYear = new JTextField();
-		txtYear.setBounds(549, 209, 175, 34);
-		MemberInput.add(txtYear);
-		txtYear.setColumns(10);
-
-		txtPhoneNumber = new JTextField();
-		txtPhoneNumber.setColumns(10);
-		txtPhoneNumber.setBounds(436, 135, 288, 34);
-		MemberInput.add(txtPhoneNumber);
+		txtPhoneNumberMember = new JTextField();
+		txtPhoneNumberMember.setColumns(10);
+		txtPhoneNumberMember.setBounds(436, 135, 288, 34);
+		MemberInput.add(txtPhoneNumberMember);
 
 		JLabel lblPhoneNumber = new JLabel("Phone number");
 		lblPhoneNumber.setBounds(438, 108, 109, 16);
 		MemberInput.add(lblPhoneNumber);
-
-		JLabel lblNewLabel_5 = new JLabel("Role");
-		lblNewLabel_5.setBounds(211, 108, 61, 16);
-		MemberInput.add(lblNewLabel_5);
-
-		JComboBox<String> roleCombo = new JComboBox<String>();
-		roleCombo.setBounds(211, 136, 120, 34);
-		MemberInput.add(roleCombo);
 
 		JLabel lblAddress = new JLabel("Your birthday");
 		lblAddress.setForeground(Color.LIGHT_GRAY);
@@ -863,12 +828,12 @@ public class Dashboard extends JFrame {
 		MemberInput.add(lblAddress);
 
 		JLabel lblAddress_1 = new JLabel("Address");
-		lblAddress_1.setBounds(446, 259, 97, 16);
+		lblAddress_1.setBounds(438, 182, 97, 16);
 		MemberInput.add(lblAddress_1);
 
 		final JTextArea txtAddress = new JTextArea();
 		txtAddress.setBackground(Color.WHITE);
-		txtAddress.setBounds(446, 287, 278, 147);
+		txtAddress.setBounds(438, 210, 278, 147);
 		txtAddress.setBorder(border);
 		MemberInput.add(txtAddress);
 
@@ -881,10 +846,10 @@ public class Dashboard extends JFrame {
 		contentPane.add(MemberInput);
 		MemberInput.setLayout(null);
 
-		txtFristname = new JTextField();
-		txtFristname.setBounds(43, 62, 288, 34);
-		MemberInput.add(txtFristname);
-		txtFristname.setColumns(10);
+		txtFristnameMember2 = new JTextField();
+		txtFristnameMember2.setBounds(43, 62, 288, 34);
+		MemberInput.add(txtFristnameMember2);
+		txtFristnameMember2.setColumns(10);
 
 		JLabel lblFristName = new JLabel("Frist name");
 		lblFristName.setBounds(43, 34, 97, 16);
@@ -893,11 +858,6 @@ public class Dashboard extends JFrame {
 		JLabel lblLastNames = new JLabel("Last name");
 		lblLastNames.setBounds(438, 34, 97, 16);
 		MemberInput.add(lblLastNames);
-
-		txtLastname = new JTextField();
-		txtLastname.setColumns(10);
-		txtLastname.setBounds(436, 62, 288, 34);
-		MemberInput.add(txtLastname);
 
 		JLabel lblsex = new JLabel("Sex");
 		lblsex.setBounds(43, 108, 97, 16);
@@ -908,62 +868,31 @@ public class Dashboard extends JFrame {
 		comboBoxSex.setBounds(43, 136, 120, 34);
 		MemberInput.add(comboBoxSex);
 
-		JLabel lblMonth = new JLabel("Month");
-		lblMonth.setBounds(43, 182, 61, 16);
-		MemberInput.add(lblMonth);
-
-		final JComboBox<String> txtMonths = new JComboBox<String>();
-		txtMonths.setModel(new DefaultComboBoxModel<String>(new String[] { "January", "February", "March", "April",
-				"May", "June", "July", "August", "September", "October", "November", "December" }));
-		txtMonths.setBounds(43, 210, 204, 34);
-		MemberInput.add(txtMonths);
-
-		JLabel lblDay = new JLabel("Day");
-		lblDay.setBounds(307, 182, 61, 16);
-		MemberInput.add(lblDay);
-
-		JLabel lblYears = new JLabel("Year");
-		lblYears.setBounds(549, 182, 61, 16);
-		MemberInput.add(lblYears);
-
-		txtDay = new JTextField();
-		txtDay.setBounds(307, 209, 175, 34);
-		MemberInput.add(txtDay);
-		txtDay.setColumns(10);
-
-		txtYear = new JTextField();
-		txtYear.setBounds(549, 209, 175, 34);
-		MemberInput.add(txtYear);
-		txtYear.setColumns(10);
-
-		txtPhoneNumber = new JTextField();
-		txtPhoneNumber.setBounds(436, 135, 288, 34);
-		MemberInput.add(txtPhoneNumber);
-
 		txtNationalID = new JTextField();
 		txtNationalID.setColumns(10);
-		txtNationalID.setBounds(43, 287, 288, 34);
+		txtNationalID.setBounds(43, 209, 288, 34);
 		MemberInput.add(txtNationalID);
 
 		JLabel lblNotionalId = new JLabel("Notional ID");
-		lblNotionalId.setBounds(43, 259, 97, 16);
+		lblNotionalId.setBounds(43, 182, 97, 16);
 		MemberInput.add(lblNotionalId);
 
 		JButton btnMemberCreate = new JButton("Create");
 		btnMemberCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				if (txtFristname.getText().length() == 0 || txtYear.getText().length() == 0
-//						|| txtDay.getText().length() == 0 || txtAddress.getText().length() == 0
-//						|| txtLastname.getText().length() == 0 || txtPhoneNumber.getText().length() == 0
-//						|| txtNationalID.getText().length() == 0) {
-//
-//				} else {
-					String dob = txtYear.getText() + "-" + txtMonths.getSelectedIndex() + 1 + "-" + txtDay.getText();
-					System.out.println("kok"+txtFristname.getText());
-				//}
-				
-				
-				
+				if (txtFristnameMember.getText().length() == 0 || txtAddress.getText().length() == 0
+						|| txtLastnameMember.getText().length() == 0 || txtPhoneNumberMember.getText().length() == 0
+						|| txtNationalID.getText().length() == 0) {
+					JOptionPane.showMessageDialog(contentPane, "Please insert all field", "Fail",
+							JOptionPane.WARNING_MESSAGE);
+				} else {
+					MemberController member11 = new MemberController();
+					member11.create(txtNationalID.getText(), txtFristnameMember.getText(), txtLastnameMember.getText(),
+							(String) comboBoxSex.getSelectedItem(), txtEmailMember.getText(),
+							txtPhoneNumberMember.getText(), txtAddress.getText(), 3);
+					MemberTable2.setTable();
+				}
+
 			}
 		});
 		btnMemberCreate.setBounds(211, 494, 117, 29);
@@ -979,11 +908,11 @@ public class Dashboard extends JFrame {
 
 		txtEmailMember = new JTextField();
 		txtEmailMember.setColumns(10);
-		txtEmailMember.setBounds(43, 400, 288, 34);
+		txtEmailMember.setBounds(43, 325, 288, 34);
 		MemberInput.add(txtEmailMember);
 
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(43, 372, 97, 16);
+		lblEmail.setBounds(43, 289, 97, 16);
 		MemberInput.add(lblEmail);
 		MemberInput.setVisible(false);
 		// Add book
@@ -1139,13 +1068,15 @@ public class Dashboard extends JFrame {
 							JOptionPane.WARNING_MESSAGE);
 				} else {
 					try {
-						ArrayList<ArrayList<String>> secuser = JDBC.readBy("book", "book_code", txtBookCodeBook.getText());
-						if(secuser.size()!=0) {
+						ArrayList<ArrayList<String>> secuser = JDBC.readBy("book", "book_code",
+								txtBookCodeBook.getText());
+						if (secuser.size() != 0) {
 							JOptionPane.showMessageDialog(contentPane, "This book already has", "Fail",
 									JOptionPane.WARNING_MESSAGE);
-						}else {
+						} else {
 							BookController bookcontroller = new BookController();
-							String date = txtYearBook.getText() + "-" + txtMonthBook.getText() + "-" + txtDayBook.getText();
+							String date = txtYearBook.getText() + "-" + txtMonthBook.getText() + "-"
+									+ txtDayBook.getText();
 							bookcontroller.create(txtBookCodeBook.getText(), txtBookTitleBook.getText(),
 									txtLanguageBook.getText(), txtAuthorBook.getText(), date, txtEditionBook.getText(),
 									txtCategoryBook.getSelectedIndex() + 4);
@@ -1167,7 +1098,7 @@ public class Dashboard extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 					///
 				}
 			}
@@ -1188,153 +1119,149 @@ public class Dashboard extends JFrame {
 		JLabel lblBookCode = new JLabel("Book Code");
 		lblBookCode.setBounds(43, 259, 97, 16);
 		BookInput.add(lblBookCode);
-		//Import book============================================================================================
-				ImportBook.setBackground(Color.WHITE);
-				ImportBook.setBounds(220, 133, 989, 645);
-				contentPane.add(ImportBook);
-				ImportBook.setLayout(null);
-				
-				JLabel lblNewLabel_2 = new JLabel("Book code");
-				lblNewLabel_2.setBounds(47, 26, 114, 16);
-				ImportBook.add(lblNewLabel_2);
-				
-				txtBookCodeImport = new JTextField();
-				txtBookCodeImport.setBounds(47, 54, 197, 26);
-				ImportBook.add(txtBookCodeImport);
-				txtBookCodeImport.setColumns(10);
-				
-				JButton btnSearchImport = new JButton("search");
-				btnSearchImport.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						try {
-							ArrayList<ArrayList<String>> book = JDBC.readBy("book", "book_code", txtBookCodeImport.getText());
-							if(book.size()==0) {
-								JOptionPane.showMessageDialog(contentPane, "Not Found", "Fail",
-										JOptionPane.WARNING_MESSAGE);
-							}else {
-								txtBookTitleImport.setText(book.get(0).get(3));
-								
-							}
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+		// Import
+		// book============================================================================================
+		ImportBook.setBackground(Color.WHITE);
+		ImportBook.setBounds(220, 133, 989, 645);
+		contentPane.add(ImportBook);
+		ImportBook.setLayout(null);
+
+		JLabel lblNewLabel_2 = new JLabel("Book code");
+		lblNewLabel_2.setBounds(47, 26, 114, 16);
+		ImportBook.add(lblNewLabel_2);
+
+		txtBookCodeImport = new JTextField();
+		txtBookCodeImport.setBounds(47, 54, 197, 26);
+		ImportBook.add(txtBookCodeImport);
+		txtBookCodeImport.setColumns(10);
+
+		JButton btnSearchImport = new JButton("search");
+		btnSearchImport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ArrayList<ArrayList<String>> book = JDBC.readBy("book", "book_code", txtBookCodeImport.getText());
+					if (book.size() == 0) {
+						JOptionPane.showMessageDialog(contentPane, "Not Found", "Fail", JOptionPane.WARNING_MESSAGE);
+					} else {
+						txtBookTitleImport.setText(book.get(0).get(3));
+
 					}
-				});
-				btnSearchImport.setBounds(283, 54, 117, 29);
-				ImportBook.add(btnSearchImport);
-				
-				JLabel lblBookTitle_1 = new JLabel("Book title");
-				lblBookTitle_1.setBounds(47, 119, 114, 16);
-				ImportBook.add(lblBookTitle_1);
-				
-				txtBookTitleImport = new JTextField();
-				txtBookTitleImport.setColumns(10);
-				txtBookTitleImport.setBounds(47, 147, 216, 26);
-				ImportBook.add(txtBookTitleImport);
-				
-				JLabel lblBookPrice = new JLabel("Book Price");
-				lblBookPrice.setBounds(47, 185, 114, 16);
-				ImportBook.add(lblBookPrice);
-				
-				txtBookPriceImport = new JTextField();
-				txtBookPriceImport.setColumns(10);
-				txtBookPriceImport.setBounds(47, 213, 216, 26);
-				ImportBook.add(txtBookPriceImport);
-				
-				JLabel lblBookQty = new JLabel("Book qty");
-				lblBookQty.setBounds(47, 251, 114, 16);
-				ImportBook.add(lblBookQty);
-				
-				txtBookQtyImport = new JTextField();
-				txtBookQtyImport.setColumns(10);
-				txtBookQtyImport.setBounds(47, 279, 216, 26);
-				ImportBook.add(txtBookQtyImport);
-				
-				JLabel lblYear_1 = new JLabel("Year");
-				lblYear_1.setBounds(47, 317, 56, 16);
-				ImportBook.add(lblYear_1);
-				
-				txtYearImport = new JTextField();
-				txtYearImport.setColumns(10);
-				txtYearImport.setBounds(47, 345, 64, 26);
-				ImportBook.add(txtYearImport);
-				
-				JLabel lblMonth_2 = new JLabel("Month");
-				lblMonth_2.setBounds(123, 317, 56, 16);
-				ImportBook.add(lblMonth_2);
-				
-				JLabel lblMonth_1 = new JLabel("Day");
-				lblMonth_1.setBounds(199, 317, 56, 16);
-				ImportBook.add(lblMonth_1);
-				
-				txtMonthImport = new JTextField();
-				txtMonthImport.setColumns(10);
-				txtMonthImport.setBounds(123, 345, 64, 26);
-				ImportBook.add(txtMonthImport);
-				
-				txtDayImport = new JTextField();
-				txtDayImport.setColumns(10);
-				txtDayImport.setBounds(199, 345, 64, 26);
-				ImportBook.add(txtDayImport);
-				
-				JLabel lblDescription = new JLabel("Description");
-				lblDescription.setBounds(47, 383, 114, 16);
-				ImportBook.add(lblDescription);
-				
-				final JTextArea txtDescriptionImport = new JTextArea();
-				txtDescriptionImport.setBounds(47, 411, 216, 74);
-				txtDescriptionImport.setBorder(border);
-				ImportBook.add(txtDescriptionImport);
-				
-				JButton btnImport = new JButton("Import");
-				btnImport.setBounds(283, 538, 117, 29);
-				btnImport.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						ImportDetailController obj = new ImportDetailController();
-						String dob = txtYearImport.getText()+"-"+txtMonthImport.getText()+"-"+txtDayImport.getText();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnSearchImport.setBounds(283, 54, 117, 29);
+		ImportBook.add(btnSearchImport);
+
+		JLabel lblBookTitle_1 = new JLabel("Book title");
+		lblBookTitle_1.setBounds(47, 119, 114, 16);
+		ImportBook.add(lblBookTitle_1);
+
+		txtBookTitleImport = new JTextField();
+		txtBookTitleImport.setColumns(10);
+		txtBookTitleImport.setBounds(47, 147, 216, 26);
+		ImportBook.add(txtBookTitleImport);
+
+		JLabel lblBookPrice = new JLabel("Book Price");
+		lblBookPrice.setBounds(47, 185, 114, 16);
+		ImportBook.add(lblBookPrice);
+
+		txtBookPriceImport = new JTextField();
+		txtBookPriceImport.setColumns(10);
+		txtBookPriceImport.setBounds(47, 213, 216, 26);
+		ImportBook.add(txtBookPriceImport);
+
+		JLabel lblBookQty = new JLabel("Book qty");
+		lblBookQty.setBounds(47, 251, 114, 16);
+		ImportBook.add(lblBookQty);
+
+		txtBookQtyImport = new JTextField();
+		txtBookQtyImport.setColumns(10);
+		txtBookQtyImport.setBounds(47, 279, 216, 26);
+		ImportBook.add(txtBookQtyImport);
+
+		JLabel lblYear_1 = new JLabel("Year");
+		lblYear_1.setBounds(47, 317, 56, 16);
+		ImportBook.add(lblYear_1);
+
+		txtYearImport = new JTextField();
+		txtYearImport.setColumns(10);
+		txtYearImport.setBounds(47, 345, 64, 26);
+		ImportBook.add(txtYearImport);
+
+		JLabel lblMonth_2 = new JLabel("Month");
+		lblMonth_2.setBounds(123, 317, 56, 16);
+		ImportBook.add(lblMonth_2);
+
+		JLabel lblMonth_1 = new JLabel("Day");
+		lblMonth_1.setBounds(199, 317, 56, 16);
+		ImportBook.add(lblMonth_1);
+
+		txtMonthImport = new JTextField();
+		txtMonthImport.setColumns(10);
+		txtMonthImport.setBounds(123, 345, 64, 26);
+		ImportBook.add(txtMonthImport);
+
+		txtDayImport = new JTextField();
+		txtDayImport.setColumns(10);
+		txtDayImport.setBounds(199, 345, 64, 26);
+		ImportBook.add(txtDayImport);
+
+		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setBounds(47, 383, 114, 16);
+		ImportBook.add(lblDescription);
+
+		final JTextArea txtDescriptionImport = new JTextArea();
+		txtDescriptionImport.setBounds(47, 411, 216, 74);
+		txtDescriptionImport.setBorder(border);
+		ImportBook.add(txtDescriptionImport);
+
+		JButton btnImport = new JButton("Import");
+		btnImport.setBounds(283, 538, 117, 29);
+		btnImport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ImportDetailController obj = new ImportDetailController();
+				String dob = txtYearImport.getText() + "-" + txtMonthImport.getText() + "-" + txtDayImport.getText();
 //						System.out.println(dob);
 //						System.out.println(txtBookQtyImport.getText());
 //						System.out.println(txtBookPriceImport.getText());
 //						System.out.println(txtBookQtyImport.getText());
-						try {
-							//importDetail.create(10, 100,"111222", "2020-02-23", "test", 1, 1);
-							
-							obj.create(
-									Integer.parseInt(txtBookQtyImport.getText()),
-									Double.parseDouble(txtBookPriceImport.getText()),
-									txtBookCodeImport.getText(), 
-									dob, 
-									txtDescriptionImport.getText(),
-									Integer.parseInt(Adpater.getInfo().get(0)) , 1
-									
-							);
-							System.out.println(txtBookQtyImport.getText());
+				try {
+					// importDetail.create(10, 100,"111222", "2020-02-23", "test", 1, 1);
+
+					obj.create(Integer.parseInt(txtBookQtyImport.getText()),
+							Double.parseDouble(txtBookPriceImport.getText()), txtBookCodeImport.getText(), dob,
+							txtDescriptionImport.getText(), Integer.parseInt(Adpater.getInfo().get(0)), 1
+
+					);
+					System.out.println(txtBookQtyImport.getText());
 ////							System.out.println(txtBookPriceImport.getText());
 ////							System.out.println(txtBookCodeImport.getText());
 ////							System.out.println(dob);
 ////							System.out.println(Adpater.getInfo().get(0));
-						} catch (NumberFormatException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
-					}
-				});
-				ImportBook.add(btnImport);
-				
-				JButton btnCancelImport = new JButton("Cancel");
-				btnCancelImport.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-					}
-				});
-				btnCancelImport.setBounds(490, 538, 117, 29);
-				ImportBook.add(btnCancelImport);
-				ImportBook.setVisible(false);
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		ImportBook.add(btnImport);
+
+		JButton btnCancelImport = new JButton("Cancel");
+		btnCancelImport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		btnCancelImport.setBounds(490, 538, 117, 29);
+		ImportBook.add(btnCancelImport);
+		ImportBook.setVisible(false);
 		// ========================================================================================
 		// AddReturnedBook
 		AddReturnBook.setBackground(Color.WHITE);
@@ -1534,10 +1461,16 @@ public class Dashboard extends JFrame {
 				AddReturnBook.setVisible(false);
 				AddIssuesedBook.setVisible(false);
 				ReturnBook2.setVisible(false);
-				ProfileView.setVisible(false);
 				IssuebookItem.setVisible(false);
 				ReturnedbookItem.setVisible(false);
 				MemberItem.setVisible(false);
+				MemberItem.setVisible(false);
+				BookItem.setVisible(false);
+				BookTable.setVisible(false);
+				ReturnedBook.setVisible(false);
+				ProfileView.setVisible(false);
+				AddBookCategory.setVisible(false);
+				ImportBook.setVisible(false);
 			}
 		});
 
@@ -1594,6 +1527,7 @@ public class Dashboard extends JFrame {
 		MemberTable.setBackground(Color.WHITE);
 		MemberTable.setBounds(220, 133, 989, 645);
 		contentPane.add(MemberTable);
+		MemberTable.add(MemberTable2.issuetable());
 		MemberTable.setToolTipText("");
 
 		MemberTable.setBackground(Color.WHITE);
@@ -1602,19 +1536,28 @@ public class Dashboard extends JFrame {
 		MemberTable.setLayout(null);
 		MemberTable.setLayout(null);
 
-		BookInput.setVisible(false);
-		BookTable.setVisible(false);
+		MemberInput.setVisible(false);
 		MemberTable.setVisible(false);
-		IssuesedBook.setVisible(false);
-		AddIssuesedBook.setVisible(false);
-		MemberItem.setVisible(false);
-		ProfileView.setVisible(false);
-		ReturnedBook.setVisible(false);
-		AddReturnBook.setVisible(false);
-		ReturnBook2.setVisible(false);
+		BookTable.setVisible(false);
+		BookInput.setVisible(false);
 		AboutUs.setVisible(false);
+		IssuesedBook.setVisible(false);
+		HomeItem.setVisible(true);
+		MainMenu.setVisible(true);
+		BookItem.setVisible(false);
+		AddReturnBook.setVisible(false);
+		AddIssuesedBook.setVisible(false);
+		ReturnBook2.setVisible(false);
+		IssuebookItem.setVisible(false);
+		ReturnedbookItem.setVisible(false);
+		MemberItem.setVisible(false);
+		MemberItem.setVisible(false);
+		BookItem.setVisible(false);
+		BookTable.setVisible(false);
+		ReturnedBook.setVisible(false);
 		ProfileView.setVisible(false);
 		AddBookCategory.setVisible(false);
+		ImportBook.setVisible(false);
 
 	}
 }

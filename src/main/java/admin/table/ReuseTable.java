@@ -14,7 +14,6 @@ import configDB.JDBC;
 public class ReuseTable {
 
 	public static DefaultTableModel model = new DefaultTableModel();
-	// pek heng
 
 	public static JScrollPane TotalBook() throws SQLException {
 		JTable TotalBookTable = new JTable(model);
@@ -53,8 +52,6 @@ public class ReuseTable {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
-		
+		}	
 	}
 }

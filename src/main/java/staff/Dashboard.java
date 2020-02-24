@@ -937,7 +937,6 @@ public class Dashboard extends JFrame {
 		txtYear.setColumns(10);
 
 		txtPhoneNumber = new JTextField();
-		txtPhoneNumber.setColumns(10);
 		txtPhoneNumber.setBounds(436, 135, 288, 34);
 		MemberInput.add(txtPhoneNumber);
 
@@ -953,22 +952,18 @@ public class Dashboard extends JFrame {
 		JButton btnMemberCreate = new JButton("Create");
 		btnMemberCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtFristname.getText().length() == 0 || txtYear.getText().length() == 0
-						|| txtDay.getText().length() == 0 || txtAddress.getText().length() == 0
-						|| txtLastname.getText().length() == 0 || txtPhoneNumber.getText().length() == 0
-						|| txtNationalID.getText().length() == 0) {
-
-				} else {
-//					JDBC.insert("member", 0, txtNationalID.getText(), txtFristname.getText(), txtLastname.getText(),
-//							txtFristname.getText() + txtLastname.getText(), comboBoxSex.getSelectedItem(),
-//							txtEmailMember.getText(), txtAddress.getText(),);
-				}
-				String dob = txtYear.getText() + "-" + txtMonths.getSelectedIndex() + 1 + "-" + txtDay.getText();
-				txtPhoneNumber.getText();
-				;
-				/*
-				 
-				 */
+//				if (txtFristname.getText().length() == 0 || txtYear.getText().length() == 0
+//						|| txtDay.getText().length() == 0 || txtAddress.getText().length() == 0
+//						|| txtLastname.getText().length() == 0 || txtPhoneNumber.getText().length() == 0
+//						|| txtNationalID.getText().length() == 0) {
+//
+//				} else {
+					String dob = txtYear.getText() + "-" + txtMonths.getSelectedIndex() + 1 + "-" + txtDay.getText();
+					System.out.println("kok"+txtFristname.getText());
+				//}
+				
+				
+				
 			}
 		});
 		btnMemberCreate.setBounds(211, 494, 117, 29);

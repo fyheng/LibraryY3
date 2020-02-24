@@ -22,9 +22,9 @@ public class Adpater {
 	
 	public static ArrayList<String> getRole() throws SQLException {
 		
-		//System.out.println("test"+JDBC.readBy("role", "id", Login.data.get(0)));
+		System.out.println("test"+JDBC.readBy("role", "id", Login.data.get(5)));
 		
-		return JDBC.readBy("role", "id", Login.data.get(0)).get(0);
+		return JDBC.readBy("role", "id", Login.data.get(5)).get(0);
 	}
 	
 	

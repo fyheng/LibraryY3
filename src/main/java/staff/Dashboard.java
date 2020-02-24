@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.BookController;
 import Controller.CategoryController;
+import Controller.ImportDetailController;
 import admin.function.ButtonClick;
 import admin.table.AddIssueTable;
 import admin.table.IssueBook;
@@ -1208,6 +1209,23 @@ public class Dashboard extends JFrame {
 				txtBookCodeImport.setColumns(10);
 				
 				JButton btnSearchImport = new JButton("search");
+				btnSearchImport.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							ArrayList<ArrayList<String>> book = JDBC.readBy("book", "book_code", txtBookCodeImport.getText());
+							if(book.size()==0) {
+								JOptionPane.showMessageDialog(contentPane, "Not Found", "Fail",
+										JOptionPane.WARNING_MESSAGE);
+							}else {
+								txtBookTitleImport.setText(book.get(0).get(3));
+								
+							}
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
 				btnSearchImport.setBounds(283, 54, 117, 29);
 				ImportBook.add(btnSearchImport);
 				
@@ -1269,16 +1287,56 @@ public class Dashboard extends JFrame {
 				lblDescription.setBounds(47, 383, 114, 16);
 				ImportBook.add(lblDescription);
 				
-				JTextArea txtDescriptionImport = new JTextArea();
+				final JTextArea txtDescriptionImport = new JTextArea();
 				txtDescriptionImport.setBounds(47, 411, 216, 74);
 				txtDescriptionImport.setBorder(border);
 				ImportBook.add(txtDescriptionImport);
 				
 				JButton btnImport = new JButton("Import");
 				btnImport.setBounds(283, 538, 117, 29);
+				btnImport.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ImportDetailController obj = new ImportDetailController();
+						String dob = txtYearImport.getText()+"-"+txtMonthImport.getText()+"-"+txtDayImport.getText();
+//						System.out.println(dob);
+//						System.out.println(txtBookQtyImport.getText());
+//						System.out.println(txtBookPriceImport.getText());
+//						System.out.println(txtBookQtyImport.getText());
+						try {
+							//importDetail.create(10, 100,"111222", "2020-02-23", "test", 1, 1);
+							
+							obj.create(
+									Integer.parseInt(txtBookQtyImport.getText()),
+									Double.parseDouble(txtBookPriceImport.getText()),
+									txtBookCodeImport.getText(), 
+									dob, 
+									txtDescriptionImport.getText(),
+									Integer.parseInt(Adpater.getInfo().get(0)) , 1
+									
+							);
+							System.out.println(txtBookQtyImport.getText());
+////							System.out.println(txtBookPriceImport.getText());
+////							System.out.println(txtBookCodeImport.getText());
+////							System.out.println(dob);
+////							System.out.println(Adpater.getInfo().get(0));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+					}
+				});
 				ImportBook.add(btnImport);
 				
 				JButton btnCancelImport = new JButton("Cancel");
+				btnCancelImport.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				btnCancelImport.setBounds(490, 538, 117, 29);
 				ImportBook.add(btnCancelImport);
 				ImportBook.setVisible(false);

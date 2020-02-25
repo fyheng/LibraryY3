@@ -12,6 +12,7 @@ import Controller.BookController;
 import Controller.CategoryController;
 import Controller.ImportDetailController;
 import Controller.MemberController;
+import Controller.SupplierController;
 import admin.function.ButtonClick;
 import admin.table.AddIssueTable;
 import admin.table.IssueBook;
@@ -56,6 +57,7 @@ public class Dashboard extends JFrame {
 	JLabel lblNewLabel = new JLabel("Home");
 	final JPanel HomeItem = new JPanel();
 	final JPanel MemberItem = new JPanel();
+	final JPanel SupplierItem = new JPanel();
 	final JPanel BookItem = new JPanel();
 	final JPanel IssuebookItem = new JPanel();
 	final JPanel ReturnedbookItem = new JPanel();
@@ -74,6 +76,8 @@ public class Dashboard extends JFrame {
 	JPanel ProfileView = new JPanel();
 	JPanel AddBookCategory = new JPanel();
 	JPanel ImportBook = new JPanel();
+	JPanel Supplierview = new JPanel();
+	JPanel Addsupplier = new JPanel();
 
 	final JLabel setMemberName = new JLabel("");
 	final JLabel setBookTitle = new JLabel("");
@@ -125,6 +129,10 @@ public class Dashboard extends JFrame {
 	private JTextField txtYearImport;
 	private JTextField txtMonthImport;
 	private JTextField txtDayImport;
+	private JTextField txtfirstnameSupplier;
+	private JTextField txtLastnameSupplier;
+	private JTextField txtPhoneNumber;
+	private JTextField txtEmailSupplier;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -540,6 +548,20 @@ public class Dashboard extends JFrame {
 		lblNewLabel.setBounds(220, 83, 268, 38);
 		contentPane.add(lblNewLabel);
 
+		SupplierItem.setBackground(new Color(0, 0, 51));
+		SupplierItem.setBounds(0, 263, 185, 475);
+		Drawer.add(SupplierItem);
+		SupplierItem.setLayout(null);
+
+		SupplierItem.add(DrawerItem.drawerItem("Add supplier", 0, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Add supplier");
+				MainMenu.setVisible(false);
+				HomeItem.setVisible(false);
+				Supplierview.setVisible(true);
+			}
+		}));
+
 		HomeItem.setBackground(new Color(0, 0, 51));
 		HomeItem.setBounds(0, 263, 185, 475);
 		Drawer.add(HomeItem);
@@ -585,13 +607,28 @@ public class Dashboard extends JFrame {
 				ReturnedbookItem.setVisible(true);
 			}
 		}));
-		HomeItem.add(DrawerItem.drawerItem("About Us", 46 * 4, new ButtonClick() {
+		HomeItem.add(DrawerItem.drawerItem("Supplier", 46 * 4, new ButtonClick() {
+			public void action() {
+				lblNewLabel.setText("Supplier");
+				MainMenu.setVisible(false);
+				MemberInput.setVisible(false);
+				MemberTable.setVisible(false);
+				BookTable.setVisible(false);
+				BookInput.setVisible(false);
+				HomeItem.setVisible(false);
+				ReturnedBook.setVisible(false);
+				SupplierItem.setVisible(true);
+				Addsupplier.setVisible(true);
+			}
+		}));
+		HomeItem.add(DrawerItem.drawerItem("About Us", 46 * 5, new ButtonClick() {
 			public void action() {
 				lblNewLabel.setText("About Us");
 				MainMenu.setVisible(false);
 				MemberInput.setVisible(false);
 				MemberTable.setVisible(false);
 				BookTable.setVisible(false);
+				HomeItem.setVisible(false);
 				BookInput.setVisible(false);
 				ReturnedBook.setVisible(false);
 				AboutUs.setVisible(true);
@@ -1448,6 +1485,8 @@ public class Dashboard extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Addsupplier.setVisible(false);
+				Supplierview.setVisible(false);
 				lblNewLabel.setText("Home");
 				MemberInput.setVisible(false);
 				MemberTable.setVisible(false);
@@ -1471,6 +1510,7 @@ public class Dashboard extends JFrame {
 				ProfileView.setVisible(false);
 				AddBookCategory.setVisible(false);
 				ImportBook.setVisible(false);
+				SupplierItem.setVisible(false);
 			}
 		});
 
@@ -1522,6 +1562,91 @@ public class Dashboard extends JFrame {
 			}
 		}));
 
+		Supplierview.setBounds(220, 133, 989, 645);
+		contentPane.add(Supplierview);
+		Supplierview.setBackground(Color.WHITE);
+		Supplierview.setLayout(null);
+
+		JLabel lblNewLabel_3 = new JLabel("First name");
+		lblNewLabel_3.setBounds(42, 35, 128, 16);
+		Supplierview.add(lblNewLabel_3);
+
+		txtfirstnameSupplier = new JTextField();
+		txtfirstnameSupplier.setBounds(40, 62, 249, 34);
+		Supplierview.add(txtfirstnameSupplier);
+		txtfirstnameSupplier.setColumns(10);
+
+		JLabel lblLastName_2 = new JLabel("Last name");
+		lblLastName_2.setBounds(395, 35, 128, 16);
+		Supplierview.add(lblLastName_2);
+
+		txtLastnameSupplier = new JTextField();
+		txtLastnameSupplier.setColumns(10);
+		txtLastnameSupplier.setBounds(395, 62, 249, 34);
+		Supplierview.add(txtLastnameSupplier);
+
+		JLabel lblSex_1 = new JLabel("Sex");
+		lblSex_1.setBounds(42, 108, 128, 16);
+		Supplierview.add(lblSex_1);
+
+		final JComboBox<String> sexSupplier = new JComboBox<String>();
+		sexSupplier.setModel(new DefaultComboBoxModel<String>(new String[] { "Male", "Female" }));
+		sexSupplier.setBounds(38, 136, 251, 27);
+		Supplierview.add(sexSupplier);
+
+		JLabel lblPhoneNumber_2 = new JLabel("Phone number");
+		lblPhoneNumber_2.setBounds(395, 108, 128, 16);
+		Supplierview.add(lblPhoneNumber_2);
+
+		txtPhoneNumber = new JTextField();
+		txtPhoneNumber.setColumns(10);
+		txtPhoneNumber.setBounds(395, 135, 249, 34);
+		Supplierview.add(txtPhoneNumber);
+
+		JLabel lblEmail_2 = new JLabel("Email");
+		lblEmail_2.setBounds(42, 175, 128, 16);
+		Supplierview.add(lblEmail_2);
+
+		txtEmailSupplier = new JTextField();
+		txtEmailSupplier.setColumns(10);
+		txtEmailSupplier.setBounds(42, 203, 249, 34);
+		Supplierview.add(txtEmailSupplier);
+
+		JLabel lblAddress_2 = new JLabel("Address");
+		lblAddress_2.setBounds(395, 175, 128, 16);
+		Supplierview.add(lblAddress_2);
+
+		final JTextArea txtAddressSupplier = new JTextArea();
+		txtAddressSupplier.setBounds(395, 212, 249, 98);
+		Supplierview.add(txtAddressSupplier);
+
+		JButton btnCreateSupplier = new JButton("Create");
+		btnCreateSupplier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (txtfirstnameSupplier.getText().length() == 0 || txtLastnameSupplier.getText().length() == 0
+						|| txtPhoneNumber.getText().length() == 0 || txtEmailSupplier.getText().length() == 0
+						|| txtAddressSupplier.getText().length() == 0) {
+					JOptionPane.showMessageDialog(contentPane, "Please insert all field", "Fail",
+							JOptionPane.WARNING_MESSAGE);
+				} else {
+					SupplierController obj = new SupplierController();
+					obj.create(txtfirstnameSupplier.getText(), txtLastnameSupplier.getText(),
+							(String) sexSupplier.getSelectedItem(), txtEmailSupplier.getText(),
+							txtPhoneNumber.getText(), txtAddressSupplier.getText(), 3);
+				}
+			}
+		});
+		btnCreateSupplier.setBounds(219, 432, 117, 29);
+		Supplierview.add(btnCreateSupplier);
+
+		JButton btnCancelSupplier = new JButton("Cancel");
+		btnCancelSupplier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCancelSupplier.setBounds(395, 432, 117, 29);
+		Supplierview.add(btnCancelSupplier);
+
 		// Member Table
 
 		MemberTable.setBackground(Color.WHITE);
@@ -1536,6 +1661,13 @@ public class Dashboard extends JFrame {
 		MemberTable.setLayout(null);
 		MemberTable.setLayout(null);
 
+		
+		Addsupplier.setBackground(Color.WHITE);
+		Addsupplier.setBounds(220, 133, 989, 645);
+		contentPane.add(Addsupplier);
+
+		Addsupplier.setVisible(false);
+		Supplierview.setVisible(false);
 		MemberInput.setVisible(false);
 		MemberTable.setVisible(false);
 		BookTable.setVisible(false);
@@ -1558,6 +1690,7 @@ public class Dashboard extends JFrame {
 		ProfileView.setVisible(false);
 		AddBookCategory.setVisible(false);
 		ImportBook.setVisible(false);
+		SupplierItem.setVisible(false);
 
 	}
 }

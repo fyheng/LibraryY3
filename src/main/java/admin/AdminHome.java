@@ -423,6 +423,153 @@ public class AdminHome extends JFrame {
 		ProfileView.add(lblStartDate);
 
 		final String cStartDate = Adpater.getInfo().get(9);
+		
+				StaffUpdate.setBackground(Color.WHITE);
+				StaffUpdate.setBounds(220, 133, 989, 645);
+				contentPane.add(StaffUpdate);
+				StaffUpdate.setLayout(null);
+				
+						txtStaffFirstNameEdit = new JTextField();
+						txtStaffFirstNameEdit.setBounds(43, 62, 288, 34);
+						StaffUpdate.add(txtStaffFirstNameEdit);
+						txtStaffFirstNameEdit.setColumns(10);
+						
+								textField_1 = new JTextField();
+								textField_1.setColumns(10);
+								textField_1.setBounds(353, 131, 168, 34);
+								StaffUpdate.add(textField_1);
+								
+										textField_2 = new JTextField();
+										textField_2.setColumns(10);
+										textField_2.setBounds(423, 62, 288, 34);
+										StaffUpdate.add(textField_2);
+										
+												textField_3 = new JTextField();
+												textField_3.setColumns(10);
+												textField_3.setBounds(543, 131, 168, 34);
+												StaffUpdate.add(textField_3);
+												
+														textField_4 = new JTextField();
+														textField_4.setColumns(10);
+														textField_4.setBounds(43, 203, 247, 34);
+														StaffUpdate.add(textField_4);
+														
+																textField_5 = new JTextField();
+																textField_5.setColumns(10);
+																textField_5.setBounds(333, 203, 229, 34);
+																StaffUpdate.add(textField_5);
+																
+																		JComboBox comboBox = new JComboBox();
+																		comboBox.setBounds(43, 136, 129, 27);
+																		StaffUpdate.add(comboBox);
+																		
+																				JLabel lblFirstName_1 = new JLabel("First name");
+																				lblFirstName_1.setBounds(43, 34, 108, 16);
+																				StaffUpdate.add(lblFirstName_1);
+																				
+																						JLabel lblLastName_2 = new JLabel("Last name");
+																						lblLastName_2.setBounds(423, 34, 108, 16);
+																						StaffUpdate.add(lblLastName_2);
+																						
+																								JLabel lblSex_1 = new JLabel("Sex");
+																								lblSex_1.setBounds(43, 108, 108, 16);
+																								StaffUpdate.add(lblSex_1);
+																								
+																										JComboBox comboBox_1 = new JComboBox();
+																										comboBox_1.setBounds(202, 136, 129, 27);
+																										StaffUpdate.add(comboBox_1);
+																										
+																												JLabel lblMonth = new JLabel("Month");
+																												lblMonth.setBounds(202, 108, 108, 16);
+																												StaffUpdate.add(lblMonth);
+																												
+																														JLabel lblDay = new JLabel("Day");
+																														lblDay.setBounds(353, 108, 108, 16);
+																														StaffUpdate.add(lblDay);
+																														
+																																JLabel lblYear_1 = new JLabel("Year");
+																																lblYear_1.setBounds(543, 108, 108, 16);
+																																StaffUpdate.add(lblYear_1);
+																																
+																																		JLabel lblEmail_2 = new JLabel("Email");
+																																		lblEmail_2.setBounds(43, 175, 108, 16);
+																																		StaffUpdate.add(lblEmail_2);
+																																		
+																																				JComboBox comboBox_2 = new JComboBox();
+																																				comboBox_2.setBounds(582, 208, 129, 27);
+																																				StaffUpdate.add(comboBox_2);
+																																				
+																																						JLabel lblStreet = new JLabel("Street");
+																																						lblStreet.setBounds(43, 253, 101, 16);
+																																						StaffUpdate.add(lblStreet);
+																																						
+																																								textField = new JTextField();
+																																								textField.setColumns(10);
+																																								textField.setBounds(43, 281, 108, 34);
+																																								StaffUpdate.add(textField);
+																																								
+																																										textField_6 = new JTextField();
+																																										textField_6.setColumns(10);
+																																										textField_6.setBounds(163, 281, 101, 34);
+																																										StaffUpdate.add(textField_6);
+																																										
+																																												textField_7 = new JTextField();
+																																												textField_7.setColumns(10);
+																																												textField_7.setBounds(276, 281, 129, 34);
+																																												StaffUpdate.add(textField_7);
+																																												
+																																														textField_8 = new JTextField();
+																																														textField_8.setColumns(10);
+																																														textField_8.setBounds(433, 281, 129, 34);
+																																														StaffUpdate.add(textField_8);
+																																														
+																																																textField_9 = new JTextField();
+																																																textField_9.setColumns(10);
+																																																textField_9.setBounds(582, 281, 129, 34);
+																																																StaffUpdate.add(textField_9);
+																																																
+																																																		JLabel lblHouseNumber = new JLabel("House number");
+																																																		lblHouseNumber.setBounds(163, 253, 101, 16);
+																																																		StaffUpdate.add(lblHouseNumber);
+																																																		
+																																																				JLabel lblCommune = new JLabel("Commune");
+																																																				lblCommune.setBounds(276, 253, 101, 16);
+																																																				StaffUpdate.add(lblCommune);
+																																																				
+																																																						JLabel lblDistrict = new JLabel("District");
+																																																						lblDistrict.setBounds(433, 253, 101, 16);
+																																																						StaffUpdate.add(lblDistrict);
+																																																						
+																																																								JLabel lblCity_2 = new JLabel("City");
+																																																								lblCity_2.setBounds(582, 253, 101, 16);
+																																																								StaffUpdate.add(lblCity_2);
+																																																								
+																																																										JLabel lblPhoneNumber_2 = new JLabel("Phone number");
+																																																										lblPhoneNumber_2.setBounds(333, 175, 101, 16);
+																																																										StaffUpdate.add(lblPhoneNumber_2);
+																																																										
+																																																												JLabel lblRole_1 = new JLabel("Role");
+																																																												lblRole_1.setBounds(582, 177, 101, 16);
+																																																												StaffUpdate.add(lblRole_1);
+																																																												
+																																																														JLabel lblNewLabel_2 = new JLabel("Your birthday");
+																																																														lblNewLabel_2.setBackground(Color.LIGHT_GRAY);
+																																																														lblNewLabel_2.setBounds(723, 140, 134, 16);
+																																																														StaffUpdate.add(lblNewLabel_2);
+																																																														
+																																																																JLabel lblYourAddress = new JLabel("Your Address");
+																																																																lblYourAddress.setBackground(Color.LIGHT_GRAY);
+																																																																lblYourAddress.setBounds(723, 290, 134, 16);
+																																																																StaffUpdate.add(lblYourAddress);
+																																																																
+																																																																		JButton btnUpdate = new JButton("Update");
+																																																																		btnUpdate.setBounds(193, 378, 129, 41);
+																																																																		StaffUpdate.add(btnUpdate);
+																																																																		
+																																																																				JButton btnCreate = new JButton("Cancel");
+																																																																				btnCreate.setBounds(392, 378, 129, 41);
+																																																																				StaffUpdate.add(btnCreate);
+																																																																				StaffUpdate.setVisible(false);
 		JLabel lblSetStart = new JLabel(cStartDate);
 		lblSetStart.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblSetStart.setBounds(772, 386, 99, 34);
@@ -995,153 +1142,6 @@ public class AdminHome extends JFrame {
 		panel_3.add(lblCancel);
 		contentPane.add(StaffView);
 		StaffView.setVisible(false);
-
-		StaffUpdate.setBackground(Color.WHITE);
-		StaffUpdate.setBounds(220, 133, 989, 645);
-		contentPane.add(StaffUpdate);
-		StaffUpdate.setLayout(null);
-
-		txtStaffFirstNameEdit = new JTextField();
-		txtStaffFirstNameEdit.setBounds(43, 62, 288, 34);
-		StaffUpdate.add(txtStaffFirstNameEdit);
-		txtStaffFirstNameEdit.setColumns(10);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(353, 131, 168, 34);
-		StaffUpdate.add(textField_1);
-
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(423, 62, 288, 34);
-		StaffUpdate.add(textField_2);
-
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(543, 131, 168, 34);
-		StaffUpdate.add(textField_3);
-
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(43, 203, 247, 34);
-		StaffUpdate.add(textField_4);
-
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(333, 203, 229, 34);
-		StaffUpdate.add(textField_5);
-
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(43, 136, 129, 27);
-		StaffUpdate.add(comboBox);
-
-		JLabel lblFirstName_1 = new JLabel("First name");
-		lblFirstName_1.setBounds(43, 34, 108, 16);
-		StaffUpdate.add(lblFirstName_1);
-
-		JLabel lblLastName_2 = new JLabel("Last name");
-		lblLastName_2.setBounds(423, 34, 108, 16);
-		StaffUpdate.add(lblLastName_2);
-
-		JLabel lblSex_1 = new JLabel("Sex");
-		lblSex_1.setBounds(43, 108, 108, 16);
-		StaffUpdate.add(lblSex_1);
-
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(202, 136, 129, 27);
-		StaffUpdate.add(comboBox_1);
-
-		JLabel lblMonth = new JLabel("Month");
-		lblMonth.setBounds(202, 108, 108, 16);
-		StaffUpdate.add(lblMonth);
-
-		JLabel lblDay = new JLabel("Day");
-		lblDay.setBounds(353, 108, 108, 16);
-		StaffUpdate.add(lblDay);
-
-		JLabel lblYear_1 = new JLabel("Year");
-		lblYear_1.setBounds(543, 108, 108, 16);
-		StaffUpdate.add(lblYear_1);
-
-		JLabel lblEmail_2 = new JLabel("Email");
-		lblEmail_2.setBounds(43, 175, 108, 16);
-		StaffUpdate.add(lblEmail_2);
-
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(582, 208, 129, 27);
-		StaffUpdate.add(comboBox_2);
-
-		JLabel lblStreet = new JLabel("Street");
-		lblStreet.setBounds(43, 253, 101, 16);
-		StaffUpdate.add(lblStreet);
-
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(43, 281, 108, 34);
-		StaffUpdate.add(textField);
-
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(163, 281, 101, 34);
-		StaffUpdate.add(textField_6);
-
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(276, 281, 129, 34);
-		StaffUpdate.add(textField_7);
-
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(433, 281, 129, 34);
-		StaffUpdate.add(textField_8);
-
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(582, 281, 129, 34);
-		StaffUpdate.add(textField_9);
-
-		JLabel lblHouseNumber = new JLabel("House number");
-		lblHouseNumber.setBounds(163, 253, 101, 16);
-		StaffUpdate.add(lblHouseNumber);
-
-		JLabel lblCommune = new JLabel("Commune");
-		lblCommune.setBounds(276, 253, 101, 16);
-		StaffUpdate.add(lblCommune);
-
-		JLabel lblDistrict = new JLabel("District");
-		lblDistrict.setBounds(433, 253, 101, 16);
-		StaffUpdate.add(lblDistrict);
-
-		JLabel lblCity_2 = new JLabel("City");
-		lblCity_2.setBounds(582, 253, 101, 16);
-		StaffUpdate.add(lblCity_2);
-
-		JLabel lblPhoneNumber_2 = new JLabel("Phone number");
-		lblPhoneNumber_2.setBounds(333, 175, 101, 16);
-		StaffUpdate.add(lblPhoneNumber_2);
-
-		JLabel lblRole_1 = new JLabel("Role");
-		lblRole_1.setBounds(582, 177, 101, 16);
-		StaffUpdate.add(lblRole_1);
-
-		JLabel lblNewLabel_2 = new JLabel("Your birthday");
-		lblNewLabel_2.setBackground(Color.LIGHT_GRAY);
-		lblNewLabel_2.setBounds(723, 140, 134, 16);
-		StaffUpdate.add(lblNewLabel_2);
-
-		JLabel lblYourAddress = new JLabel("Your Address");
-		lblYourAddress.setBackground(Color.LIGHT_GRAY);
-		lblYourAddress.setBounds(723, 290, 134, 16);
-		StaffUpdate.add(lblYourAddress);
-
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(193, 378, 129, 41);
-		StaffUpdate.add(btnUpdate);
-
-		JButton btnCreate = new JButton("Cancel");
-		btnCreate.setBounds(392, 378, 129, 41);
-		StaffUpdate.add(btnCreate);
-		StaffUpdate.setVisible(false);
 		contentPane.add(StaffTables);
 
 //		StaffUpdate.setBackground(Color.WHITE);
